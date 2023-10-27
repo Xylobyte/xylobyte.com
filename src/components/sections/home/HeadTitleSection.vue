@@ -4,7 +4,7 @@
         </div>
 
         <div class="daily-dev only-desktop flex">
-            <a ref="dailydev" :style="{transform: cardTransform, transition: 'transform 250ms ease-out'}" href="https://app.daily.dev/Swiftapp">
+            <a ref="dailydev" :style="{transform: cardTransform, transition: 'transform 250ms ease-out'}" href="https://app.daily.dev/xylobyte">
                 <img alt="Nantsa's Dev Card" height="546" src="@/assets/images/daily_dev.webp" width="400"/>
             </a>
         </div>
@@ -33,7 +33,7 @@
             <h2 class="jura f-large">Développeur Web - Full Stack</h2>
 
             <div class="btn-link flex row">
-                <ButtonComponent :icon="Github" background-color="255, 255, 255" color="0, 0, 0" link="https://github.com/Swiftapp-hub"
+                <ButtonComponent :icon="Github" background-color="255, 255, 255" color="0, 0, 0" link="https://github.com/Xylobyte"
                                  text="GitHub"/>
                 <ButtonComponent :icon="Linkedin" background-color="10, 101, 192" class="second" color="255, 255, 255"
                                  link="https://www.linkedin.com/in/nantsa-montillet" text="LinkedIn"/>

@@ -78,14 +78,14 @@
                 <h3 class="chakra-petch f-large p-absolute">Liens</h3>
 
                 <ButtonComponent :icon="Github" background-color="50, 50, 50" class="flex a-center j-center" color="255, 255, 255"
-                                 link="https://github.com/Swiftapp-hub" text="GitHub"/>
+                                 link="https://github.com/Xylobyte" text="GitHub"/>
                 <ButtonComponent :icon="Linkedin" background-color="10, 101, 192" class="flex a-center j-center" color="255, 255, 255"
                                  link="https://www.linkedin.com/in/nantsa-montillet"
                                  text="LinkedIn"/>
                 <ButtonComponent background-color="242, 187, 19" class="flex a-center j-center" color="255, 255, 255"
                                  link="https://www.codingame.com/profile/6a09b7f196bb6fae61ca49b75d3a8e5b6810864"
                                  text="CondinGame"/>
-                <ButtonComponent background-color="0, 0, 0" class="flex a-center j-center" color="255, 255, 255" link="https://app.daily.dev/Swiftapp"
+                <ButtonComponent background-color="0, 0, 0" class="flex a-center j-center" color="255, 255, 255" link="https://app.daily.dev/xylobyte"
                                  text="Daily.dev"/>
             </div>
         </div>

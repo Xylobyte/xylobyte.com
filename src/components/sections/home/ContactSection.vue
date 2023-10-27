@@ -47,7 +47,7 @@
                 <ButtonComponent v-motion-slide-visible-once-right :delay="250" :icon="Phone" background-color="40, 40, 40"
                                  class="flex a-center j-center" color="255, 255, 255" link="tel:+33749386838" text="07 49 38 68 38"/>
                 <ButtonComponent v-motion-slide-visible-once-right :icon="AtSign" background-color="40, 40, 40" class="flex a-center j-center"
-                                 color="255, 255, 255" link="mailto:nantsa12@gmail.com" text="nantsa12@gmail.com"/>
+                                 color="255, 255, 255" link="mailto:nantsamontillet@xylobyte.com" text="nantsamontillet@xylobyte.com"/>
             </div>
         </div>
     </section>
