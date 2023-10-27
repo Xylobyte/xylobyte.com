@@ -1,0 +1,177 @@
+@import "global_var.scss";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.flex {
+    display: flex;
+
+    &.column {
+        flex-direction: column;
+    }
+
+    &.row {
+        flex-direction: row;
+    }
+
+    &.j-space-between {
+        justify-content: space-between;
+    }
+
+    &.j-space-around {
+        justify-content: space-around;
+    }
+
+    &.j-center {
+        justify-content: center;
+    }
+
+    &.a-center {
+        align-items: center;
+    }
+
+    &.wrap {
+        flex-wrap: wrap;
+    }
+}
+
+div.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.p-relative {
+    position: relative;
+}
+
+.p-absolute {
+    position: absolute;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.adaptative-viewport-height {
+    min-height: 100vh;
+}
+
+.transition-all {
+    transition: all 350ms ease-out;
+}
+
+.transition-transform {
+    transition: transform 300ms ease-out;
+}
+
+.big-title {
+    font: 700 20px Orbitron, sans-serif;
+    color: white;
+}
+
+.chakra-petch {
+    font-family: Chakra Petch, sans-serif;
+    color: var(--dark-background-color);
+}
+
+.jura {
+    font-family: Jura, sans-serif;
+    color: #424242;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.f-big {
+    font-size: 30px;
+}
+
+.f-large {
+    font-size: min(24px, 4.5vw);
+}
+
+.f-medium {
+    font-size: 16px;
+}
+
+.f-small {
+    font-size: 14px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.txt-link {
+    color: var(--dark-primary-color);
+    text-decoration: underline;
+}
+
+body {
+    background-color: white;
+
+    &.drawer-open {
+        overflow: hidden;
+    }
+
+    #app {
+        overflow-x: clip;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+p {
+    white-space: pre-line;
+}
+
+button {
+    border-style: none;
+    cursor: pointer;
+}
+
+@media (max-width: $tablet-width) {
+    .only-desktop {
+        display: none;
+    }
+}
+
+@media (min-width: $mobile-width + 1px) {
+    .only-mobile {
+        display: none;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--dark-background-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--light-primary-color);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-primary-color);
+    }
+}

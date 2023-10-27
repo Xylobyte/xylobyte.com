@@ -1,0 +1,15 @@
+<svg id="10015.io" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="svg-pattern" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse"
+                 patternTransform="translate(12, 12) rotate(0) skewX(0)">
+            <svg width="10" height="10" viewBox="0 0 100 100">
+                <g fill="#bababa" opacity="1" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #d3cfc9;">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M88.3721 50C88.3721 71.1923 71.1923 88.3721 50 88.3721C28.8077 88.3721 11.6279 71.1923 11.6279 50C11.6279 28.8077 28.8077 11.6279 50 11.6279C71.1923 11.6279 88.3721 28.8077 88.3721 50ZM100 50C100 77.6142 77.6142 100 50 100C22.3858 100 0 77.6142 0 50C0 22.3858 22.3858 0 50 0C77.6142 0 100 22.3858 100 50Z"></path>
+                </g>
+            </svg>
+        </pattern>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="#ffffff" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #181a1b;"></rect>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#svg-pattern)"></rect>
+</svg>

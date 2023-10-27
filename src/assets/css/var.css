@@ -1,0 +1,24 @@
+:root {
+    --light-primary-color: #9b8de5;
+    --dark-primary-color: #6658b9;
+
+    --dark-background-color: #101010;
+    --light-background-color: #e5e5e5;
+
+    --small-border-radius: 5px;
+    --main-border-radius: 10px;
+
+    --small-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    --medium-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+    --large-shadow: 0 0px 30px rgba(0, 0, 0, 0.3);
+
+    --home-mask-size: 100vw;
+    --home-mask-size-big: 1200vw;
+}
+
+@media (orientation: portrait) {
+    :root {
+        --home-mask-size: 100vh;
+        --home-mask-size-big: 1200vh;
+    }
+}
