@@ -3,25 +3,25 @@
         <SectionTitle v-motion-fade-visible-once :delay="250" title="Contact"/>
 
         <div class="main_ct flex row a-center">
-            <form id="contact_form" class="flex column" @submit.prevent="sendEmail()">
+            <form id="contact_form" :class="{'success': deactivate}" class="flex column" @submit.prevent="sendEmail()">
                 <div v-motion-slide-visible-once-left :delay="250" class="flex column">
-                    <input v-model="name" :disabled="submitText === '' || submitText === 'OK'" class="jura f-medium" name="name"
-                           placeholder="Nom et prénom" type="text">
+                    <input v-model="name" :disabled="submitText === '' || submitText === 'OK'" :readonly="deactivate" class="jura f-medium"
+                           name="name" placeholder="Nom et prénom" type="text">
                     <span v-if="v$.name && v$.name.$error" class="jura f-medium">{{ v$.name.$errors[0].$message }}</span>
                 </div>
                 <div v-motion-slide-visible-once-left class="flex column">
-                    <input v-model="email_adress" :disabled="submitText === '' || submitText === 'OK'" class="jura f-medium" name="email"
-                           placeholder="Email" type="email">
+                    <input v-model="email_adress" :disabled="submitText === '' || submitText === 'OK'" :readonly="deactivate" class="jura f-medium"
+                           name="email" placeholder="Email" type="email">
                     <span v-if="v$.email_adress && v$.email_adress.$error" class="jura f-medium">{{ v$.email_adress.$errors[0].$message }}</span>
                 </div>
                 <div v-motion-slide-visible-once-left class="flex column">
-                    <input v-model="phone_number" :disabled="submitText === '' || submitText === 'OK'" class="jura f-medium" name="phone_number"
-                           placeholder="Téléphone" type="tel">
+                    <input v-model="phone_number" :disabled="submitText === '' || submitText === 'OK'" :readonly="deactivate" class="jura f-medium"
+                           name="phone_number" placeholder="Téléphone" type="tel">
                     <span v-if="v$.phone_number && v$.phone_number.$error" class="jura f-medium">{{ v$.phone_number.$errors[0].$message }}</span>
                 </div>
                 <div v-motion-slide-visible-once-left class="flex column">
-                    <textarea v-model="message" :disabled="submitText === '' || submitText === 'OK'" class="jura f-medium" name="message"
-                              placeholder="Message"></textarea>
+                    <textarea v-model="message" :disabled="submitText === '' || submitText === 'OK'" :readonly="deactivate" class="jura f-medium"
+                              name="message" placeholder="Message"></textarea>
                     <span v-if="v$.message && v$.message.$error" class="jura f-medium">{{ v$.message.$errors[0].$message }}</span>
                 </div>
 
@@ -30,7 +30,7 @@
                     <span v-if="captchaError" class="jura f-medium">Validez le captcha</span>
                 </div>
 
-                <button id="btn_submit" v-motion-slide-visible-once-left :disabled="submitText === '' || submitText === 'OK'"
+                <button id="btn_submit" v-motion-slide-visible-once-left :disabled="deactivate"
                         class="chakra-petch f-medium bold"
                         type="submit">
                     {{ submitText }}
@@ -92,7 +92,8 @@ export default defineComponent({
             otherError: false,
             captchaKey: import.meta.env.VITE_RECAPTCHA_KEY,
             loading: false,
-            submitText: 'Envoyer'
+            submitText: 'Envoyer',
+            deactivate: false
         }
     },
     validations() {
@@ -111,6 +112,7 @@ export default defineComponent({
             if (!this.v$.$error && !this.captchaError) {
                 this.loading = true;
                 this.submitText = '';
+                this.deactivate = true;
 
                 emailjs.sendForm('gmail_contact', 'gmail_message', '#contact_form')
                     .then(() => {
@@ -124,6 +126,7 @@ export default defineComponent({
                         this.otherError = true;
                         this.loading = false;
                         this.submitText = 'Envoyer';
+                        this.deactivate = false;
                     });
             }
         }
@@ -156,6 +159,10 @@ export default defineComponent({
     width: 50%;
     gap: 20px;
 
+    &.success {
+        pointer-events: none;
+    }
+
     > div {
         gap: 5px;
     }
@@ -177,6 +184,7 @@ export default defineComponent({
 
     textarea {
         height: 200px;
+        resize: none;
     }
 
     button {

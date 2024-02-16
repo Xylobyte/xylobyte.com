@@ -34,7 +34,7 @@ export default defineComponent({
     name: 'HomeView',
     components: {ContactSection, AboutSection, ProjectsSection, SkillsSection, PresentationSection, NavigationDrawerComponent, HeadTitleSection},
     created() {
-        this.emitter.emit('pageLoaded', {name: 'home'})
+        this.emitter.emit('pageLoaded', {name: 'home'});
     },
     mounted() {
         setTimeout(() => {
@@ -42,6 +42,18 @@ export default defineComponent({
                 document.getElementById(this.$route.hash.slice(1)).scrollIntoView({
                     behavior: 'smooth'
                 });
+
+            console.clear();
+            console.log('Bienvenue sur la console dev de');
+            console.log(
+                '██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
+                '╚██╗██╔╝╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗╚██╗ ██╔╝╚══██╔══╝██╔════╝\n' +
+                ' ╚███╔╝  ╚████╔╝ ██║     ██║   ██║██████╔╝ ╚████╔╝    ██║   █████╗  \n' +
+                ' ██╔██╗   ╚██╔╝  ██║     ██║   ██║██╔══██╗  ╚██╔╝     ██║   ██╔══╝  \n' +
+                '██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
+                '╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝'
+            );
+            console.log('Agrandir la console pour voir bien le logo ! ;)');
         }, 500);
     }
 })

@@ -54,10 +54,20 @@
             <hr class="line">
 
             <div class="flex row a-center transition-all">
-                <img alt="Logo diplôme OpenClassrooms" height="200" src="@/assets/images/oc.webp" width="200">
+                <img alt="Logo diplôme OpenClassrooms bac+2" height="200" src="@/assets/images/oc.webp" width="200">
                 <div class="flex column">
-                    <h4 class="chakra-petch">Formation Développeur Web OpenClassrooms (BAC +2)</h4>
-                    <span class="jura">2023 - En cours</span>
+                    <h4 class="chakra-petch">Formation Développeur Web Full-Stack (BAC +2)</h4>
+                    <span class="jura">2023</span>
+                </div>
+            </div>
+
+            <hr class="line">
+
+            <div class="flex row a-center transition-all">
+                <img alt="Logo diplôme OpenClassrooms bac+3" height="200" src="@/assets/images/oc.webp" width="200">
+                <div class="flex column">
+                    <h4 class="chakra-petch">Formation Développeur Web React (BAC +3)</h4>
+                    <span class="jura">2024 - En cours</span>
                 </div>
             </div>
         </div>

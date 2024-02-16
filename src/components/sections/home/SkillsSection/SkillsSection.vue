@@ -2,8 +2,10 @@
     <section id="skills" class="adaptative-viewport-height flex column">
         <SectionTitle v-motion-fade-visible-once :delay="250" title="Compétences"/>
 
-        <p v-motion-slide-visible-once-bottom class="jura">J'ai développé ces compétences grâce à des périodes d'autoformation, à ma
-            formation sur OpenClassrooms et à la concrétisation de divers projets.</p>
+        <p v-motion-slide-visible-once-bottom class="jura">
+            J'ai développé ces compétences grâce à des périodes d'autoformation, à ma
+            formation sur OpenClassrooms et à la concrétisation de divers projets.
+        </p>
         <p v-motion-slide-visible-once-bottom class="jura">N'hésitez pas à explorer mes projets pour obtenir davantage de détails. &#128522;</p>
 
         <div class="skills-ct">

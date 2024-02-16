@@ -18,7 +18,7 @@ export default defineComponent({
         },
         link: {
             type: String,
-            default: 'null'
+            default: '#'
         },
         icon: null,
         backgroundColor: {

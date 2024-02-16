@@ -5,7 +5,7 @@
 
         <div class="daily-dev only-desktop flex">
             <a ref="dailydev" :style="{transform: cardTransform, transition: 'transform 250ms ease-out'}" href="https://app.daily.dev/xylobyte">
-                <img alt="Nantsa's Dev Card" height="546" src="@/assets/images/daily_dev.webp" width="400"/>
+                <img alt="Nantsa's Dev Card" height="549" src="@/assets/images/daily_dev.webp" width="400"/>
             </a>
         </div>
 
