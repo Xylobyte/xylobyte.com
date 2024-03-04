@@ -35,6 +35,7 @@ export default defineComponent({
     components: {ContactSection, AboutSection, ProjectsSection, SkillsSection, PresentationSection, NavigationDrawerComponent, HeadTitleSection},
     created() {
         this.emitter.emit('pageLoaded', {name: 'home'});
+        document.title = 'Nantsa Montillet - Développeur Web';
     },
     mounted() {
         setTimeout(() => {
@@ -53,7 +54,7 @@ export default defineComponent({
                 '██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
                 '╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝'
             );
-            console.log('Agrandir la console pour voir bien le logo ! ;)');
+            console.log('Agrandir la console pour voir le logo ! ;)');
         }, 500);
     }
 })

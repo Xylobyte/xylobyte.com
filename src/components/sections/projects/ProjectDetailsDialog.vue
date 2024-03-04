@@ -63,6 +63,7 @@ export default {
             response.data.forEach((project) => {
                 if (project.id === this.$route.params.id) {
                     this.projectInfo = project;
+                    document.title = `Nantsa Montillet - Projet ${project.name}`
                 }
             });
         }).catch((error) => console.log(error));

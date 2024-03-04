@@ -1,6 +1,6 @@
 <template>
     <footer class="footer flex j-center a-center">
-        <span class="jura f-medium">© Copyright 2023 - Nantsa MONTILLET. Tous droits réservés.</span>
+        <span class="jura f-medium">© Copyright 2023 - 2024 | Nantsa Montillet</span>
     </footer>
 </template>
 

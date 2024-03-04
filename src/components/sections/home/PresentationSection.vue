@@ -66,8 +66,8 @@
             <div class="flex row a-center transition-all">
                 <img alt="Logo diplôme OpenClassrooms bac+3" height="200" src="@/assets/images/oc.webp" width="200">
                 <div class="flex column">
-                    <h4 class="chakra-petch">Formation Développeur Web React (BAC +3)</h4>
-                    <span class="jura">2024 - En cours</span>
+                    <h4 class="chakra-petch">Alternance Développeur Web React (BAC +3)</h4>
+                    <span class="jura">2023 - En cours</span>
                 </div>
             </div>
         </div>

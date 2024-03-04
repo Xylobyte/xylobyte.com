@@ -44,7 +44,12 @@ export default defineComponent({
         }).catch((error) => console.log(error));
     },
     created() {
-        this.emitter.emit('pageLoaded', {name: 'projects'})
+        this.emitter.emit('pageLoaded', {name: 'projects'});
+        document.title = 'Nantsa Montillet - Projets et réalisation';
+
+        this.emitter.on('pageLoading', (data) => {
+            if (data.name === 'projects') document.title = 'Nantsa Montillet - Projets et réalisation';
+        })
     },
     methods: {
         search(searchText) {

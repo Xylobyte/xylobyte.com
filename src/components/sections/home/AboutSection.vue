@@ -51,19 +51,19 @@
                     <span class="jura bold">Lecture :</span>
                     <span class="jura">
                         Le style que je préfère c'est la science-fiction. J'aime les romans autant que les BD.
-                        Par exemple: Dune / Foundation / Yoko Tsuno
+                        Par exemple: Foundation / Silo / Yoko Tsuno / Blake et Mortimer / Blueberry
                     </span>
                 </div>
                 <div class="ct_card_text flex row j-space-between a-center">
                     <span class="jura bold">Gaming :</span>
                     <span class="jura">
-                        Là encore, j'aime la science-fiction ainsi que le style anime avec des titres comme: No Man's Sky / Genshin Impact / Horizon
+                        Là encore, j'aime la science-fiction ainsi que le style anime avec des titres comme: No Man's Sky / Genshin Impact / Arknights
                     </span>
                 </div>
                 <div class="ct_card_text flex row j-space-between a-center">
                     <span class="jura bold">Photographie :</span>
                     <span class="jura">
-                        J'aime bien la photo macro de plantes et d'insectes, je fais la plupart de mes photos avec un smartphone
+                        J'aime bien la photo macro de plantes et d'insectes, je fais la plupart de mes photos avec un smartphone Samsung série S
                     </span>
                 </div>
                 <div class="ct_card_text flex row j-space-between a-center">
@@ -84,7 +84,7 @@
                                  text="LinkedIn"/>
                 <ButtonComponent background-color="242, 187, 19" class="flex a-center j-center" color="255, 255, 255"
                                  link="https://www.codingame.com/profile/6a09b7f196bb6fae61ca49b75d3a8e5b6810864"
-                                 text="CondinGame"/>
+                                 text="CodinGame"/>
                 <ButtonComponent background-color="0, 0, 0" class="flex a-center j-center" color="255, 255, 255" link="https://app.daily.dev/xylobyte"
                                  text="Daily.dev"/>
             </div>
