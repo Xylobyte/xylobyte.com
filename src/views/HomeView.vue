@@ -1,23 +1,23 @@
 <template>
-    <div>
-        <HeadTitleSection/>
+	<div>
+		<HeadTitleSection/>
 
-        <div class="flex row">
-            <NavigationDrawerComponent/>
+		<div class="flex row">
+			<NavigationDrawerComponent/>
 
-            <div class="content flex column">
-                <PresentationSection/>
+			<div class="content flex column">
+				<PresentationSection/>
 
-                <SkillsSection/>
+				<SkillsSection/>
 
-                <ProjectsSection/>
+				<ProjectsSection/>
 
-                <AboutSection/>
+				<AboutSection/>
 
-                <ContactSection/>
-            </div>
-        </div>
-    </div>
+				<ContactSection/>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -31,32 +31,40 @@ import AboutSection from "@/components/sections/home/AboutSection.vue";
 import ContactSection from "@/components/sections/home/ContactSection.vue";
 
 export default defineComponent({
-    name: 'HomeView',
-    components: {ContactSection, AboutSection, ProjectsSection, SkillsSection, PresentationSection, NavigationDrawerComponent, HeadTitleSection},
-    created() {
-        this.emitter.emit('pageLoaded', {name: 'home'});
-        document.title = 'Nantsa Montillet - Développeur Web';
-    },
-    mounted() {
-        setTimeout(() => {
-            if (this.$route.hash !== '')
-                document.getElementById(this.$route.hash.slice(1)).scrollIntoView({
-                    behavior: 'smooth'
-                });
+	name: 'HomeView',
+	components: {
+		ContactSection,
+		AboutSection,
+		ProjectsSection,
+		SkillsSection,
+		PresentationSection,
+		NavigationDrawerComponent,
+		HeadTitleSection
+	},
+	created() {
+		this.emitter.emit('pageLoaded', {name: 'home'});
+		document.title = 'Nantsa Montillet - Développeur Web';
+	},
+	mounted() {
+		setTimeout(() => {
+			if (this.$route.hash !== '')
+				document.getElementById(this.$route.hash.slice(1)).scrollIntoView({
+					behavior: 'smooth'
+				});
 
-            console.clear();
-            console.log('Bienvenue sur la console dev de');
-            console.log(
-                '██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
-                '╚██╗██╔╝╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗╚██╗ ██╔╝╚══██╔══╝██╔════╝\n' +
-                ' ╚███╔╝  ╚████╔╝ ██║     ██║   ██║██████╔╝ ╚████╔╝    ██║   █████╗  \n' +
-                ' ██╔██╗   ╚██╔╝  ██║     ██║   ██║██╔══██╗  ╚██╔╝     ██║   ██╔══╝  \n' +
-                '██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
-                '╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝'
-            );
-            console.log('Agrandir la console pour voir le logo ! ;)');
-        }, 500);
-    }
+			console.clear();
+			console.log('Bienvenue sur la console dev de');
+			console.log(
+				'██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
+				'╚██╗██╔╝╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗╚██╗ ██╔╝╚══██╔══╝██╔════╝\n' +
+				' ╚███╔╝  ╚████╔╝ ██║     ██║   ██║██████╔╝ ╚████╔╝    ██║   █████╗  \n' +
+				' ██╔██╗   ╚██╔╝  ██║     ██║   ██║██╔══██╗  ╚██╔╝     ██║   ██╔══╝  \n' +
+				'██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
+				'╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝'
+			);
+			console.log('Agrandir la console pour voir le logo ! ;)');
+		}, 500);
+	}
 })
 </script>
 
@@ -64,22 +72,22 @@ export default defineComponent({
 @import "@/assets/css/global_var.scss";
 
 .content {
-    width: calc(100% - 310px);
+	width: calc(100% - 310px);
 
-    &::v-deep(section) {
-        padding: 80px 4vw 2.5vw 3vw;
-    }
+	&::v-deep(section) {
+		padding: 80px 4vw 2.5vw 3vw;
+	}
 }
 
 @media (max-width: $tablet-width) {
-    .content {
-        width: calc(100% - 80px);
-    }
+	.content {
+		width: calc(100% - 80px);
+	}
 }
 
 @media (max-width: $mobile-width) {
-    .content {
-        width: 100%;
-    }
+	.content {
+		width: 100%;
+	}
 }
 </style>
