@@ -1,3 +1,15 @@
+<script>
+import {defineComponent} from 'vue';
+
+export default defineComponent({
+    name: 'PageNotFound',
+    created() {
+        this.emitter.emit('pageLoaded', {name: 'page-not-found'});
+        document.title = 'Nantsa Montillet - 404';
+    },
+})
+</script>
+
 <template>
     <div class="flex column a-center j-center">
         <h1 class="big-title">404</h1>

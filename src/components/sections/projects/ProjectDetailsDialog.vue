@@ -1,47 +1,41 @@
 <template>
-    <div>
-        <div class="dialog_wrapper flex j-center a-center p-relative">
-            <div class="close-div p-absolute" @click="close()"></div>
+    <div class="dialog_wrapper flex j-center a-center p-relative" @click.stop="close()">
+        <div class="dialog flex row a-center p-relative" @click.stop>
+            <div class="ct_img flex column a-center j-center">
+                <img v-if="projectInfo.length !== 0" :alt="projectInfo.shortDescription" :src="projectInfo.image">
+                <span class="jura f-medium">{{ projectInfo.date }}</span>
+            </div>
 
-            <div class="dialog flex row a-center p-relative">
-                <div class="ct_img flex column a-center j-center">
-                    <img v-if="projectInfo.length !== 0" :alt="projectInfo.shortDescription" :src="projectInfo.image">
-                    <span class="jura f-medium">{{ projectInfo.date }}</span>
-                </div>
+            <div v-if="projectInfo.length !== 0" class="content flex column">
+                <h2 class="chakra-petch f-big">{{ projectInfo.name }}</h2>
 
-                <div v-if="projectInfo.length !== 0" class="content flex column">
-                    <h2 class="chakra-petch f-big">{{ projectInfo.name }}</h2>
+                <hr>
 
-                    <hr>
-
-                    <p class="jura f-medium">{{ projectInfo.description }}</p>
-                    <span v-if="projectInfo.link !== 'null'" class="jura f-medium bold">
+                <p class="jura f-medium">{{ projectInfo.description }}</p>
+                <span v-if="projectInfo.link !== 'null'" class="jura f-medium bold">
                     Lien du projet :
                     <a :href="projectInfo.link" target="_blank">{{ projectInfo.link }}</a>
                 </span>
-                    <span v-if="projectInfo.linkOfCode !== 'null'" class="jura f-medium bold">
+                <span v-if="projectInfo.linkOfCode !== 'null'" class="jura f-medium bold">
                     Lien du code :
                     <a :href="projectInfo.linkOfCode" target="_blank">{{ projectInfo.linkOfCode }}</a>
                 </span>
 
-                    <div class="ct_skills flex wrap">
-                        <SkillItemComponent v-for="(tag, index) in projectInfo.skills" :key="index" :text="tag.name" type="hard"/>
-                    </div>
+                <div class="ct_skills flex wrap">
+                    <SkillItemComponent v-for="(tag, index) in projectInfo.skills" :key="index" :text="tag.name" type="hard"/>
                 </div>
-
-                <X class="close_icon p-absolute" size="30" @click="close()"/>
-
-                <Transition>
-                    <div v-if="projectInfo.length === 0" class="loader flex a-center j-center">
-                        <LoaderComponent/>
-                    </div>
-                </Transition>
             </div>
+
+            <X class="close_icon p-absolute" size="30" @click="close()"/>
+
+            <Transition>
+                <div v-if="projectInfo.length === 0" class="loader flex a-center j-center">
+                    <LoaderComponent/>
+                </div>
+            </Transition>
         </div>
 
-        <div class="wrapper-btn flex j-center">
-            <button class="close_btn chakra-petch bold" @click="close()">Fermer</button>
-        </div>
+        <button class="close_btn chakra-petch bold" @click.stop="close()">Fermer</button>
     </div>
 </template>
 
@@ -87,10 +81,8 @@ import {X} from 'lucide-vue-next';
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     padding-top: 50px;
-}
-
-.dialog_wrapper, .close-div {
     top: 0;
     left: 0;
     width: 100%;
@@ -183,18 +175,24 @@ import {X} from 'lucide-vue-next';
 
 @media (max-width: $mobile-width) {
     .dialog_wrapper {
-        height: 100vh;
-        overflow-y: auto;
         align-items: start;
     }
 
     .dialog {
+        overflow-y: auto;
         box-shadow: none;
         width: 100vw;
-        margin-top: 25px;
+        height: 96%;
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom: 70px;
         gap: 10px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
+
+        .ct_img {
+            transform: none;
+        }
 
         .close_icon {
             display: none;
@@ -202,18 +200,14 @@ import {X} from 'lucide-vue-next';
     }
 
     .close_btn {
+        position: absolute;
+        bottom: 10px;
         display: block;
         padding: 5px 20px;
         background: var(--light-background-color);
         box-shadow: var(--medium-shadow);
         border-radius: 50px;
-    }
-
-    .wrapper-btn {
-        bottom: 10px;
-        left: 0;
-        right: 0;
-        position: fixed;
+        z-index: 5;
     }
 }
 </style>

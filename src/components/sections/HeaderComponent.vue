@@ -44,7 +44,7 @@ export default defineComponent({
     },
     created() {
         this.emitter.on('pageLoaded', (evt) => {
-            if (evt.name === 'projects') {
+            if (evt.name === 'projects' || evt.name === 'mentions-legales' || evt.name === 'page-not-found') {
                 window.removeEventListener('scroll', this.handleScroll)
                 this.scroll = true
                 this.isHome = false

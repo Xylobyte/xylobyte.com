@@ -72,7 +72,7 @@ export default defineComponent({
 @import "@/assets/css/global_var.scss";
 
 .content {
-	width: calc(100% - 310px);
+	width: calc(100% - 330px);
 
 	&::v-deep(section) {
 		padding: 80px 4vw 2.5vw 3vw;
