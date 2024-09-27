@@ -101,7 +101,7 @@ export default defineComponent({
 
 aside {
     height: 100vh;
-    min-width: 310px;
+    min-width: 330px;
     background-color: #E2E2E2;
     position: sticky;
     top: 0;

@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="api" level="application" />
     <orderEntry type="library" name="c9ec31a1bb" level="application" />
+    <orderEntry type="library" name="api" level="application" />
   </component>
 </module>

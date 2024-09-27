@@ -81,6 +81,7 @@ export default defineComponent({
     min-height: 100vh;
     padding: 20px;
     gap: 40px;
+    background: white;
 
     .loader {
         background: white;

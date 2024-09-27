@@ -119,6 +119,7 @@ div.loader {
 }
 
 body {
+    max-height: 100vh;
     background-color: white;
 
     &.drawer-open {
@@ -127,7 +128,13 @@ body {
 
     #app {
         overflow-x: clip;
+        min-height: 100vh;
+        justify-content: end;
     }
+}
+
+section {
+    background: white;
 }
 
 ul {
