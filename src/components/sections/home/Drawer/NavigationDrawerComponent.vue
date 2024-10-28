@@ -85,7 +85,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/global_var.scss";
+@use "@/assets/css/global_var.scss" as *;
 
 .container {
     opacity: 0;

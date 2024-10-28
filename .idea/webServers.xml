@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e8c568a8-cdfb-4236-8dfa-3491f60e6a7d" name="Xylobyte" url="https://xylobyte.com">
+        <fileTransfer rootFolder="/home/seznaecq" accessType="SFTP" host="185.22.110.210" port="5022" sshConfigId="0a9cc727-8517-4e6e-b5a9-195530c67db4" sshConfig="seznaecq@185.22.110.210:5022 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

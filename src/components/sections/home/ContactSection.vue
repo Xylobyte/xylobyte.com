@@ -135,7 +135,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/global_var.scss";
+@use "@/assets/css/global_var.scss" as *;
 
 .main_ct {
     margin-top: 50px;

@@ -69,7 +69,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/global_var.scss";
+@use "@/assets/css/global_var.scss" as *;
 
 .content {
 	width: calc(100% - 330px);

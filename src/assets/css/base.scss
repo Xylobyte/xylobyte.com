@@ -1,4 +1,4 @@
-@import "global_var.scss";
+@use "global_var.scss";
 
 * {
     box-sizing: border-box;
@@ -155,13 +155,13 @@ button {
     cursor: pointer;
 }
 
-@media (max-width: $tablet-width) {
+@media (max-width: global_var.$tablet-width) {
     .only-desktop {
         display: none;
     }
 }
 
-@media (min-width: $mobile-width + 1px) {
+@media (min-width: global_var.$mobile-width + 1px) {
     .only-mobile {
         display: none;
     }

@@ -91,7 +91,7 @@
         </div>
 
         <ButtonComponent v-motion-fade-visible-once background-color="102, 88, 185" class="btn_cv flex a-center j-center" color="255, 255, 255"
-                         link="/files/nm_cv.pdf" text="Télécharger mon CV"/>
+                         link="/storage/nm_cv.pdf" text="Télécharger mon CV"/>
     </section>
 </template>
 

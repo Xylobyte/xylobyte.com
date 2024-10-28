@@ -79,7 +79,7 @@ import SectionTitle from "@/components/sections/home/SectionTitle.vue";
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/css/global_var.scss";
+@use "@/assets/css/global_var.scss" as *;
 
 section {
     gap: 10px;
