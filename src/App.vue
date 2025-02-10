@@ -1,31 +1,36 @@
-<template>
-    <HeaderComponent/>
+<script setup lang="ts">
+	import { provide, ref } from 'vue';
+	import { menuOpenKey } from '@/keys.ts';
+	import HeaderComponent from '@/components/HeaderComponent.vue';
+	import ScrollToTopComponent from '@/components/ScrollToTopComponent.vue';
+	import FooterComponent from '@/components/FooterComponent.vue';
 
-    <RouterView v-slot="{ Component }">
-        <Transition mode="out-in">
-            <Component :is="Component"/>
-        </Transition>
-    </RouterView>
-
-    <ScrollToTopComponent/>
-
-    <FooterComponent/>
-</template>
-
-<script setup>
-import HeaderComponent from '@/components/sections/HeaderComponent.vue'
-import FooterComponent from '@/components/sections/FooterComponent.vue'
-import ScrollToTopComponent from "@/components/ScrollToTopComponent.vue";
+	const menuOpen = ref(false);
+	provide(menuOpenKey, menuOpen);
 </script>
 
-<style>
-.v-enter-active,
-.v-leave-active {
-    transition: opacity 0.3s linear;
-}
+<template>
+	<HeaderComponent />
 
-.v-enter-from,
-.v-leave-to {
-    opacity: 0;
-}
+	<RouterView v-slot="{ Component }">
+		<Transition mode="out-in">
+			<Component :is="Component" />
+		</Transition>
+	</RouterView>
+
+	<ScrollToTopComponent />
+
+	<FooterComponent />
+</template>
+
+<style lang="scss">
+	.v-enter-active,
+	.v-leave-active {
+		transition: opacity 0.3s linear;
+	}
+
+	.v-enter-from,
+	.v-leave-to {
+		opacity: 0;
+	}
 </style>

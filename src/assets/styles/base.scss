@@ -1,4 +1,6 @@
 @use "global_var.scss";
+@use "var";
+@use "fonts";
 
 * {
     box-sizing: border-box;
@@ -40,6 +42,34 @@ html {
     &.wrap {
         flex-wrap: wrap;
     }
+}
+
+.gap5 {
+    gap: 5px;
+}
+
+.gap10 {
+    gap: 10px;
+}
+
+.gap15 {
+    gap: 15px;
+}
+
+.gap20 {
+    gap: 20px;
+}
+
+.gap25 {
+    gap: 25px;
+}
+
+.gap30 {
+    gap: 30px;
+}
+
+.gap40 {
+    gap: 40px;
 }
 
 div.loader {
