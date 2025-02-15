@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 	import { inject, ref, watch } from 'vue';
 	import { useRoute } from 'vue-router';
 	import { useScroll } from '@vueuse/core';
@@ -28,13 +28,13 @@
 
 <template>
 	<header>
-		<nav :class="scroll ? 'scroll' : ''" class="flex transition-all">
+		<nav :class="{ scroll: scroll || menuOpen }" class="flex transition-all">
 			<div class="head-title flex a-center overflow-hidden">
 				<Menu
 					v-if="isHome"
+					:size="25"
 					class="only-mobile transition-transform"
 					color="white"
-					:size="25"
 					@click="menuOpen = !menuOpen"
 				/>
 				<h1 class="big-title only-desktop transition-all">Nantsa Montillet</h1>
@@ -52,7 +52,7 @@
 	</header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 	.test {
 		height: 200vh;
 	}

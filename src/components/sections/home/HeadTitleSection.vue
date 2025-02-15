@@ -44,7 +44,7 @@
 
 		<hr />
 
-		<div class="info flex column j-center">
+		<div class="info flex column j-center gap10">
 			<img alt="" height="300" src="@/assets/images/profil.webp" width="300" />
 			<h1 class="big-title">
 				<span style="animation-delay: 1000ms">N</span>
@@ -65,7 +65,7 @@
 			</h1>
 			<h2 class="jura f-large">Développeur Web - Full Stack</h2>
 
-			<div class="btn-link flex row">
+			<div class="btn-link flex row gap40">
 				<ButtonComponent
 					:icon="GitHubIcon"
 					background-color="255, 255, 255"
@@ -139,7 +139,6 @@
 		}
 
 		.info {
-			gap: 10px;
 			width: 50%;
 
 			img {
@@ -175,7 +174,6 @@
 			}
 
 			.btn-link {
-				gap: 40px;
 				margin-top: 40px;
 
 				a {
@@ -196,13 +194,13 @@
 	}
 
 	@media (max-width: global_var.$tablet-width) {
-		header .info {
+		main .info {
 			width: auto;
 		}
 	}
 
 	@media (max-width: global_var.$mobile-width) {
-		header .info .btn-link {
+		main .info .btn-link {
 			gap: 20px;
 		}
 	}

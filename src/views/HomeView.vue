@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-	import { onMounted } from 'vue';
+	import { onMounted, onUnmounted } from 'vue';
 	import { useRoute } from 'vue-router';
 	import HeadTitleSection from '@/components/sections/home/HeadTitleSection.vue';
+	import NavigationDrawerComponent from '@/components/sections/home/drawer/NavigationDrawerComponent.vue';
+	import PresentationSection from '@/components/sections/home/PresentationSection.vue';
+	import { AnimateHome } from '@/animate/home.ts';
 
 	const route = useRoute();
+	const animator = new AnimateHome();
 
 	onMounted(() => {
 		document.title = 'Nantsa Montillet - Développeur Web';
+		animator.init();
 
 		setTimeout(() => {
 			if (route.hash !== '')
@@ -27,11 +32,23 @@
 			console.log('Agrandir la console pour voir le logo ! ;)');
 		}, 500);
 	});
+
+	onUnmounted(() => {
+		animator.destroy();
+	});
 </script>
 
 <template>
 	<div>
 		<HeadTitleSection />
+
+		<div class="flex row">
+			<NavigationDrawerComponent />
+
+			<div class="content flex column">
+				<PresentationSection />
+			</div>
+		</div>
 	</div>
 </template>
 

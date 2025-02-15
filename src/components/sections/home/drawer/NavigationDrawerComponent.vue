@@ -1,0 +1,149 @@
+<script lang="ts" setup>
+	import { inject, ref } from 'vue';
+	import { menuOpenKey } from '@/keys.ts';
+	import NavSectionItem from '@/components/sections/home/drawer/NavSectionItem.vue';
+	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
+	import { useScroll, watchThrottled } from '@vueuse/core';
+
+	const currentSection = ref('presentation');
+	const drawerOpen = inject(menuOpenKey, ref(false));
+
+	const { y } = useScroll(window, { behavior: 'smooth' });
+	watchThrottled(
+		y,
+		() => {
+			const sections = document.querySelectorAll('section');
+
+			sections.forEach((section) => {
+				const title = section.querySelector('h2');
+				const titlePosition = title?.getBoundingClientRect().top;
+				const halfViewportHeight = window.innerHeight / 1.5;
+
+				if ((titlePosition || 0) <= halfViewportHeight) {
+					currentSection.value = section.id;
+				}
+			});
+		},
+		{ throttle: 400 },
+	);
+</script>
+
+<template>
+	<aside :class="{ open: drawerOpen }" class="transition-all">
+		<hr />
+		<div class="flex column j-space-between">
+			<NavSectionItem
+				:icon="User"
+				:is-active="currentSection === 'presentation'"
+				name="Présentation"
+				targetId="presentation"
+				@click="drawerOpen = false"
+			/>
+			<NavSectionItem
+				:icon="ListChecks"
+				:is-active="currentSection === 'skills'"
+				name="Compétences"
+				targetId="skills"
+				@click="drawerOpen = false"
+			/>
+			<NavSectionItem
+				:icon="FolderTree"
+				:is-active="currentSection === 'projects'"
+				name="Projets récents"
+				targetId="projects"
+				@click="drawerOpen = false"
+			/>
+			<NavSectionItem
+				:icon="BadgeInfo"
+				:is-active="currentSection === 'about'"
+				name="À propos"
+				targetId="about"
+				@click="drawerOpen = false"
+			/>
+			<NavSectionItem
+				:icon="Mail"
+				:is-active="currentSection === 'contact'"
+				name="Contact"
+				targetId="contact"
+				@click="drawerOpen = false"
+			/>
+		</div>
+	</aside>
+	<div class="container transition-all" @click="drawerOpen = false"></div>
+</template>
+
+<style lang="scss" scoped>
+	@use '@/assets/styles/global_var.scss';
+
+	.container {
+		opacity: 0;
+		background-color: rgba(0, 0, 0, 0.25);
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		pointer-events: none;
+	}
+
+	aside {
+		height: 100vh;
+		min-width: 330px;
+		background-color: #e2e2e2;
+		position: sticky;
+		top: 0;
+		z-index: 3;
+
+		hr {
+			z-index: -1;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 60px;
+			border: none;
+			border-left: var(--dark-background-color) solid 1px;
+		}
+
+		> div {
+			height: min(800px, 100%);
+			padding: 80px 60px 40px 40px;
+		}
+	}
+
+	@media (max-width: global_var.$tablet-width) and (min-width: (global_var.$mobile-width + 1px)) {
+		aside {
+			min-width: unset;
+
+			hr {
+				left: 40px;
+			}
+
+			> div {
+				padding: 80px 20px 40px 20px;
+			}
+		}
+	}
+
+	@media (max-width: global_var.$mobile-width) {
+		aside.open + div.container {
+			opacity: 1;
+			pointer-events: all;
+		}
+
+		aside {
+			position: fixed;
+			min-width: unset;
+			transform: translateX(-300px);
+			opacity: 0;
+			pointer-events: none;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+			&.open {
+				opacity: 1;
+				pointer-events: all;
+				transform: translateX(0);
+			}
+		}
+	}
+</style>
