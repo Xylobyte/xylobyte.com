@@ -3,10 +3,10 @@
 </script>
 
 <template>
-	<section id="presentation" class="adaptative-viewport-height flex column scroll-animate">
+	<section id="presentation" class="adaptative-viewport-height flex column gap10 scroll-animate">
 		<SectionTitleComponent title="Présentation" />
 
-		<p class="f-medium jura">
+		<p class="f-medium jura opacity-0">
 			Hello, &#128075;<br /><br />
 			Je m'appelle Nantsa Montillet, je suis passionné par la programmation. Après un parcours autodidacte de
 			quatre ans, j'ai acquis des compétences solides en programmation, notamment dans les langages C++, Java,
@@ -14,32 +14,34 @@
 			développement web avec une formation de niveau BAC +2.
 		</p>
 
-		<img alt="" class="first" height="38" src="@/assets/images/p-line.svg" width="364" />
+		<img alt="" class="first opacity-0" height="38" src="@/assets/images/p-line.svg" width="364" />
 
-		<p class="f-medium jura left">
+		<p class="f-medium jura left opacity-0">
 			J'ai récemment réalisé un site vitrine pour une petite entreprise, mettant en pratique mes connaissances
 			avec les frameworks Vue.js et Laravel, ainsi qu'en bases de données MySQL. Cette expérience m'a permis
 			d'allier créativité et maîtrise technique pour répondre aux besoins de mon client. &#128526;
 		</p>
 
-		<img alt="" class="reverse" height="38" src="@/assets/images/p-line.svg" width="364" />
+		<div class="ct-img opacity-0">
+			<img alt="" class="reverse" height="38" src="@/assets/images/p-line.svg" width="364" />
+		</div>
 
-		<p class="f-medium jura">
+		<p class="f-medium jura opacity-0">
 			Aujourd'hui, je suis à la recherche d'une alternance pour poursuivre mon parcours en bac+3 dès septembre.
 			Passionné et autonome, je suis prêt à m'investir pleinement dans des projets stimulants, tout en continuant
 			d'apprendre et de me perfectionner.
 		</p>
 
-		<img alt="" height="38" src="@/assets/images/p-line.svg" width="364" />
+		<img alt="" class="opacity-0" height="38" src="@/assets/images/p-line.svg" width="364" />
 
-		<p class="f-medium jura left">
+		<p class="f-medium jura left opacity-0">
 			N'hésitez pas à me contacter pour échanger sur de nouvelles opportunités professionnelles ! &#128516;
 		</p>
 
-		<h3 class="chakra-petch">Mon parcours</h3>
+		<h3 class="chakra-petch opacity-0">Mon parcours</h3>
 
-		<div class="list-path flex row a-center">
-			<div class="flex row a-center transition-all">
+		<div class="list-path flex row a-center gap30 opacity-0">
+			<div class="flex row a-center gap10 transition-all">
 				<img alt="Logo diplôme national du brevet" height="200" src="@/assets/images/dnb.webp" width="200" />
 				<div class="flex column">
 					<h4 class="chakra-petch">Diplôme national du brevet</h4>
@@ -49,7 +51,7 @@
 
 			<hr class="line" />
 
-			<div class="flex row a-center transition-all">
+			<div class="flex row a-center gap10 transition-all">
 				<img
 					alt="Logo du site web abzaroke de Bertrand Montillet"
 					height="200"
@@ -64,7 +66,7 @@
 
 			<hr class="line" />
 
-			<div class="flex row a-center transition-all">
+			<div class="flex row a-center gap10 transition-all">
 				<img alt="Logo diplôme OpenClassrooms bac+2" height="200" src="@/assets/images/oc.webp" width="200" />
 				<div class="flex column">
 					<h4 class="chakra-petch">Formation Développeur Web Full-Stack (BAC +2)</h4>
@@ -74,7 +76,7 @@
 
 			<hr class="line" />
 
-			<div class="flex row a-center transition-all">
+			<div class="flex row a-center gap10 transition-all">
 				<img alt="Logo diplôme OpenClassrooms bac+3" height="200" src="@/assets/images/oc.webp" width="200" />
 				<div class="flex column">
 					<h4 class="chakra-petch">Alternance Développeur Web React (BAC +3)</h4>
@@ -89,8 +91,6 @@
 	@use '@/assets/styles/global_var.scss';
 
 	section {
-		gap: 10px;
-
 		p {
 			width: 50vw;
 			margin-bottom: 10px;
@@ -100,17 +100,17 @@
 			}
 		}
 
-		> img {
+		> img,
+		.ct-img {
 			width: 28vw;
 			align-self: center;
-			opacity: 0.5;
 			margin-right: 12vw;
 
 			&.first {
 				margin-right: 0;
 			}
 
-			&.reverse {
+			.reverse {
 				margin-left: 12vw;
 				margin-right: 0;
 				transform: scaleX(-1);
@@ -123,7 +123,6 @@
 		}
 
 		.list-path {
-			gap: 30px;
 			overflow-x: auto;
 			max-width: 100%;
 
@@ -139,7 +138,6 @@
 			}
 
 			> div {
-				gap: 10px;
 				height: 100%;
 				max-width: 120px;
 				min-width: 120px;

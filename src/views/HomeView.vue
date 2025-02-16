@@ -4,14 +4,15 @@
 	import HeadTitleSection from '@/components/sections/home/HeadTitleSection.vue';
 	import NavigationDrawerComponent from '@/components/sections/home/drawer/NavigationDrawerComponent.vue';
 	import PresentationSection from '@/components/sections/home/PresentationSection.vue';
-	import { AnimateHome } from '@/animate/home.ts';
+	import { initHomeSectionsAnimations } from '@/animate/home-sections.ts';
+	import SkillsSection from '@/components/sections/home/SkillsSection/SkillsSection.vue';
 
 	const route = useRoute();
-	const animator = new AnimateHome();
+	let stopTracking: VoidFunction;
 
 	onMounted(() => {
 		document.title = 'Nantsa Montillet - Développeur Web';
-		animator.init();
+		stopTracking = initHomeSectionsAnimations();
 
 		setTimeout(() => {
 			if (route.hash !== '')
@@ -19,7 +20,7 @@
 					behavior: 'smooth',
 				});
 
-			console.clear();
+			/*console.clear();
 			console.log('Bienvenue sur la console dev de');
 			console.log(
 				'██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
@@ -29,12 +30,12 @@
 					'██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
 					'╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝',
 			);
-			console.log('Agrandir la console pour voir le logo ! ;)');
+			console.log('Agrandir la console pour voir le logo ! ;)');*/
 		}, 500);
 	});
 
 	onUnmounted(() => {
-		animator.destroy();
+		if (stopTracking) stopTracking();
 	});
 </script>
 
@@ -47,6 +48,8 @@
 
 			<div class="content flex column">
 				<PresentationSection />
+
+				<SkillsSection />
 			</div>
 		</div>
 	</div>
