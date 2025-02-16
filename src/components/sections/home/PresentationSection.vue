@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/sections/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 </script>
 
 <template>

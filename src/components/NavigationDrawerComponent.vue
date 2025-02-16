@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import { inject, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
-	import NavSectionItem from '@/components/sections/home/drawer/NavSectionItem.vue';
+	import NavSectionItem from '@/components/sections/home/NavSectionItem.vue';
 	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
 	import { useScroll, watchThrottled } from '@vueuse/core';
 
@@ -73,7 +73,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var.scss';
+	@use '@/assets/styles/global_var';
 
 	.container {
 		opacity: 0;

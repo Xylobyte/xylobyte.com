@@ -2,9 +2,9 @@
 	import { onMounted, ref } from 'vue';
 	import { XylobyteAPI } from '@/assets/api/XylobyteAPI.ts';
 	import type { HardSkills, LanguageSkill, SoftSkill } from '@/assets/api/skills.ts';
-	import SectionTitleComponent from '@/components/sections/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
-	import SkillItemComponent from '@/components/sections/home/SkillsSection/SkillItemComponent.vue';
+	import SkillItemComponent from '@/components/SkillItemComponent.vue';
 
 	const hardSkills = ref<HardSkills>();
 	const softSkills = ref<SoftSkill[]>();

@@ -5,21 +5,32 @@ export const initHomeSectionsAnimations = () =>
 		'.scroll-animate',
 		(el) => {
 			if (el.id === 'presentation') {
-				animate(
-					[...el.children].slice(1),
-					{ opacity: [1], y: [100, 0] },
-					{
-						duration: 0.4,
-						delay: stagger(0.15),
-						ease: 'backInOut',
-					},
-				);
+				const els = el.querySelectorAll(':scope > *:not(:last-child, :first-child)');
+				animate([
+					[
+						els,
+						{ opacity: 1, y: [100, 0] },
+						{
+							duration: 0.4,
+							delay: stagger(0.15),
+							ease: 'backInOut',
+						},
+					],
+					[
+						'#presentation > div.list-path',
+						{
+							opacity: 1,
+							x: ['50%', 0],
+						},
+						{ duration: 0.4, ease: 'backInOut' },
+					],
+				]);
 			} else if (el.id === 'skills') {
-				const ps = el.querySelectorAll('p');
+				const ps = el.querySelectorAll(':scope > p');
 				animate([
 					[
 						ps,
-						{ opacity: [1], y: [100, 0] },
+						{ opacity: 1, y: [100, 0] },
 						{
 							duration: 0.4,
 							delay: stagger(0.15),
@@ -28,7 +39,7 @@ export const initHomeSectionsAnimations = () =>
 					],
 					[
 						'.soft-skills-ct',
-						{ opacity: [0, 1], x: [-200, 0] },
+						{ opacity: 1, x: [-200, 0] },
 						{
 							duration: 0.4,
 							ease: 'backInOut',
@@ -37,7 +48,7 @@ export const initHomeSectionsAnimations = () =>
 					],
 					[
 						'.hard-skills-ct',
-						{ opacity: [0, 1], x: [200, 0] },
+						{ opacity: 1, x: [200, 0] },
 						{
 							duration: 0.4,
 							ease: 'backInOut',
@@ -46,7 +57,7 @@ export const initHomeSectionsAnimations = () =>
 					],
 					[
 						'.language-skills-ct',
-						{ opacity: [0, 1], x: [-200, 0] },
+						{ opacity: 1, x: [-200, 0] },
 						{
 							duration: 0.4,
 							ease: 'backInOut',

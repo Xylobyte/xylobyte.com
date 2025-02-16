@@ -2,10 +2,11 @@
 	import { onMounted, onUnmounted } from 'vue';
 	import { useRoute } from 'vue-router';
 	import HeadTitleSection from '@/components/sections/home/HeadTitleSection.vue';
-	import NavigationDrawerComponent from '@/components/sections/home/drawer/NavigationDrawerComponent.vue';
+	import NavigationDrawerComponent from '@/components/NavigationDrawerComponent.vue';
 	import PresentationSection from '@/components/sections/home/PresentationSection.vue';
 	import { initHomeSectionsAnimations } from '@/animate/home-sections.ts';
-	import SkillsSection from '@/components/sections/home/SkillsSection/SkillsSection.vue';
+	import SkillsSection from '@/components/sections/home/SkillsSection.vue';
+	import ProjectsSection from '@/components/sections/home/ProjectsSection.vue';
 
 	const route = useRoute();
 	let stopTracking: VoidFunction;
@@ -50,6 +51,8 @@
 				<PresentationSection />
 
 				<SkillsSection />
+
+				<ProjectsSection />
 			</div>
 		</div>
 	</div>
