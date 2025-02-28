@@ -19,8 +19,8 @@ const router = createRouter({
 			component: () => import('@/views/PageNotFound.vue'),
 		},
 	],
-	scrollBehavior: () => {
-		return { top: 0 };
+	scrollBehavior: (to, from) => {
+		if (to.name !== from.name || !to.hash) return { top: 0 };
 	},
 });
 

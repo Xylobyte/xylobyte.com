@@ -13,8 +13,8 @@
 
 <template>
 	<RouterLink :to="`/projects/${props.id}`" class="wrapper transition-transform">
-		<div :class="props.isProjectPage ? '' : 'home-page'" class="card flex column gap20 p-relative transition-all">
-			<div class="p-absolute head_card transition-transform"></div>
+		<div :class="{ 'home-page': !props.isProjectPage }" class="card flex column gap20 p-relative transition-all">
+			<div class="p-absolute head-card transition-transform"></div>
 
 			<div class="head flex row gap10 a-center">
 				<img :alt="'Logo ' + props.title" :src="props.image" />
@@ -56,7 +56,7 @@
 			width: 35vw;
 		}
 
-		.head_card {
+		.head-card {
 			background-color: var(--dark-primary-color);
 			top: 1px;
 			left: 0;
@@ -70,7 +70,7 @@
 			box-shadow: var(--medium-shadow);
 			border-top-left-radius: 0;
 
-			.head_card {
+			.head-card {
 				transform: translateY(-15px);
 				box-shadow: var(--medium-shadow);
 			}

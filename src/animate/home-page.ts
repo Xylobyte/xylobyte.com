@@ -4,8 +4,10 @@ export const initHomeSectionsAnimations = () =>
 	inView(
 		'.scroll-animate',
 		(el) => {
-			if (el.id === 'presentation') {
-				const els = el.querySelectorAll(':scope > *:not(:last-child, :first-child)');
+			if (el.id === 'presentation' || el.id === 'projects' || el.id === 'about') {
+				const els = el.querySelectorAll(
+					`:scope > *:not(:first-child, ${el.id === 'about' ? '.bg-about, .grid-info' : ':last-child'})${el.id === 'about' ? ', :scope .box-info' : ''}`,
+				);
 				animate([
 					[
 						els,
@@ -17,7 +19,7 @@ export const initHomeSectionsAnimations = () =>
 						},
 					],
 					[
-						'#presentation > div.list-path',
+						`#${el.id} > div.from-right`,
 						{
 							opacity: 1,
 							x: ['50%', 0],
@@ -57,11 +59,29 @@ export const initHomeSectionsAnimations = () =>
 					],
 					[
 						'.language-skills-ct',
-						{ opacity: 1, x: [-200, 0] },
+						{ opacity: 1, y: [200, 0] },
 						{
 							duration: 0.4,
 							ease: 'backInOut',
 							at: 0.75,
+						},
+					],
+				]);
+			} else if (el.id === 'contact') {
+				animate([
+					[
+						'#contact-form > *:not(span)',
+						{ opacity: 1, y: [100, 0] },
+						{ duration: 0.4, ease: 'backInOut', delay: stagger(0.15) },
+					],
+					[
+						'.contact-btn > *',
+						{ opacity: 1, x: [200, 0] },
+						{
+							duration: 0.4,
+							ease: 'backInOut',
+							delay: stagger(0.15),
+							at: 0.8,
 						},
 					],
 				]);

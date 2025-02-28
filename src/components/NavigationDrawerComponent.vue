@@ -1,66 +1,60 @@
 <script lang="ts" setup>
-	import { inject, ref } from 'vue';
+	import { inject, onMounted, onUnmounted, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
-	import NavSectionItem from '@/components/sections/home/NavSectionItem.vue';
+	import NavSectionItemComponent from '@/components/NavSectionItemComponent.vue';
 	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
-	import { useScroll, watchThrottled } from '@vueuse/core';
 
 	const currentSection = ref('presentation');
 	const drawerOpen = inject(menuOpenKey, ref(false));
 
-	const { y } = useScroll(window, { behavior: 'smooth' });
-	watchThrottled(
-		y,
-		() => {
-			const sections = document.querySelectorAll('section');
-
-			sections.forEach((section) => {
-				const title = section.querySelector('h2');
-				const titlePosition = title?.getBoundingClientRect().top;
-				const halfViewportHeight = window.innerHeight / 1.5;
-
-				if ((titlePosition || 0) <= halfViewportHeight) {
-					currentSection.value = section.id;
-				}
-			});
-		},
-		{ throttle: 400 },
+	const observer = new IntersectionObserver(
+		(entries) => entries.forEach((entry) => entry.isIntersecting && (currentSection.value = entry.target.id)),
+		{ rootMargin: '-50% 0%' },
 	);
+
+	onMounted(() => {
+		const sections = document.querySelectorAll('#presentation, #skills, #projects, #about, #contact');
+		sections.forEach((s) => observer.observe(s));
+	});
+
+	onUnmounted(() => {
+		observer.disconnect();
+	});
 </script>
 
 <template>
 	<aside :class="{ open: drawerOpen }" class="transition-all">
 		<hr />
 		<div class="flex column j-space-between">
-			<NavSectionItem
+			<NavSectionItemComponent
 				:icon="User"
 				:is-active="currentSection === 'presentation'"
 				name="Présentation"
 				targetId="presentation"
 				@click="drawerOpen = false"
 			/>
-			<NavSectionItem
+			<NavSectionItemComponent
 				:icon="ListChecks"
 				:is-active="currentSection === 'skills'"
 				name="Compétences"
 				targetId="skills"
 				@click="drawerOpen = false"
 			/>
-			<NavSectionItem
+			<NavSectionItemComponent
 				:icon="FolderTree"
 				:is-active="currentSection === 'projects'"
 				name="Projets récents"
 				targetId="projects"
 				@click="drawerOpen = false"
 			/>
-			<NavSectionItem
+			<NavSectionItemComponent
 				:icon="BadgeInfo"
 				:is-active="currentSection === 'about'"
 				name="À propos"
 				targetId="about"
 				@click="drawerOpen = false"
 			/>
-			<NavSectionItem
+			<NavSectionItemComponent
 				:icon="Mail"
 				:is-active="currentSection === 'contact'"
 				name="Contact"

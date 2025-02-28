@@ -13,7 +13,8 @@
 	const route = useRoute();
 	const { y } = useScroll(window, { behavior: 'smooth' });
 
-	watch(route, () => {
+	watch(route, (prev) => {
+		if (prev.name === route.name) return;
 		if (route.name === 'home') {
 			scroll.value = false;
 			isHome.value = true;

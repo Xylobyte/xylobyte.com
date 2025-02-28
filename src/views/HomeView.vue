@@ -4,9 +4,11 @@
 	import HeadTitleSection from '@/components/sections/home/HeadTitleSection.vue';
 	import NavigationDrawerComponent from '@/components/NavigationDrawerComponent.vue';
 	import PresentationSection from '@/components/sections/home/PresentationSection.vue';
-	import { initHomeSectionsAnimations } from '@/animate/home-sections.ts';
+	import { initHomeSectionsAnimations } from '@/animate/home-page.ts';
 	import SkillsSection from '@/components/sections/home/SkillsSection.vue';
 	import ProjectsSection from '@/components/sections/home/ProjectsSection.vue';
+	import AboutSection from '@/components/sections/home/AboutSection.vue';
+	import ContactSection from '@/components/sections/home/ContactSection.vue';
 
 	const route = useRoute();
 	let stopTracking: VoidFunction;
@@ -21,7 +23,7 @@
 					behavior: 'smooth',
 				});
 
-			/*console.clear();
+			// console.clear();
 			console.log('Bienvenue sur la console dev de');
 			console.log(
 				'██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
@@ -31,7 +33,7 @@
 					'██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
 					'╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝',
 			);
-			console.log('Agrandir la console pour voir le logo ! ;)');*/
+			console.log('Agrandir la console pour voir le logo ! ;)');
 		}, 500);
 	});
 
@@ -53,6 +55,10 @@
 				<SkillsSection />
 
 				<ProjectsSection />
+
+				<AboutSection />
+
+				<ContactSection />
 			</div>
 		</div>
 	</div>

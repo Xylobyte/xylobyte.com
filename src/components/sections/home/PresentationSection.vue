@@ -40,7 +40,7 @@
 
 		<h3 class="chakra-petch opacity-0">Mon parcours</h3>
 
-		<div class="list-path flex row a-center gap30 opacity-0">
+		<div class="list-path flex row a-center gap30 opacity-0 from-right">
 			<div class="flex row a-center gap10 transition-all">
 				<img alt="Logo diplôme national du brevet" height="200" src="@/assets/images/dnb.webp" width="200" />
 				<div class="flex column">

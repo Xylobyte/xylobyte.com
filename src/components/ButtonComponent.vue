@@ -4,6 +4,7 @@
 	const props = defineProps<{
 		text?: string;
 		link?: string;
+		disabled?: boolean;
 		icon?: Component;
 		backgroundColor?: string;
 		color?: string;
@@ -16,8 +17,8 @@
 </script>
 
 <template>
-	<a :href="props.link || '#'" target="_blank">
-		<button :style="cssVars" class="p-relative chakra-petch f-medium flex a-center">
+	<a :class="{ disabled: props.disabled }" :href="props.link || '#'" :target="props.link && '_blank'">
+		<button :disabled="props.disabled" :style="cssVars" class="p-relative chakra-petch f-medium flex a-center">
 			<component :is="props.icon" v-if="props.icon !== null" size="18"></component>
 			{{ props.text }}
 		</button>
@@ -27,6 +28,10 @@
 <style lang="scss" scoped>
 	a {
 		color: rgb(var(--btn-color));
+
+		&.disabled {
+			pointer-events: none;
+		}
 	}
 
 	button {
@@ -43,6 +48,11 @@
 
 		&:active {
 			box-shadow: 0 0 10px rgba(var(--btn-background-color), 0.6);
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			pointer-events: none;
 		}
 
 		svg {

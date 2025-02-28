@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 	import { onMounted, ref } from 'vue';
-	import type { Project } from '@/assets/api/skills.ts';
+	import type { Project } from '@/assets/api/skills.types.ts';
 	import { XylobyteAPI } from '@/assets/api/XylobyteAPI.ts';
 	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import { ArrowRight } from 'lucide-vue-next';
@@ -19,7 +19,7 @@
 </script>
 
 <template>
-	<section id="projects" class="adaptative-viewport-height flex column scroll-animate">
+	<section id="projects" class="adaptative-viewport-height flex column gap15 scroll-animate">
 		<SectionTitleComponent :delay="250" title="Projets récents" />
 
 		<p class="jura opacity-0">
@@ -27,7 +27,7 @@
 			réalisations, je vous invite à visiter la page dédiée à mes projets !
 		</p>
 
-		<div class="ct_card flex row a-center p-relative">
+		<div class="ct-card flex row a-center gap20 p-relative opacity-0 from-right">
 			<ProjectCardComponent
 				v-if="projects"
 				:id="projects[0].id"
@@ -45,7 +45,7 @@
 				:title="projects[1].name"
 			/>
 			<div class="more flex a-center p-absolute">
-				<RouterLink class="flex column a-center jura" to="/projects">
+				<RouterLink class="flex column a-center gap5 jura" to="/projects">
 					<div class="border-wrapper flex a-center transition-transform">
 						<ArrowRight :size="30" />
 					</div>
@@ -66,15 +66,13 @@
 	@use '@/assets/styles/global_var.scss';
 
 	#projects {
-		gap: 15px;
 		padding-right: 0;
 
 		> p {
 			margin: 0 10vw 0 0;
 		}
 
-		.ct_card {
-			gap: 20px;
+		.ct-card {
 			margin-top: 20px;
 			padding: 15px 0;
 			overflow: visible;
@@ -96,7 +94,6 @@
 
 				a {
 					color: black;
-					gap: 5px;
 					white-space: nowrap;
 					margin-left: 20px;
 					margin-right: 5vw;
@@ -118,7 +115,7 @@
 		#projects {
 			padding-right: 3vw;
 
-			.ct_card {
+			.ct-card {
 				flex-direction: column;
 				gap: 30px;
 				height: auto;
