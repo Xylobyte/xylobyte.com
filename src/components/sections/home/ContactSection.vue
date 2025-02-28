@@ -46,8 +46,8 @@
 	<section id="contact" class="adaptative-viewport-height flex column scroll-animate">
 		<SectionTitleComponent title="Contact" />
 
-		<div class="main-ct flex row a-center">
-			<form id="contact-form" :class="{ success: isOk }" class="flex column" @submit.prevent="sendEmail()">
+		<div class="main-ct flex row a-center gap10">
+			<form id="contact-form" :class="{ success: isOk }" class="flex column gap20" @submit.prevent="sendEmail()">
 				<InputComponent
 					v-model="form.name"
 					:disabled="inputDisabled"
@@ -103,7 +103,7 @@
 
 			<hr />
 
-			<div class="contact-btn flex column a-center">
+			<div class="contact-btn flex column a-center gap30">
 				<ButtonComponent
 					:icon="Phone"
 					background-color="40, 40, 40"
@@ -130,7 +130,6 @@
 
 	.main-ct {
 		margin-top: 50px;
-		gap: 10px;
 
 		hr {
 			width: auto;
@@ -142,13 +141,11 @@
 
 		> div {
 			width: 50%;
-			gap: 30px;
 		}
 	}
 
 	#contact-form {
 		width: 50%;
-		gap: 20px;
 
 		::v-deep(.btn-center) {
 			align-self: center;

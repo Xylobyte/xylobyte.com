@@ -91,7 +91,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="box-info links p-relative opacity-0">
+			<div class="box-info links p-relative opacity-0 gap25">
 				<h3 class="chakra-petch f-large p-absolute">Liens</h3>
 
 				<ButtonComponent
@@ -208,7 +208,6 @@
 				border-color: #3c7bcc;
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
-				gap: 25px;
 
 				h3 {
 					left: 25px;
