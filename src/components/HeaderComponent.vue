@@ -13,18 +13,19 @@
 	const route = useRoute();
 	const { y } = useScroll(window, { behavior: 'smooth' });
 
-	watch(route, (prev) => {
-		if (prev.name === route.name) return;
+	const checkScroll = () => isHome.value && (scroll.value = y.value > 500);
+
+	watch(route, () => {
 		if (route.name === 'home') {
-			scroll.value = false;
 			isHome.value = true;
+			checkScroll();
 		} else {
 			scroll.value = true;
 			isHome.value = false;
 		}
 	});
 
-	watch(y, () => isHome.value && (scroll.value = y.value > 500));
+	watch(y, checkScroll);
 </script>
 
 <template>
@@ -43,10 +44,14 @@
 
 			<ul class="flex row gap20 p-absolute transition-all">
 				<li class="flex a-center">
-					<RouterLink class="f-medium chakra-petch transition-all" to="/"> Accueil </RouterLink>
+					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch transition-all">
+						Accueil
+					</RouterLink>
 				</li>
 				<li class="flex a-center">
-					<RouterLink class="f-medium chakra-petch transition-all" to="/projects"> Projets </RouterLink>
+					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch transition-all">
+						Projets
+					</RouterLink>
 				</li>
 			</ul>
 		</nav>

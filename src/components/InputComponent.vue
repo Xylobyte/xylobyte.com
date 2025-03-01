@@ -11,8 +11,8 @@
 	}>();
 
 	const emit = defineEmits<{
-		blur: [event: FocusEvent];
-		valid: [valid: string | undefined];
+		(e: 'blur', event: FocusEvent): void;
+		(e: 'valid', valid: string | undefined): void;
 	}>();
 
 	const model = defineModel<string>();
