@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
 </script>

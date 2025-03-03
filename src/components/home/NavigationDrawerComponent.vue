@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 	import { inject, onMounted, onUnmounted, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
-	import NavSectionItemComponent from '@/components/NavSectionItemComponent.vue';
+	import NavSectionItemComponent from '@/components/home/NavSectionItemComponent.vue';
 	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
 
 	const currentSection = ref('presentation');
 	const drawerOpen = inject(menuOpenKey, ref(false));
 
 	const observer = new IntersectionObserver(
-		(entries) => entries.forEach((entry) => entry.isIntersecting && (currentSection.value = entry.target.id)),
+		entries => entries.forEach(entry => entry.isIntersecting && (currentSection.value = entry.target.id)),
 		{ rootMargin: '-50% 0%' },
 	);
 
 	onMounted(() => {
 		const sections = document.querySelectorAll('#presentation, #skills, #projects, #about, #contact');
-		sections.forEach((s) => observer.observe(s));
+		sections.forEach(s => observer.observe(s));
 	});
 
 	onUnmounted(() => {

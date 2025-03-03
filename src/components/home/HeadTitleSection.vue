@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 	import { ref, useTemplateRef } from 'vue';
-	import ScrollArrowsComponent from '@/components/ScrollArrowsComponent.vue';
+	import ScrollArrowsComponent from '@/components/home/ScrollArrowsComponent.vue';
 	import { useMouseInElement, watchThrottled } from '@vueuse/core';
 	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
@@ -38,14 +38,14 @@
 				:style="{ transform: cardTransform, transition: 'transform 250ms ease-out' }"
 				href="https://app.daily.dev/xylobyte"
 			>
-				<img alt="Nantsa's Dev Card" height="565" src="@/assets/images/daily_dev.webp" width="400" />
+				<img alt="Nantsa's Dev Card" height="565" src="../../assets/images/daily_dev.webp" width="400" />
 			</a>
 		</div>
 
 		<hr />
 
 		<div class="info flex column j-center gap10">
-			<img alt="" height="300" src="@/assets/images/profil.webp" width="300" />
+			<img alt="" height="300" src="../../assets/images/profil.webp" width="300" />
 			<h1 class="big-title">
 				<span style="animation-delay: 1000ms">N</span>
 				<span style="animation-delay: 1100ms">a</span>
@@ -89,7 +89,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var.scss';
+	@use '@/assets/styles/global_var';
 
 	main {
 		padding: 70px 10px;

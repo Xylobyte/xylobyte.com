@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { AtSign, Phone } from 'lucide-vue-next';
 	import { computed, reactive, ref } from 'vue';
@@ -126,7 +126,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var.scss';
+	@use '@/assets/styles/global_var';
 
 	.main-ct {
 		margin-top: 50px;

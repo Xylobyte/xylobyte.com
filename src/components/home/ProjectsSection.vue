@@ -2,7 +2,7 @@
 	import { onMounted, ref } from 'vue';
 	import type { Project } from '@/api/skills.types.ts';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
-	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 
 	const projects = ref<Project[]>();
 
@@ -29,7 +29,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var.scss';
+	@use '@/assets/styles/global_var';
 
 	#projects {
 		padding-right: 0;

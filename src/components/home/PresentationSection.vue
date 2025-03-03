@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 </script>
 
 <template>
@@ -14,7 +14,7 @@
 			développement web avec une formation de niveau BAC +2.
 		</p>
 
-		<img alt="" class="first opacity-0" height="38" src="@/assets/images/p-line.svg" width="364" />
+		<img alt="" class="first opacity-0" height="38" src="../../assets/images/p-line.svg" width="364" />
 
 		<p class="f-medium jura left opacity-0">
 			J'ai récemment réalisé un site vitrine pour une petite entreprise, mettant en pratique mes connaissances
@@ -23,7 +23,7 @@
 		</p>
 
 		<div class="ct-img opacity-0">
-			<img alt="" class="reverse" height="38" src="@/assets/images/p-line.svg" width="364" />
+			<img alt="" class="reverse" height="38" src="../../assets/images/p-line.svg" width="364" />
 		</div>
 
 		<p class="f-medium jura opacity-0">
@@ -32,7 +32,7 @@
 			d'apprendre et de me perfectionner.
 		</p>
 
-		<img alt="" class="opacity-0" height="38" src="@/assets/images/p-line.svg" width="364" />
+		<img alt="" class="opacity-0" height="38" src="../../assets/images/p-line.svg" width="364" />
 
 		<p class="f-medium jura left opacity-0">
 			N'hésitez pas à me contacter pour échanger sur de nouvelles opportunités professionnelles ! &#128516;
@@ -42,7 +42,12 @@
 
 		<div class="list-path flex row a-center gap30 opacity-0 from-right">
 			<div class="flex row a-center gap10 transition-all">
-				<img alt="Logo diplôme national du brevet" height="200" src="@/assets/images/dnb.webp" width="200" />
+				<img
+					alt="Logo diplôme national du brevet"
+					height="200"
+					src="../../assets/images/dnb.webp"
+					width="200"
+				/>
 				<div class="flex column">
 					<h4 class="chakra-petch">Diplôme national du brevet</h4>
 					<span class="jura">2021</span>
@@ -55,7 +60,7 @@
 				<img
 					alt="Logo du site web abzaroke de Bertrand Montillet"
 					height="200"
-					src="@/assets/images/abzaroke.webp"
+					src="../../assets/images/abzaroke.webp"
 					width="200"
 				/>
 				<div class="flex column">
@@ -67,7 +72,12 @@
 			<hr class="line" />
 
 			<div class="flex row a-center gap10 transition-all">
-				<img alt="Logo diplôme OpenClassrooms bac+2" height="200" src="@/assets/images/oc.webp" width="200" />
+				<img
+					alt="Logo diplôme OpenClassrooms bac+2"
+					height="200"
+					src="../../assets/images/oc.webp"
+					width="200"
+				/>
 				<div class="flex column">
 					<h4 class="chakra-petch">Formation Développeur Web Full-Stack (BAC +2)</h4>
 					<span class="jura">2023</span>
@@ -77,7 +87,12 @@
 			<hr class="line" />
 
 			<div class="flex row a-center gap10 transition-all">
-				<img alt="Logo diplôme OpenClassrooms bac+3" height="200" src="@/assets/images/oc.webp" width="200" />
+				<img
+					alt="Logo diplôme OpenClassrooms bac+3"
+					height="200"
+					src="../../assets/images/oc.webp"
+					width="200"
+				/>
 				<div class="flex column">
 					<h4 class="chakra-petch">Alternance Développeur Web React (BAC +3)</h4>
 					<span class="jura">2023 - En cours</span>
@@ -88,7 +103,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var.scss';
+	@use '@/assets/styles/global_var';
 
 	section {
 		p {

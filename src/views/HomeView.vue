@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 	import { onMounted, onUnmounted } from 'vue';
 	import { useRoute } from 'vue-router';
-	import HeadTitleSection from '@/components/sections/home/HeadTitleSection.vue';
-	import NavigationDrawerComponent from '@/components/NavigationDrawerComponent.vue';
-	import PresentationSection from '@/components/sections/home/PresentationSection.vue';
+	import HeadTitleSection from '@/components/home/HeadTitleSection.vue';
+	import NavigationDrawerComponent from '@/components/home/NavigationDrawerComponent.vue';
+	import PresentationSection from '@/components/home/PresentationSection.vue';
 	import { initHomeSectionsAnimations } from '@/animate/home-page.ts';
-	import SkillsSection from '@/components/sections/home/SkillsSection.vue';
-	import ProjectsSection from '@/components/sections/home/ProjectsSection.vue';
-	import AboutSection from '@/components/sections/home/AboutSection.vue';
-	import ContactSection from '@/components/sections/home/ContactSection.vue';
+	import SkillsSection from '@/components/home/SkillsSection.vue';
+	import ProjectsSection from '@/components/home/ProjectsSection.vue';
+	import AboutSection from '@/components/home/AboutSection.vue';
+	import ContactSection from '@/components/home/ContactSection.vue';
 
 	const route = useRoute();
 	let stopTracking: VoidFunction;
