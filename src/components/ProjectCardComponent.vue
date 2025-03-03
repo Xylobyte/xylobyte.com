@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 	import type { Project } from '@/api/skills.types.ts';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
-	import { computed } from 'vue';
+	import { computed, onMounted, watchPostEffect } from 'vue';
+	import { animate, hover } from 'motion';
 
 	const props = defineProps<{
 		project: Project;
@@ -9,10 +10,43 @@
 	}>();
 
 	const skills = computed(() => (props.isOpen ? props.project.skills : props.project.skills.slice(0, 3)));
+
+	onMounted(() => {
+		hover(`#card-${props.project.id}`, element => {
+			animate(
+				element,
+				{
+					scale: 1.03,
+					boxShadow: 'var(--medium-shadow)',
+				},
+				{ duration: 0.3 },
+			);
+			return () =>
+				animate(
+					element,
+					{
+						scale: 1,
+						boxShadow: 'var(--small-shadow)',
+					},
+					{ duration: 0.3 },
+				);
+		});
+	});
+
+	watchPostEffect(() => {
+		if (props.isOpen) {
+			console.log(document.getElementById(`card-${props.project.id}`));
+		}
+	});
 </script>
 
 <template>
-	<RouterLink :to="`/projects/${props.project.id}`" class="base flex column gap15">
+	<RouterLink
+		:id="`card-${props.project.id}`"
+		ref="card-item"
+		:to="`/projects/${props.project.id}`"
+		class="base flex column gap15"
+	>
 		<div class="flex row gap10 a-center">
 			<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
 			<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
@@ -42,10 +76,7 @@
 		background: var(--light-background-color);
 		padding: 15px 20% 15px 15px;
 		position: relative;
-
-		&:hover {
-			box-shadow: var(--medium-shadow);
-		}
+		box-shadow: var(--small-shadow);
 
 		> *:not(:last-child) {
 			z-index: 1;

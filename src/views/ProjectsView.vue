@@ -39,7 +39,7 @@
 			<InputComponent v-model="search" class="search" placeholder="Chercher un projet..." type="search" />
 		</div>
 
-		<div class="grid gap20">
+		<div class="grid-projects gap30">
 			<ProjectCardComponent
 				v-for="project in projects"
 				:key="project.id"
@@ -71,7 +71,7 @@
 		}
 	}
 
-	.grid {
+	.grid-projects {
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 

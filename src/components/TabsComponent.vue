@@ -12,7 +12,7 @@
 			v-for="tab in props.tabs"
 			:key="tab.id"
 			:class="{ active: model === tab.id }"
-			class="chakra-petch f-medium transition-all"
+			class="chakra-petch f-medium"
 			@click="model = tab.id"
 		>
 			{{ tab.label }}
@@ -31,6 +31,9 @@
 		padding: 7px 15px;
 		color: var(--dark-background-color);
 		cursor: pointer;
+		transition:
+			background-color 0.3s,
+			color 0.2s;
 
 		&:not(:last-child) {
 			border-right: 2px solid var(--light-background-color);

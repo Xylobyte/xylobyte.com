@@ -3,7 +3,7 @@ import { animate, inView, stagger } from 'motion';
 export const initHomeSectionsAnimations = () =>
 	inView(
 		'.scroll-animate',
-		(el) => {
+		el => {
 			if (el.id === 'presentation' || el.id === 'projects' || el.id === 'about') {
 				const els = el.querySelectorAll(
 					`:scope > *:not(:first-child, ${el.id === 'about' ? '.bg-about, .grid-info' : ':last-child'})${el.id === 'about' ? ', :scope .box-info' : ''}`,
@@ -87,5 +87,5 @@ export const initHomeSectionsAnimations = () =>
 				]);
 			}
 		},
-		{ margin: '-50% 0%' },
+		{ margin: '-40% 0%' },
 	);
