@@ -2,7 +2,7 @@
 	import { type InputTypeHTMLAttribute, ref } from 'vue';
 
 	const props = defineProps<{
-		disabled: boolean;
+		disabled?: boolean;
 		readonly?: boolean;
 		placeholder: string;
 		type?: InputTypeHTMLAttribute | 'textarea';

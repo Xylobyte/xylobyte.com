@@ -1,96 +1,82 @@
 <script lang="ts" setup>
+	import type { Project } from '@/api/skills.types.ts';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
+	import { computed } from 'vue';
 
 	const props = defineProps<{
-		id: string;
-		title: string;
-		description: string;
-		image: string;
-		tags: { name: string }[];
-		isProjectPage?: boolean;
+		project: Project;
+		isOpen: boolean;
 	}>();
+
+	const skills = computed(() => (props.isOpen ? props.project.skills : props.project.skills.slice(0, 3)));
 </script>
 
 <template>
-	<RouterLink :to="`/projects/${props.id}`" class="wrapper transition-transform">
-		<div :class="{ 'home-page': !props.isProjectPage }" class="card flex column gap20 p-relative transition-all">
-			<div class="p-absolute head-card transition-transform"></div>
-
-			<div class="head flex row gap10 a-center">
-				<img :alt="'Logo ' + props.title" :src="props.image" />
-				<h3 class="chakra-petch f-large">{{ props.title }}</h3>
-			</div>
-
-			<p class="jura">{{ props.description }}</p>
-
-			<div class="tags flex row gap5 wrap">
-				<SkillItemComponent v-for="(tag, index) in props.tags" :key="index" :text="tag.name" type="hard" />
-			</div>
+	<RouterLink :to="`/projects/${props.project.id}`" class="base flex column gap15">
+		<div class="flex row gap10 a-center">
+			<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+			<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
 		</div>
+
+		<section class="infos">
+			<p class="jura f-medium">{{ props.project.shortDescription }}</p>
+		</section>
+
+		<section class="skills flex row gap5 wrap">
+			<SkillItemComponent v-for="skill in skills" :key="skill.name" :text="skill.name" type="hard" />
+		</section>
+
+		<img :alt="`Image of ${props.project.name} project`" :src="props.project.image" class="main-image" />
 	</RouterLink>
 </template>
 
 <style lang="scss" scoped>
 	@use '@/assets/styles/global_var.scss';
 
-	.wrapper {
-		margin-right: 0;
-		height: 100%;
-	}
-
-	.wrapper:hover {
-		transform: translateY(-10px) rotateZ(-1deg);
-	}
-
-	.card {
-		background-color: var(--light-background-color);
+	.base {
+		overflow: hidden;
 		border-radius: var(--main-border-radius);
-		padding: 20px;
-		height: 100%;
-		cursor: pointer;
 		width: 100%;
-
-		&.home-page {
-			min-width: 300px;
-			max-width: 500px;
-			width: 35vw;
-		}
-
-		.head-card {
-			background-color: var(--dark-primary-color);
-			top: 1px;
-			left: 0;
-			right: 20%;
-			height: 16px;
-			border-radius: var(--main-border-radius) var(--main-border-radius) 0 0;
-			z-index: -1;
-		}
+		height: 100%;
+		min-height: 200px;
+		background: var(--light-background-color);
+		padding: 15px 20% 15px 15px;
+		position: relative;
 
 		&:hover {
 			box-shadow: var(--medium-shadow);
-			border-top-left-radius: 0;
-
-			.head-card {
-				transform: translateY(-15px);
-				box-shadow: var(--medium-shadow);
-			}
 		}
 
-		img {
-			border-radius: 50px;
-			width: calc(40px + 2vw);
-			height: calc(40px + 2vw);
-		}
-
-		p {
-			height: 100%;
+		> *:not(:last-child) {
+			z-index: 1;
 		}
 	}
 
-	@media (max-width: global_var.$mobile-width) {
-		.card {
-			max-width: none;
-			width: 100%;
-		}
+	.main-image {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 30%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		z-index: 0;
+		opacity: 0.7;
+		mask: linear-gradient(to right, transparent, black);
+	}
+
+	.logo {
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+	}
+
+	section {
+		background: transparent;
+	}
+
+	.infos {
+		height: 100%;
 	}
 </style>

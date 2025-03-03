@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 	import { onMounted } from 'vue';
 
 	onMounted(() => {
@@ -7,7 +7,7 @@
 </script>
 
 <template>
-	<div class="bg">
+	<main class="bg">
 		<div class="mentions flex column jura gap10">
 			<h2 class="chakra-petch">MENTIONS LÉGALES</h2>
 			<p>
@@ -38,10 +38,10 @@
 				Par courrier&nbsp;: 2 chemin d'Ance 63680 Chastreix
 			</p>
 		</div>
-	</div>
+	</main>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 	.bg {
 		background: white;
 	}

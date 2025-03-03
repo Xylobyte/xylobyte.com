@@ -1,11 +1,8 @@
 <script lang="ts" setup>
 	import { onMounted, ref } from 'vue';
-	import type { Project } from '@/assets/api/skills.types.ts';
-	import { XylobyteAPI } from '@/assets/api/XylobyteAPI.ts';
+	import type { Project } from '@/api/skills.types.ts';
+	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
-	import { ArrowRight } from 'lucide-vue-next';
-	import LoaderComponent from '@/components/LoaderComponent.vue';
-	import ProjectCardComponent from '@/components/ProjectCardComponent.vue';
 
 	const projects = ref<Project[]>();
 
@@ -27,38 +24,7 @@
 			réalisations, je vous invite à visiter la page dédiée à mes projets !
 		</p>
 
-		<div class="ct-card flex row a-center gap20 p-relative opacity-0 from-right">
-			<ProjectCardComponent
-				v-if="projects"
-				:id="projects[0].id"
-				:description="projects[0].shortDescription"
-				:image="projects[0].logo"
-				:tags="projects[0].skills.slice(0, 3)"
-				:title="projects[0].name"
-			/>
-			<ProjectCardComponent
-				v-if="projects"
-				:id="projects[1].id"
-				:description="projects[1].shortDescription"
-				:image="projects[1].logo"
-				:tags="projects[1].skills.slice(0, 3)"
-				:title="projects[1].name"
-			/>
-			<div class="more flex a-center p-absolute">
-				<RouterLink class="flex column a-center gap5 jura" to="/projects">
-					<div class="border-wrapper flex a-center transition-transform">
-						<ArrowRight :size="30" />
-					</div>
-					Tous les projets
-				</RouterLink>
-			</div>
-
-			<Transition>
-				<div v-if="!projects" class="loader flex a-center j-center">
-					<LoaderComponent />
-				</div>
-			</Transition>
-		</div>
+		<div class="ct-card flex row a-center gap20 p-relative opacity-0 from-right"></div>
 	</section>
 </template>
 

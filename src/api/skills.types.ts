@@ -19,10 +19,10 @@ export interface Project {
 	name: string;
 	shortDescription: string;
 	description: string;
-	logo: string;
+	logo?: string;
 	image: string;
-	link: string;
-	linkOfCode: string;
+	link?: string;
+	linkOfCode?: string;
 	date: string;
 	skills: { name: string }[];
 }

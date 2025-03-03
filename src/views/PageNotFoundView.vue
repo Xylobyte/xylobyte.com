@@ -7,15 +7,15 @@
 </script>
 
 <template>
-	<div class="flex column a-center j-center gap20">
+	<main class="flex column a-center j-center gap20">
 		<h1 class="big-title">404</h1>
 		<h2 class="jura">Desolé, mais cette page n'existe pas</h2>
 		<RouterLink class="txt-link jura" to="/">Retourner sur la page d'accueil</RouterLink>
-	</div>
+	</main>
 </template>
 
 <style lang="scss" scoped>
-	div {
+	main {
 		width: 100%;
 		height: 100vh;
 		background: white;

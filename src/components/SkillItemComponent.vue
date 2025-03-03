@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	const props = defineProps<{
 		text: string;
-		type: string;
+		type: 'hard' | 'soft' | 'language';
 		level?: string;
 	}>();
 </script>
@@ -19,15 +19,15 @@
 	.hard {
 		background-color: var(--dark-background-color);
 		color: white;
-		padding: 3px 15px;
-		border-radius: 50px;
+		padding: 3px 15px 4px;
+		border-radius: var(--small-border-radius);
 	}
 
 	.language {
 		background-color: var(--dark-background-color);
 		gap: 2px;
 		padding: 8px;
-		border-radius: var(--main-border-radius);
+		border-radius: var(--small-border-radius);
 		width: 48%;
 
 		span {

@@ -1,5 +1,5 @@
-import type { HardSkills, LanguageSkill, Project, SoftSkill } from '@/assets/api/skills.types.ts';
-import type { ContactRequestData } from '@/assets/api/contact.types.ts';
+import type { HardSkills, LanguageSkill, Project, SoftSkill } from '@/api/skills.types.ts';
+import type { ContactRequestData } from '@/api/contact.types.ts';
 
 export class XylobyteAPI {
 	static getHardSkills = async (): Promise<HardSkills> =>

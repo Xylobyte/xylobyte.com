@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import { onMounted, ref } from 'vue';
-	import { XylobyteAPI } from '@/assets/api/XylobyteAPI.ts';
-	import type { HardSkills, LanguageSkill, SoftSkill } from '@/assets/api/skills.types.ts';
+	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
+	import type { HardSkills, LanguageSkill, SoftSkill } from '@/api/skills.types.ts';
 	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';

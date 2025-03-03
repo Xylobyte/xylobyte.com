@@ -5,7 +5,7 @@
 	import { computed, reactive, ref } from 'vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import InputComponent from '@/components/InputComponent.vue';
-	import { XylobyteAPI } from '@/assets/api/XylobyteAPI.ts';
+	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 
 	const resetErrors = (value: boolean) => ({
 		name: value,
@@ -55,7 +55,7 @@
 					class="opacity-0"
 					placeholder="Nom et prénom"
 					validate-for="name"
-					@valid="(v) => (errors.name = !!v)"
+					@valid="v => (errors.name = !!v)"
 				/>
 				<InputComponent
 					v-model="form.email"
@@ -65,7 +65,7 @@
 					placeholder="Email"
 					type="email"
 					validate-for="email"
-					@valid="(v) => (errors.email = !!v)"
+					@valid="v => (errors.email = !!v)"
 				/>
 				<InputComponent
 					v-model="form.phone"
@@ -75,7 +75,7 @@
 					placeholder="Téléphone"
 					type="tel"
 					validate-for="phone"
-					@valid="(v) => (errors.phone = !!v)"
+					@valid="v => (errors.phone = !!v)"
 				/>
 				<InputComponent
 					v-model="form.message"
@@ -85,11 +85,11 @@
 					placeholder="Message"
 					type="textarea"
 					validate-for="message"
-					@valid="(v) => (errors.message = !!v)"
+					@valid="v => (errors.message = !!v)"
 				/>
 
 				<ButtonComponent
-					:disabled="inputDisabled || !Object.values(errors).every((e) => !e)"
+					:disabled="inputDisabled || !Object.values(errors).every(e => !e)"
 					:icon="loading ? LoaderComponent : undefined"
 					:text="isOk ? 'Demande envoyé !' : 'Envoyer'"
 					background-color="102, 88, 185"

@@ -6,5 +6,7 @@
     "tabWidth": 4,
     "useTabs": true,
     "vueIndentScriptAndStyle": true,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "endOfLine": "lf"
 }
