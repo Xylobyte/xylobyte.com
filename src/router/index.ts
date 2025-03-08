@@ -25,7 +25,7 @@ const router = createRouter({
 		},
 	],
 	scrollBehavior: (to, from) => {
-		if (to.name !== from.name || !to.hash) return { top: 0 };
+		if (from.name !== to.name || (from.hash && !to.hash)) return { top: 0 };
 	},
 });
 

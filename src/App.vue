@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 	import { provide, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
 	import HeaderComponent from '@/components/HeaderComponent.vue';
@@ -32,5 +32,9 @@
 	.v-enter-from,
 	.v-leave-to {
 		opacity: 0;
+	}
+
+	body.no-scroll {
+		overflow: hidden;
 	}
 </style>

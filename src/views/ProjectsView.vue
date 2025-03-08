@@ -47,6 +47,8 @@
 				:project="project"
 			/>
 		</div>
+
+		<div :class="{ visible: !!activeProject }" class="blur-bg"></div>
 	</main>
 </template>
 
@@ -74,6 +76,7 @@
 	.grid-projects {
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
+		margin: 0 5px;
 
 		@media (min-width: 800px) {
 			grid-template-columns: repeat(2, 1fr);
@@ -89,6 +92,24 @@
 
 		@media (min-width: 2500px) {
 			grid-template-columns: repeat(5, 1fr);
+		}
+	}
+
+	.blur-bg {
+		backdrop-filter: blur(4px);
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 9;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.4s ease-in-out;
+
+		&.visible {
+			pointer-events: auto;
+			opacity: 1;
 		}
 	}
 </style>

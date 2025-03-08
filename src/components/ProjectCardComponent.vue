@@ -1,42 +1,20 @@
 <script lang="ts" setup>
 	import type { Project } from '@/api/skills.types.ts';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
-	import { computed, onMounted, watchPostEffect } from 'vue';
-	import { animate, hover } from 'motion';
+	import { computed, ref, watchPostEffect } from 'vue';
+	import { closeCard, openCard } from '@/animate/card-toggle.ts';
 
 	const props = defineProps<{
 		project: Project;
 		isOpen: boolean;
 	}>();
 
-	const skills = computed(() => (props.isOpen ? props.project.skills : props.project.skills.slice(0, 3)));
-
-	onMounted(() => {
-		hover(`#card-${props.project.id}`, element => {
-			animate(
-				element,
-				{
-					scale: 1.03,
-					boxShadow: 'var(--medium-shadow)',
-				},
-				{ duration: 0.3 },
-			);
-			return () =>
-				animate(
-					element,
-					{
-						scale: 1,
-						boxShadow: 'var(--small-shadow)',
-					},
-					{ duration: 0.3 },
-				);
-		});
-	});
+	const state = ref<'closed' | 'opening' | 'opened'>(props.isOpen ? 'opened' : 'closed');
+	const skills = computed(() => (state.value === 'opened' ? props.project.skills : props.project.skills.slice(0, 3)));
 
 	watchPostEffect(() => {
-		if (props.isOpen) {
-			console.log(document.getElementById(`card-${props.project.id}`));
-		}
+		if (props.isOpen) openCard(props.project.id);
+		else closeCard(props.project.id);
 	});
 </script>
 
@@ -74,12 +52,18 @@
 		height: 100%;
 		min-height: 200px;
 		background: var(--light-background-color);
-		padding: 15px 20% 15px 15px;
+		padding: 15px 100px 15px 15px;
 		position: relative;
 		box-shadow: var(--small-shadow);
+		transition: transform 0.3s ease;
+
+		&:hover {
+			transform: perspective(1000px) rotateY(6deg) rotateX(-8deg) scale(1.05);
+		}
 
 		> *:not(:last-child) {
 			z-index: 1;
+			width: 100%;
 		}
 	}
 
