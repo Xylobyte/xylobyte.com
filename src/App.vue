@@ -33,8 +33,4 @@
 	.v-leave-to {
 		opacity: 0;
 	}
-
-	body.no-scroll {
-		overflow: hidden;
-	}
 </style>

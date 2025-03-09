@@ -5,10 +5,11 @@
 	import type { Project } from '@/api/skills.types.ts';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import ProjectCardComponent from '@/components/ProjectCardComponent.vue';
-	import { useRoute } from 'vue-router';
+	import { useRoute, useRouter } from 'vue-router';
 
 	const tabs = [
 		{ id: 'feat', label: '⭐︎ Favoris' },
+		{ id: 'all', label: 'Tout' },
 		{ id: 'perso', label: 'Personnel' },
 		{ id: 'pro', label: 'Professionnel' },
 		{ id: 'school', label: 'Formation' },
@@ -19,7 +20,7 @@
 	const projects = ref<Project[]>();
 
 	const route = useRoute();
-
+	const router = useRouter();
 	const activeProject = computed(() => route.params.project);
 
 	onMounted(async () => {
@@ -48,7 +49,7 @@
 			/>
 		</div>
 
-		<div :class="{ visible: !!activeProject }" class="blur-bg"></div>
+		<div :class="{ visible: !!activeProject }" class="blur-bg" @click="router.push('/projects')"></div>
 	</main>
 </template>
 

@@ -9,12 +9,22 @@
 		isOpen: boolean;
 	}>();
 
-	const state = ref<'closed' | 'opening' | 'opened'>(props.isOpen ? 'opened' : 'closed');
+	const emit = defineEmits<{
+		(e: 'close'): void;
+	}>();
+
+	const state = ref<'closed' | 'progress' | 'opened'>(props.isOpen ? 'opened' : 'closed');
 	const skills = computed(() => (state.value === 'opened' ? props.project.skills : props.project.skills.slice(0, 3)));
 
-	watchPostEffect(() => {
-		if (props.isOpen) openCard(props.project.id);
-		else closeCard(props.project.id);
+	watchPostEffect(async () => {
+		state.value = 'progress';
+		if (props.isOpen) {
+			await openCard(props.project.id);
+			state.value = 'opened';
+		} else {
+			await closeCard(props.project.id);
+			state.value = 'closed';
+		}
 	});
 </script>
 
