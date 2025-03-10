@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import type { Project } from '@/api/skills.types.ts';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
-	import { computed, ref, watchPostEffect } from 'vue';
+	import { onMounted, ref, watch } from 'vue';
 	import { closeCard, openCard } from '@/animate/card-toggle.ts';
 
 	const props = defineProps<{
@@ -13,42 +13,58 @@
 		(e: 'close'): void;
 	}>();
 
-	const state = ref<'closed' | 'progress' | 'opened'>(props.isOpen ? 'opened' : 'closed');
-	const skills = computed(() => (state.value === 'opened' ? props.project.skills : props.project.skills.slice(0, 3)));
+	const state = ref<'closed' | 'progress' | 'opened'>('closed');
+	const showDetails = ref(false);
 
-	watchPostEffect(async () => {
+	const onOpenChange = async (_: boolean, old: boolean) => {
 		state.value = 'progress';
 		if (props.isOpen) {
 			await openCard(props.project.id);
 			state.value = 'opened';
-		} else {
+		} else if (old) {
 			await closeCard(props.project.id);
 			state.value = 'closed';
+		} else {
+			state.value = 'closed';
 		}
-	});
+	};
+
+	onMounted(onOpenChange);
+	watch(() => props.isOpen, onOpenChange, { flush: 'post' });
 </script>
 
 <template>
-	<RouterLink
-		:id="`card-${props.project.id}`"
-		ref="card-item"
-		:to="`/projects/${props.project.id}`"
-		class="base flex column gap15"
-	>
-		<div class="flex row gap10 a-center">
-			<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
-			<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
-		</div>
+	<RouterLink :id="`card-${props.project.id}`" ref="card-item" :to="`/projects/${props.project.id}`" class="base">
+		<Transition mode="out-in" @after-leave="showDetails = !showDetails">
+			<div v-if="state !== 'progress'" :class="{ details: showDetails }" class="flex column gap15">
+				<div class="flex row gap10 a-center">
+					<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+					<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+				</div>
 
-		<section class="infos">
-			<p class="jura f-medium">{{ props.project.shortDescription }}</p>
-		</section>
+				<section class="infos">
+					<p class="jura f-medium">
+						{{ showDetails ? props.project.description : props.project.shortDescription }}
+					</p>
+				</section>
 
-		<section class="skills flex row gap5 wrap">
-			<SkillItemComponent v-for="skill in skills" :key="skill.name" :text="skill.name" type="hard" />
-		</section>
+				<section class="skills flex row gap5 wrap">
+					<SkillItemComponent
+						v-for="skill in showDetails ? props.project.skills : props.project.skills.slice(0, 3)"
+						:key="skill.name"
+						:text="skill.name"
+						type="hard"
+					/>
+				</section>
 
-		<img :alt="`Image of ${props.project.name} project`" :src="props.project.image" class="main-image" />
+				<img
+					v-if="!showDetails"
+					:alt="`Image of ${props.project.name} project`"
+					:src="props.project.image"
+					class="main-image"
+				/>
+			</div>
+		</Transition>
 	</RouterLink>
 </template>
 
@@ -71,9 +87,14 @@
 			transform: perspective(1000px) rotateY(6deg) rotateX(-8deg) scale(1.05);
 		}
 
-		> *:not(:last-child) {
-			z-index: 1;
+		> div {
+			height: 100%;
 			width: 100%;
+
+			> *:not(:last-child) {
+				z-index: 1;
+				width: 100%;
+			}
 		}
 	}
 

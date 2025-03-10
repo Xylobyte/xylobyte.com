@@ -16,7 +16,7 @@
 	];
 
 	const activeTab = ref('feat');
-	const search = ref('');
+	const search = ref<string>('');
 	const projects = ref<Project[]>();
 
 	const route = useRoute();
@@ -103,7 +103,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 9;
+		z-index: 8;
 		pointer-events: none;
 		opacity: 0;
 		transition: opacity 0.4s ease-in-out;

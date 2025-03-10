@@ -26,7 +26,7 @@
 <style lang="scss">
 	.v-enter-active,
 	.v-leave-active {
-		transition: opacity 0.3s linear;
+		transition: opacity 0.25s linear;
 	}
 
 	.v-enter-from,

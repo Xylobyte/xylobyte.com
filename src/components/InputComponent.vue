@@ -15,7 +15,7 @@
 		(e: 'valid', valid: string | undefined): void;
 	}>();
 
-	const model = defineModel<string>();
+	const model = defineModel<string>({ required: true, default: '' });
 
 	const error = ref('');
 

@@ -13,7 +13,7 @@ export const openCard = async (projectId: string) => {
 
 	const rect = div.getBoundingClientRect();
 	card.style.position = 'fixed';
-	card.style.zIndex = '10';
+	card.style.zIndex = '9';
 
 	const onePercentHeight = window.innerHeight / 100;
 	const onePercentWidth = window.innerWidth / 100;
@@ -28,22 +28,23 @@ export const openCard = async (projectId: string) => {
 			width: [rect.width, onePercentWidth * 84],
 			height: [rect.height, onePercentHeight * 84],
 		},
-		{ duration: 0.35, ease: 'backInOut' },
+		{ duration: 0.4, ease: 'backInOut' },
 	);
 
-	card.style.top = `8vh`;
-	card.style.left = `8vw`;
-	card.style.width = `84vw`;
-	card.style.height = `84vh`;
+	card.style.top = `8dvh`;
+	card.style.left = `8dvw`;
+	card.style.width = `84dvw`;
+	card.style.height = `84dvh`;
 };
 
 export const closeCard = async (projectId: string) => {
+	console.log('Close card');
 	const card = document.getElementById(`card-${projectId}`);
 	const div = document.getElementById('replacement-card');
 	if (!card || !div) return;
 
-	const divRect = div.getBoundingClientRect();
 	const cardRect = card.getBoundingClientRect();
+	const divRect = div.getBoundingClientRect();
 
 	await animate(
 		card,
@@ -53,7 +54,7 @@ export const closeCard = async (projectId: string) => {
 			width: [cardRect.width, divRect.width],
 			height: [cardRect.height, divRect.height],
 		},
-		{ duration: 0.35, ease: 'backInOut' },
+		{ duration: 0.4, ease: 'backInOut' },
 	);
 
 	div.remove();

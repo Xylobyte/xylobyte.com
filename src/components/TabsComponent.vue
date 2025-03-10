@@ -3,7 +3,7 @@
 		tabs: { id: string; label: string }[];
 	}>();
 
-	const model = defineModel<string>();
+	const model = defineModel<string>({ required: true, default: '' });
 </script>
 
 <template>

@@ -36,6 +36,7 @@
 			isOk.value = true;
 			errors.value = resetErrors(false);
 		} catch (e) {
+			console.error(e);
 			otherError.value = true;
 		}
 		loading.value = false;
