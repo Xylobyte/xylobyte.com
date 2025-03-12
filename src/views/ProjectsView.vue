@@ -46,10 +46,11 @@
 				:key="project.id"
 				:is-open="activeProject === project.id"
 				:project="project"
+				@close="router.push('/projects')"
 			/>
 		</div>
 
-		<div :class="{ visible: !!activeProject }" class="blur-bg" @click="router.push('/projects')"></div>
+		<div :class="{ visible: !!activeProject }" class="blur-bg" @click.exact="router.push('/projects')"></div>
 	</main>
 </template>
 

@@ -3,6 +3,8 @@
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
 	import { onMounted, ref, watch } from 'vue';
 	import { closeCard, openCard } from '@/animate/card-toggle.ts';
+	import { X as XIcon } from 'lucide-vue-next';
+	import { useRouter } from 'vue-router';
 
 	const props = defineProps<{
 		project: Project;
@@ -13,6 +15,8 @@
 		(e: 'close'): void;
 	}>();
 
+	const router = useRouter();
+
 	const state = ref<'closed' | 'progress' | 'opened'>('closed');
 	const showDetails = ref(false);
 
@@ -21,9 +25,11 @@
 		if (props.isOpen) {
 			await openCard(props.project.id);
 			state.value = 'opened';
+			showDetails.value = true;
 		} else if (old) {
 			await closeCard(props.project.id);
 			state.value = 'closed';
+			showDetails.value = false;
 		} else {
 			state.value = 'closed';
 		}
@@ -34,12 +40,23 @@
 </script>
 
 <template>
-	<RouterLink :id="`card-${props.project.id}`" ref="card-item" :to="`/projects/${props.project.id}`" class="base">
+	<a
+		:id="`card-${props.project.id}`"
+		ref="card-item"
+		:class="{ details: showDetails }"
+		:href="`/projects/${props.project.id}`"
+		class="base"
+		@click.prevent="!showDetails && router.push(`/projects/${props.project.id}`)"
+	>
 		<Transition mode="out-in" @after-leave="showDetails = !showDetails">
-			<div v-if="state !== 'progress'" :class="{ details: showDetails }" class="flex column gap15">
-				<div class="flex row gap10 a-center">
-					<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
-					<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+			<div v-if="state !== 'progress'" class="flex column gap15">
+				<div class="flex row j-space-between a-center">
+					<div class="flex row gap10 a-center">
+						<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+						<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+					</div>
+
+					<XIcon v-if="showDetails" :size="35" class="close" color="#000" @click="emit('close')" />
 				</div>
 
 				<section class="infos">
@@ -60,12 +77,12 @@
 				<img
 					v-if="!showDetails"
 					:alt="`Image of ${props.project.name} project`"
-					:src="props.project.image"
+					:src="props.project.images[0]"
 					class="main-image"
 				/>
 			</div>
 		</Transition>
-	</RouterLink>
+	</a>
 </template>
 
 <style lang="scss" scoped>
@@ -87,6 +104,10 @@
 			transform: perspective(1000px) rotateY(6deg) rotateX(-8deg) scale(1.05);
 		}
 
+		&.details {
+			padding: 30px;
+		}
+
 		> div {
 			height: 100%;
 			width: 100%;
@@ -95,6 +116,16 @@
 				z-index: 1;
 				width: 100%;
 			}
+		}
+	}
+
+	.close {
+		cursor: pointer;
+		padding: 5px;
+		border-radius: 5px;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.15);
 		}
 	}
 

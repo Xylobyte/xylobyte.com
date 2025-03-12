@@ -20,9 +20,9 @@ export interface Project {
 	shortDescription: string;
 	description: string;
 	logo?: string;
-	image: string;
-	link?: string;
-	linkOfCode?: string;
+	images: string[];
+	link: string | null;
+	linkOfCode: string | null;
 	date: string;
 	skills: { name: string }[];
 }
