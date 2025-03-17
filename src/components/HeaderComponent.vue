@@ -44,14 +44,10 @@
 
 			<ul class="flex row gap20 p-absolute transition-all">
 				<li class="flex a-center">
-					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch transition-all">
-						Accueil
-					</RouterLink>
+					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch"> Accueil </RouterLink>
 				</li>
 				<li class="flex a-center">
-					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch transition-all">
-						Projets
-					</RouterLink>
+					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch"> Projets </RouterLink>
 				</li>
 			</ul>
 		</nav>
@@ -126,7 +122,8 @@
 			color: var(--light-background-color);
 			border: 1px solid var(--light-background-color);
 			border-radius: var(--main-border-radius);
-			padding: 3px 30px;
+			padding: 4px 30px;
+			transition: 0.2s;
 
 			&:hover {
 				transform: translateY(-2px);

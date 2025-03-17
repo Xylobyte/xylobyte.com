@@ -3,8 +3,9 @@
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
 	import { onMounted, ref, watch } from 'vue';
 	import { closeCard, openCard } from '@/animate/card-toggle.ts';
-	import { X as XIcon } from 'lucide-vue-next';
+	import { Globe, SquareArrowOutUpRightIcon, X as XIcon } from 'lucide-vue-next';
 	import { useRouter } from 'vue-router';
+	import { GitHubIcon } from 'vue3-simple-icons';
 
 	const props = defineProps<{
 		project: Project;
@@ -40,13 +41,12 @@
 </script>
 
 <template>
-	<a
+	<div
 		:id="`card-${props.project.id}`"
 		ref="card-item"
 		:class="{ details: showDetails }"
-		:href="`/projects/${props.project.id}`"
 		class="base"
-		@click.prevent="!showDetails && router.push(`/projects/${props.project.id}`)"
+		@click="!showDetails && router.push(`/projects/${props.project.id}`)"
 	>
 		<Transition mode="out-in" @after-leave="showDetails = !showDetails">
 			<div v-if="state !== 'progress'" class="flex column gap15">
@@ -59,10 +59,33 @@
 					<XIcon v-if="showDetails" :size="35" class="close" color="#000" @click="emit('close')" />
 				</div>
 
-				<section class="infos">
+				<section class="infos flex column gap20">
 					<p class="jura f-medium">
 						{{ showDetails ? props.project.description : props.project.shortDescription }}
 					</p>
+
+					<div v-if="showDetails" class="flex row gap15">
+						<a
+							v-if="props.project.link"
+							:href="props.project.link"
+							class="flex chakra-petch row a-center"
+							target="_blank"
+						>
+							<Globe :size="18" />
+							Site web
+							<SquareArrowOutUpRightIcon :size="18" />
+						</a>
+						<a
+							v-if="props.project.linkOfCode"
+							:href="props.project.linkOfCode"
+							class="flex code chakra-petch row a-center"
+							target="_blank"
+						>
+							<GitHubIcon :size="18" />
+							Code
+							<SquareArrowOutUpRightIcon :size="18" />
+						</a>
+					</div>
 				</section>
 
 				<section class="skills flex row gap5 wrap">
@@ -82,7 +105,7 @@
 				/>
 			</div>
 		</Transition>
-	</a>
+	</div>
 </template>
 
 <style lang="scss" scoped>
@@ -99,6 +122,7 @@
 		position: relative;
 		box-shadow: var(--small-shadow);
 		transition: transform 0.3s ease;
+		cursor: pointer;
 
 		&:hover {
 			transform: perspective(1000px) rotateY(6deg) rotateX(-8deg) scale(1.05);
@@ -106,6 +130,7 @@
 
 		&.details {
 			padding: 30px;
+			cursor: auto;
 		}
 
 		> div {
@@ -123,9 +148,10 @@
 		cursor: pointer;
 		padding: 5px;
 		border-radius: 5px;
+		transition: background 0.2s ease;
 
 		&:hover {
-			background: rgba(0, 0, 0, 0.15);
+			background: rgba(0, 0, 0, 0.1);
 		}
 	}
 
@@ -155,5 +181,39 @@
 
 	.infos {
 		height: 100%;
+
+		a {
+			border-radius: var(--main-border-radius);
+			border: 1px solid var(--light-primary-color);
+			color: var(--light-primary-color);
+			padding: 4px 20px;
+
+			&.code {
+				color: var(--light-background-color);
+				background-color: var(--dark-background-color);
+				border-color: var(--dark-background-color);
+			}
+
+			> :first-child {
+				margin-right: 8px;
+			}
+
+			> :last-child {
+				width: fit-content;
+				max-width: 0;
+				transition-property: max-width, margin-left, transform, opacity;
+				transition: 0.2s ease;
+			}
+
+			&:hover > :last-child {
+				margin-left: 10px;
+				max-width: 20px;
+			}
+
+			&:active > :last-child {
+				transform: translate(15px, -12px) scale(1.5);
+				opacity: 0;
+			}
+		}
 	}
 </style>
