@@ -59,36 +59,67 @@
 					<XIcon v-if="showDetails" :size="35" class="close" color="#000" @click="emit('close')" />
 				</div>
 
-				<section class="infos flex column gap20">
-					<p class="jura f-medium">
-						{{ showDetails ? props.project.description : props.project.shortDescription }}
-					</p>
+				<section class="infos flex gap30 a-center">
+					<div v-if="showDetails" class="imgs flex column gap15">
+						<img v-for="img in props.project.images" :key="img" :src="img" alt="" />
+					</div>
 
-					<div v-if="showDetails" class="flex row gap15">
-						<a
-							v-if="props.project.link"
-							:href="props.project.link"
-							class="flex chakra-petch row a-center"
-							target="_blank"
-						>
-							<Globe :size="18" />
-							Site web
-							<SquareArrowOutUpRightIcon :size="18" />
-						</a>
-						<a
-							v-if="props.project.linkOfCode"
-							:href="props.project.linkOfCode"
-							class="flex code chakra-petch row a-center"
-							target="_blank"
-						>
-							<GitHubIcon :size="18" />
-							Code
-							<SquareArrowOutUpRightIcon :size="18" />
-						</a>
+					<div class="flex column gap20">
+						<div class="flex column">
+							<h4 v-if="showDetails" class="chakra-petch">Description :</h4>
+							<p class="jura f-medium">
+								{{ showDetails ? props.project.description : props.project.shortDescription }}
+							</p>
+						</div>
+
+						<div>
+							<h4 v-if="showDetails" class="chakra-petch">Dates :</h4>
+							<span v-if="showDetails" class="jura">{{ props.project.date }}</span>
+						</div>
+
+						<div v-if="showDetails" class="flex column">
+							<h4 class="chakra-petch">Liens :</h4>
+							<div class="flex row gap15">
+								<a
+									v-if="props.project.link"
+									:href="props.project.link"
+									class="flex chakra-petch row a-center"
+									target="_blank"
+								>
+									<Globe :size="18" />
+									Site web
+									<SquareArrowOutUpRightIcon :size="18" />
+								</a>
+								<a
+									v-if="props.project.linkOfCode"
+									:href="props.project.linkOfCode"
+									class="flex code chakra-petch row a-center"
+									target="_blank"
+								>
+									<GitHubIcon :size="18" />
+									Code
+									<SquareArrowOutUpRightIcon :size="18" />
+								</a>
+							</div>
+						</div>
+
+						<div v-if="showDetails" class="flex column">
+							<h4 class="chakra-petch">Compétences :</h4>
+							<section class="skills flex row gap5 wrap">
+								<SkillItemComponent
+									v-for="skill in showDetails
+										? props.project.skills
+										: props.project.skills.slice(0, 3)"
+									:key="skill.name"
+									:text="skill.name"
+									type="hard"
+								/>
+							</section>
+						</div>
 					</div>
 				</section>
 
-				<section class="skills flex row gap5 wrap">
+				<section v-if="!showDetails" class="skills flex row gap5 wrap">
 					<SkillItemComponent
 						v-for="skill in showDetails ? props.project.skills : props.project.skills.slice(0, 3)"
 						:key="skill.name"
@@ -111,6 +142,12 @@
 <style lang="scss" scoped>
 	@use '@/assets/styles/global_var.scss';
 
+	h4 {
+		font-weight: normal;
+		margin-bottom: 6px;
+		font-size: 1.15em;
+	}
+
 	.base {
 		overflow: hidden;
 		border-radius: var(--main-border-radius);
@@ -131,6 +168,10 @@
 		&.details {
 			padding: 30px;
 			cursor: auto;
+
+			.skills {
+				position: relative;
+			}
 		}
 
 		> div {
@@ -179,8 +220,25 @@
 		background: transparent;
 	}
 
+	.imgs {
+		width: 80%;
+		overflow-y: auto;
+		padding: 20px 5px;
+		mask: linear-gradient(to bottom, transparent, black 4%, black 96%, transparent);
+
+		img {
+			width: 100%;
+			border-radius: var(--main-border-radius);
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
 	.infos {
 		height: 100%;
+		min-height: 0;
 
 		a {
 			border-radius: var(--main-border-radius);
@@ -214,6 +272,10 @@
 				transform: translate(15px, -12px) scale(1.5);
 				opacity: 0;
 			}
+		}
+
+		> :last-child {
+			width: 100%;
 		}
 	}
 </style>
