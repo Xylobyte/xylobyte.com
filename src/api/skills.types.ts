@@ -25,6 +25,8 @@ export interface Project {
 	linkOfCode: string | null;
 	date: string;
 	skills: { name: string }[];
+	featured?: boolean;
+	type?: 'perso' | 'pro' | 'school';
 }
 
 export interface LanguageSkill {

@@ -21,7 +21,18 @@
 
 	const route = useRoute();
 	const router = useRouter();
+
 	const activeProject = computed(() => route.params.project);
+	const visibleProjects = computed(() =>
+		(activeTab.value === 'all'
+			? projects.value
+			: projects.value?.filter(p => (activeTab.value === 'feat' && p.featured) || activeTab.value === p.type)
+		)?.filter(p =>
+			search.value
+				? `${p.name} ${p.skills} ${p.description}`.toLowerCase().includes(search.value.toLowerCase())
+				: true,
+		),
+	);
 
 	onMounted(async () => {
 		try {
@@ -42,7 +53,7 @@
 
 		<div class="grid-projects gap30">
 			<ProjectCardComponent
-				v-for="project in projects"
+				v-for="project in visibleProjects"
 				:key="project.id"
 				:is-open="activeProject === project.id"
 				:project="project"

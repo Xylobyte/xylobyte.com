@@ -221,6 +221,7 @@
 	}
 
 	.imgs {
+		max-height: 100%;
 		width: 80%;
 		overflow-y: auto;
 		padding: 20px 5px;
@@ -228,6 +229,9 @@
 
 		img {
 			width: 100%;
+			height: auto;
+			max-height: 100%;
+			object-fit: contain;
 			border-radius: var(--main-border-radius);
 		}
 
