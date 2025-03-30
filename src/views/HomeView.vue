@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-	import { onMounted, onUnmounted } from 'vue';
+	import { onMounted } from 'vue';
 	import { useRoute } from 'vue-router';
 	import HeadTitleSection from '@/components/home/HeadTitleSection.vue';
 	import NavigationDrawerComponent from '@/components/home/NavigationDrawerComponent.vue';
 	import PresentationSection from '@/components/home/PresentationSection.vue';
-	import { initHomeSectionsAnimations } from '@/animate/home-page.ts';
 	import SkillsSection from '@/components/home/SkillsSection.vue';
 	import ProjectsSection from '@/components/home/ProjectsSection.vue';
 	import AboutSection from '@/components/home/AboutSection.vue';
 	import ContactSection from '@/components/home/ContactSection.vue';
 
 	const route = useRoute();
-	let stopTracking: VoidFunction;
 
 	onMounted(() => {
 		document.title = 'Nantsa Montillet - Développeur Web';
-		stopTracking = initHomeSectionsAnimations();
 
 		setTimeout(() => {
 			if (route.hash !== '')
@@ -35,10 +32,6 @@
 			);
 			console.log('Agrandir la console pour voir le logo ! ;)');
 		}, 500);
-	});
-
-	onUnmounted(() => {
-		if (stopTracking) stopTracking();
 	});
 </script>
 

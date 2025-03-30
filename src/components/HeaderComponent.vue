@@ -4,6 +4,7 @@
 	import { useScroll } from '@vueuse/core';
 	import { Menu } from 'lucide-vue-next';
 	import { menuOpenKey } from '@/keys.ts';
+	import { Motion } from 'motion-v';
 
 	const scroll = ref(false);
 	const isHome = ref(true);
@@ -42,14 +43,14 @@
 				<h1 class="big-title only-desktop transition-all">Nantsa Montillet</h1>
 			</div>
 
-			<ul class="flex row gap20 p-absolute transition-all">
+			<Motion as="ul" class="flex row gap20 p-absolute transition-all">
 				<li class="flex a-center">
 					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch"> Accueil </RouterLink>
 				</li>
 				<li class="flex a-center">
 					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch"> Projets </RouterLink>
 				</li>
-			</ul>
+			</Motion>
 		</nav>
 	</header>
 </template>

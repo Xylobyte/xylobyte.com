@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        id="svg1"
+        width="692.40753"
+        height="573.09692"
+        viewBox="0 0 692.40753 573.09692"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+>
+    <defs
+            id="defs1">
+        <linearGradient
+                id="linearGradient11">
+            <stop
+                    style="stop-color:#646464;stop-opacity:0;"
+                    offset="0"
+                    id="stop13"/>
+            <stop
+                    style="stop-color:#646464;stop-opacity:1;"
+                    offset="0.13963965"
+                    id="stop11"/>
+            <stop
+                    style="stop-color:#9b8de5;stop-opacity:1;"
+                    offset="0.88288289"
+                    id="stop12"/>
+            <stop
+                    style="stop-color:#9b8de5;stop-opacity:0;"
+                    offset="1"
+                    id="stop14"/>
+        </linearGradient>
+        <linearGradient
+                xlink:href="#linearGradient11"
+                id="linearGradient12"
+                x1="585.06116"
+                y1="4.6738529"
+                x2="590.71289"
+                y2="610.22449"
+                gradientUnits="userSpaceOnUse"/>
+    </defs>
+    <g
+            id="g1"
+            transform="translate(-221.66992,-19.92511)">
+        <path
+                vector-effect="non-scaling-stroke"
+                style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:url(#linearGradient12);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24, 24;stroke-dashoffset:0;stroke-opacity:1"
+                d="m 280.85021,21.925109 c 0,0 -9.34923,109.926281 18.79295,124.242291 106.30987,54.08013 532.62873,-83.180949 599.28632,-10.44053 38.40458,41.90919 -13.69405,72.37405 -74.32209,73.81141 -218.52718,5.18078 -314.34576,-2.33737 -484.24617,31.63792 -62.94999,12.58822 -48.96709,61.272 -1.04406,65.77534 190.03199,17.85736 375.47576,-39.01293 482.35241,1.04404 106.2352,39.81655 97.75368,100.11965 28.18943,112.75771 -135.41149,24.60083 -463.26628,-23.3769 -566.92068,8.35242 -110.77755,33.90977 -41.20624,98.85844 7.30836,103.36123 86.98762,8.0736 332.22151,-17.53452 461.01535,2.87727 72.76902,11.53274 72.49565,57.6778 72.49565,57.6778"
+                id="path1"/>
+    </g>
+</svg>

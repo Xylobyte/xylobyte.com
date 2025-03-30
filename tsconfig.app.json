@@ -20,8 +20,13 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noUncheckedSideEffectImports": true,
+        "esModuleInterop": true,
         "strict": true,
         "strictFunctionTypes": true,
+        "moduleResolution": "node",
+        "types": [
+            "motion-v"
+        ],
         "paths": {
             "@/*": [
                 "./src/*"
