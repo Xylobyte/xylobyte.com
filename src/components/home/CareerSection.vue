@@ -15,9 +15,9 @@
 	});
 
 	let appDiv: HTMLElement | null;
-	const color = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#FFFFFF', '#151515', '#151515', '#FFFFFF']);
+	const color = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
 	const colorText = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
-	const color2 = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#e5e5e5', '#202020', '#202020', '#e5e5e5']);
+	const color2 = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
 	useMotionValueEvent(color, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
 	});

@@ -138,7 +138,7 @@
 			align-self: center;
 			text-shadow: var(--scroll-background) 0 0 8px;
 			z-index: 1;
-			margin-top: 30px;
+			margin-top: 50px;
 			color: var(--scroll-text);
 		}
 
