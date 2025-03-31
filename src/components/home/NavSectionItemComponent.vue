@@ -26,7 +26,7 @@
 	@use '@/assets/styles/global_var';
 
 	a {
-		color: var(--dark-background-color);
+		color: var(--scroll-text);
 
 		&:hover span {
 			transform: translateX(10px);

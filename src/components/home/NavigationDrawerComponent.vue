@@ -84,7 +84,7 @@
 	aside {
 		height: 100vh;
 		min-width: 330px;
-		background-color: #e2e2e2;
+		background-color: var(--scroll-background-2);
 		position: sticky;
 		top: 0;
 		z-index: 3;
@@ -96,7 +96,7 @@
 			bottom: 0;
 			left: 60px;
 			border: none;
-			border-left: var(--dark-background-color) solid 1px;
+			border-left: var(--scroll-text) solid 1px;
 		}
 
 		> div {

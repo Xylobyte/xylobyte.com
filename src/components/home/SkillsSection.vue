@@ -119,6 +119,8 @@
 	@use '@/assets/styles/global_var';
 
 	#skills {
+		background: var(--scroll-background);
+
 		> p {
 			margin: 15px 10vw 0 0;
 		}

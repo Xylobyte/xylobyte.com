@@ -8,6 +8,7 @@
 	import ProjectsSection from '@/components/home/ProjectsSection.vue';
 	import AboutSection from '@/components/home/AboutSection.vue';
 	import ContactSection from '@/components/home/ContactSection.vue';
+	import CareerSection from '@/components/home/CareerSection.vue';
 
 	const route = useRoute();
 
@@ -45,6 +46,8 @@
 			<div class="content flex column">
 				<PresentationSection />
 
+				<CareerSection />
+
 				<SkillsSection />
 
 				<ProjectsSection />
@@ -78,5 +81,13 @@
 		.content {
 			width: 100%;
 		}
+	}
+</style>
+
+<style>
+	body #app {
+		--scroll-background: #ffffff;
+		--scroll-text: #000;
+		--scroll-background-2: var(--light-background-color);
 	}
 </style>

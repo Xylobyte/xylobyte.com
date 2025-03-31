@@ -5,27 +5,16 @@ export const appearFromBottom: Record<never, Variant> = {
 		opacity: 0,
 		y: 50,
 	},
-	on: {
+	on: (delay = 0) => ({
 		opacity: 1,
 		y: 0,
 		transition: {
+			delay: delay,
 			visualDuration: 0.35,
 			type: 'spring',
 			bounce: 0.55,
 		},
-	},
+	}),
 };
 
-export const pathStroke: Record<never, Variant> = {
-	off: {
-		'--animation': 5000,
-	},
-	on: {
-		'--animation': 0,
-		transition: {
-			type: 'tween',
-			ease: 'easeInOut',
-			duration: 4.2,
-		},
-	},
-};
+export const inViewCustomOptions = { once: false, margin: '50% 0px -25% 0px' } as never;
