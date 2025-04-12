@@ -17,4 +17,4 @@ export const appearFromBottom: Record<never, Variant> = {
 	}),
 };
 
-export const inViewCustomOptions = { once: false, margin: '50% 0px -25% 0px' } as never;
+export const inViewCustomOptions = { once: false, margin: '10000% 0px -25% 0px' } as never;

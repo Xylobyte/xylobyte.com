@@ -36,12 +36,12 @@
 			margin-right: 15px;
 			height: 40px;
 			width: 40px;
-			background-color: #e2e2e2;
-			border: var(--dark-background-color) solid 1px;
+			background-color: var(--scroll-background-2);
+			border: var(--scroll-text) solid 1px;
 			border-radius: var(--small-border-radius);
 
 			svg {
-				color: var(--dark-background-color);
+				color: var(--scroll-text);
 			}
 		}
 

@@ -8,7 +8,6 @@
 	import ProjectsSection from '@/components/home/ProjectsSection.vue';
 	import AboutSection from '@/components/home/AboutSection.vue';
 	import ContactSection from '@/components/home/ContactSection.vue';
-	import CareerSection from '@/components/home/CareerSection.vue';
 
 	const route = useRoute();
 
@@ -44,9 +43,9 @@
 			<NavigationDrawerComponent />
 
 			<div class="content flex column">
-				<PresentationSection />
+				<div class="top-grad"></div>
 
-				<CareerSection />
+				<PresentationSection />
 
 				<SkillsSection />
 
@@ -65,9 +64,29 @@
 
 	.content {
 		width: calc(100% - 330px);
+		position: relative;
+		overflow: unset;
+		background: var(--scroll-background);
+
+		.top-grad {
+			position: sticky;
+			top: 50px;
+			background: linear-gradient(
+				to bottom,
+				var(--scroll-background) 5%,
+				color-mix(in srgb, var(--scroll-background), transparent 30%) 60%,
+				transparent
+			);
+			z-index: 2;
+			height: 6vh;
+		}
 
 		&::v-deep(section) {
 			padding: 80px 4vw 2.5vw 3vw;
+		}
+
+		> div > section:first-of-type {
+			margin-top: -50px;
 		}
 	}
 

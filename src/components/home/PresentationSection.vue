@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
-	import { Motion, useScroll, useSpring, useTransform } from 'motion-v';
+	import { Motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion-v';
 	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
-	import { MoveDown } from 'lucide-vue-next';
-	import { ref } from 'vue';
+	import { onMounted, ref } from 'vue';
+	import CareerSection from '@/components/home/CareerSection.vue';
 
 	const targetEl = ref(null);
 	const scrollYProgress = useScroll({
@@ -12,25 +12,62 @@
 		offset: ['start end', 'end'],
 	}).scrollYProgress;
 	const scrollY = useSpring(scrollYProgress, {
-		stiffness: 500,
-		damping: 50,
+		stiffness: 150,
+		damping: 30,
 		restDelta: 0.001,
 	});
-	const bottomVal = useTransform(scrollY, [0.3, 0.8, 0.88], ['87%', '30%', '1%']);
-	const opacity = useTransform(scrollY, [0.3, 0.35], [0, 1]);
+
+	const lineHeight = useTransform(scrollY, [0.06, 0.23], ['1vh', '64vh']);
+	const opacity = useTransform(scrollY, [0.055, 0.09], [0, 1]);
+
+	const isSnapped = ref(false);
+	const isRound = ref(false);
+	useMotionValueEvent(scrollY, 'change', () => {
+		isSnapped.value = scrollYProgress.get() > 0.36;
+		isRound.value = scrollYProgress.get() > 0.26;
+	});
+
+	let appDiv: HTMLElement | null;
+	const color = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
+	useMotionValueEvent(color, 'change', () => {
+		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
+	});
+	const colorText = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
+	useMotionValueEvent(colorText, 'change', () => {
+		if (appDiv) appDiv.style.setProperty('--scroll-text', colorText.get());
+	});
+	const color2 = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
+	useMotionValueEvent(color2, 'change', () => {
+		if (appDiv) appDiv.style.setProperty('--scroll-background-2', color2.get());
+	});
+
+	onMounted(() => {
+		appDiv = document.getElementById('app');
+	});
 </script>
 
 <template>
 	<div ref="targetEl">
-		<Motion as="section" id="presentation" class="adaptative-viewport-height flex column gap30">
+		<section id="presentation" class="adaptative-viewport-height flex column gap30">
+			<div class="line-ct flex column a-center">
+				<Motion :style="{ height: lineHeight, opacity }" class="line">
+					<Motion :animate="{ scale: isRound ? 1 : 0 }" :style="{ x: '-50%', y: '50%' }" class="point" />
+				</Motion>
+			</div>
+
 			<Motion
-				:inViewOptions="inViewCustomOptions"
-				:variants="appearFromBottom"
-				as-child
-				initial="off"
-				whileInView="on"
+				:animate="{ opacity: isSnapped ? 0 : 1, pointerEvents: isSnapped ? 'none' : 'auto' }"
+				class="title-head"
 			>
-				<SectionTitleComponent title="Présentation" />
+				<Motion
+					:inViewOptions="inViewCustomOptions"
+					:variants="appearFromBottom"
+					as-child
+					initial="off"
+					whileInView="on"
+				>
+					<SectionTitleComponent title="Présentation" />
+				</Motion>
 			</Motion>
 
 			<Motion
@@ -85,26 +122,41 @@
 				N'hésitez pas à me contacter pour échanger sur de nouvelles opportunités professionnelles ! &#128516;
 			</Motion>
 
-			<Motion
-				as="h3"
-				:custom="0.4"
-				:inViewOptions="{ margin: '50% 0px -10% 0px' }"
-				:variants="appearFromBottom"
-				class="f-big chakra-petch flex a-center gap10"
-				initial="off"
-				whileInView="on"
-			>
-				Mon parcours
-				<MoveDown />
-			</Motion>
-
-			<Motion :style="{ bottom: bottomVal, opacity }" class="line" />
-		</Motion>
+			<CareerSection :is-snapped="isSnapped" />
+		</section>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 	@use '@/assets/styles/global_var';
+
+	.line-ct {
+		position: absolute;
+		top: 150px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
+		.line {
+			position: sticky;
+			top: 50px;
+			width: 4px;
+			border-radius: 5px;
+			background: var(--dark-primary-color);
+			box-shadow: 0 0 10px 0 var(--dark-primary-color);
+		}
+
+		.point {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 18px;
+			height: 18px;
+			background: var(--dark-primary-color);
+			box-shadow: 0 0 10px 0 var(--dark-primary-color);
+			border-radius: 50%;
+		}
+	}
 
 	section {
 		background: var(--scroll-background);
@@ -112,11 +164,18 @@
 		gap: 50px;
 		min-height: 120vh;
 
+		.title-head {
+			position: sticky;
+			top: 58px;
+			z-index: 4;
+		}
+
 		p {
 			z-index: 1;
 			background: color-mix(in srgb, var(--light-background-color), transparent 30%);
 			backdrop-filter: blur(5px);
 			border-radius: var(--main-border-radius);
+			box-shadow: var(--small-shadow);
 			padding: 15px;
 			width: 70%;
 
@@ -128,7 +187,7 @@
 				margin-bottom: 50px;
 			}
 
-			&:nth-child(2n + 1) {
+			&:nth-child(2n) {
 				align-self: end;
 			}
 		}
@@ -137,21 +196,23 @@
 			justify-self: flex-end;
 			align-self: center;
 			text-shadow: var(--scroll-background) 0 0 8px;
-			z-index: 1;
 			margin-top: 50px;
 			color: var(--scroll-text);
-		}
+			z-index: 4;
+			position: fixed;
+			bottom: 15vh;
+			opacity: 0;
+			transform: translateY(50px);
 
-		.line {
-			position: absolute;
-			top: 150px;
-			bottom: 85%;
-			width: 4px;
-			border-radius: 5px;
-			background: var(--dark-primary-color);
-			box-shadow: 0 0 10px 0 var(--dark-primary-color);
-			left: 50%;
-			transform: translateX(-50%);
+			&.show {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			&.snapped {
+				bottom: unset;
+				top: 10px;
+			}
 		}
 	}
 </style>

@@ -2,7 +2,6 @@
 	import type { Project } from '@/api/skills.types.ts';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
 	import { onMounted, ref, watch } from 'vue';
-	import { closeCard, openCard } from '@/animate/card-toggle.ts';
 	import { Globe, SquareArrowOutUpRightIcon, X as XIcon } from 'lucide-vue-next';
 	import { useRouter } from 'vue-router';
 	import { GitHubIcon } from 'vue3-simple-icons';
@@ -24,11 +23,11 @@
 	const onOpenChange = async (_: boolean, old: boolean) => {
 		state.value = 'progress';
 		if (props.isOpen) {
-			await openCard(props.project.id);
+			//await openCard(props.project.id);
 			state.value = 'opened';
 			showDetails.value = true;
 		} else if (old) {
-			await closeCard(props.project.id);
+			//await closeCard(props.project.id);
 			state.value = 'closed';
 			showDetails.value = false;
 		} else {

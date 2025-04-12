@@ -12,14 +12,21 @@
 </template>
 
 <style lang="scss" scoped>
+	.title-wrapper {
+		z-index: 4;
+		position: sticky;
+		top: 58px;
+	}
+
 	h2 {
 		white-space: nowrap;
+		color: var(--scroll-text);
 	}
 
 	hr {
 		width: 25vw;
 		border: none;
-		border-top: black dashed 4px;
+		border-top: var(--scroll-text) dashed 4px;
 		margin-left: 15px;
 	}
 </style>

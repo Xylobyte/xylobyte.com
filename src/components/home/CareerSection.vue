@@ -1,61 +1,100 @@
 <script lang="ts" setup>
-	import { onMounted, ref } from 'vue';
-	import { useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion-v';
+	import { MoveDown } from 'lucide-vue-next';
+	import { Motion } from 'motion-v';
+	import CareerItem from '@/components/CareerItem.vue';
+	import dnb from '@/assets/images/dnb.webp';
 
-	const targetEl = ref(null);
-	const scrollYProgress = useScroll({
-		target: targetEl,
-		axis: 'y',
-		offset: ['start end', 'end start'],
-	}).scrollYProgress;
-	const scrollY = useSpring(scrollYProgress, {
-		stiffness: 150,
-		damping: 30,
-		restDelta: 0.001,
-	});
-
-	let appDiv: HTMLElement | null;
-	const color = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
-	const colorText = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
-	const color2 = useTransform(scrollY, [0.1, 0.2, 0.7, 0.8], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
-	useMotionValueEvent(color, 'change', () => {
-		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
-	});
-	useMotionValueEvent(colorText, 'change', () => {
-		if (appDiv) appDiv.style.setProperty('--scroll-text', colorText.get());
-	});
-	useMotionValueEvent(color2, 'change', () => {
-		if (appDiv) appDiv.style.setProperty('--scroll-background-2', color2.get());
-	});
-
-	onMounted(() => {
-		appDiv = document.getElementById('app');
-	});
+	const props = defineProps<{
+		isSnapped: boolean;
+	}>();
 </script>
 
 <template>
-	<div>
-		<section id="career" ref="targetEl" class="adaptative-viewport-height flex column gap30">
-			<div class="line" />
-		</section>
-	</div>
+	<section id="career" ref="targetEl" class="adaptative-viewport-height flex column gap30 a-center">
+		<div class="h3-ct flex j-center">
+			<Motion :class="{ snapped: props.isSnapped }" :layout="true">
+				<h3 class="f-big chakra-petch flex a-center">
+					Mon parcours
+					<MoveDown />
+				</h3>
+			</Motion>
+		</div>
+
+		<CareerItem
+			:image="dnb"
+			:is-proof="true"
+			description="In et voluptate qui nisi laborum id voluptate nulla velit. Qui officia id voluptate minim et enim aliquip sunt duis laborum sint do voluptate. Dolore qui consequat et veniam. Excepteur consequat culpa ipsum pariatur tempor exercitation dolor voluptate do."
+			end="septembre 2021"
+			start="octobre 2021"
+			title="Brevet des collèges"
+		/>
+
+		<CareerItem
+			description="In et voluptate qui nisi laborum id voluptate nulla velit. Qui officia id voluptate minim et enim aliquip sunt duis laborum sint do voluptate. Dolore qui consequat et veniam. Excepteur consequat culpa ipsum pariatur tempor exercitation dolor voluptate do."
+			end="septembre 2021"
+			image="@/assets/images/dnb.webp"
+			start="octobre 2021"
+			title="Brevet des collèges"
+		/>
+
+		<CareerItem
+			description="In et voluptate qui nisi laborum id voluptate nulla velit. Qui officia id voluptate minim et enim aliquip sunt duis laborum sint do voluptate. Dolore qui consequat et veniam. Excepteur consequat culpa ipsum pariatur tempor exercitation dolor voluptate do."
+			end="septembre 2021"
+			image="@/assets/images/dnb.webp"
+			start="octobre 2021"
+			title="Brevet des collèges"
+		/>
+
+		<CareerItem
+			description="In et voluptate qui nisi laborum id voluptate nulla velit. Qui officia id voluptate minim et enim aliquip sunt duis laborum sint do voluptate. Dolore qui consequat et veniam. Excepteur consequat culpa ipsum pariatur tempor exercitation dolor voluptate do."
+			end="septembre 2021"
+			image="@/assets/images/dnb.webp"
+			start="octobre 2021"
+			title="Brevet des collèges"
+		/>
+
+		<CareerItem
+			description="In et voluptate qui nisi laborum id voluptate nulla velit. Qui officia id voluptate minim et enim aliquip sunt duis laborum sint do voluptate. Dolore qui consequat et veniam. Excepteur consequat culpa ipsum pariatur tempor exercitation dolor voluptate do."
+			end="septembre 2021"
+			image="@/assets/images/dnb.webp"
+			start="octobre 2021"
+			title="Brevet des collèges"
+		/>
+	</section>
 </template>
 
 <style lang="scss" scoped>
 	section {
 		position: relative;
-		background: var(--scroll-background);
+		background: transparent !important;
+		color: var(--scroll-text);
+		padding: 0 !important;
 
-		.line {
+		* {
+			color: inherit;
+		}
+	}
+
+	.h3-ct {
+		width: fit-content;
+		margin-top: 40vh;
+		margin-bottom: 20vh;
+		z-index: 2;
+
+		.snapped {
+			position: fixed;
+			top: 58px;
+			margin-top: 0;
+		}
+	}
+
+	h3 {
+		position: relative;
+
+		> * {
 			position: absolute;
-			top: -15px;
-			bottom: 0;
-			width: 4px;
-			border-radius: 5px;
-			background: var(--dark-primary-color);
-			box-shadow: 0 0 10px 0 var(--dark-primary-color);
-			left: 50%;
-			transform: translateX(-50%);
+			right: 0;
+			transform: translateX(calc(100% + 10px));
 		}
 	}
 </style>
