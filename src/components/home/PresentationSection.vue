@@ -17,7 +17,7 @@
 		restDelta: 0.001,
 	});
 
-	const lineHeight = useTransform(scrollY, [0.06, 0.23], ['1vh', '64vh']);
+	const lineHeight = useTransform(scrollY, [0.06, 0.18], ['1vh', '64vh']);
 	const opacity = useTransform(scrollY, [0.055, 0.09], [0, 1]);
 
 	const isSnapped = ref(false);
@@ -28,15 +28,15 @@
 	});
 
 	let appDiv: HTMLElement | null;
-	const color = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
+	const color = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
 	useMotionValueEvent(color, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
 	});
-	const colorText = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
+	const colorText = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
 	useMotionValueEvent(colorText, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-text', colorText.get());
 	});
-	const color2 = useTransform(scrollY, [0.3, 0.33, 0.97, 1], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
+	const color2 = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
 	useMotionValueEvent(color2, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background-2', color2.get());
 	});
@@ -51,6 +51,7 @@
 		<section id="presentation" class="adaptative-viewport-height flex column gap30">
 			<div class="line-ct flex column a-center">
 				<Motion :style="{ height: lineHeight, opacity }" class="line">
+					<Motion :animate="{ opacity: isRound ? 0.6 : 0 }" class="gradient" />
 					<Motion :animate="{ scale: isRound ? 1 : 0 }" :style="{ x: '-50%', y: '50%' }" class="point" />
 				</Motion>
 			</div>
@@ -78,11 +79,13 @@
 				initial="off"
 				whileInView="on"
 			>
-				Hello, &#128075;<br /><br />
-				Je m'appelle Nantsa Montillet, je suis passionné par la programmation. Après un parcours autodidacte de
-				quatre ans, j'ai acquis des compétences solides en programmation, notamment dans les langages C++, Java,
-				HTML, CSS et JavaScript. Actuellement en formation chez OpenClassrooms, je me spécialise dans le
-				développement web avec une formation de niveau BAC +2.
+				Hello, 👋<br /><br />
+				Je m'appelle Nantsa Montillet et je suis passionné par la programmation. Après un parcours autodidacte
+				de quatre ans, j'ai acquis des compétences solides, notamment en C++, Java, HTML, CSS et JavaScript.
+				J'ai réalisé plusieurs projets que vous pouvez retrouver dans
+				<RouterLink class="txt-link" to="/projects">l'onglet Projets</RouterLink>
+				de mon site ou sur
+				<a class="txt-link" href="https://github.com/Xylobyte">ma page GitHub</a>.
 			</Motion>
 
 			<Motion
@@ -93,9 +96,37 @@
 				initial="off"
 				whileInView="on"
 			>
-				J'ai récemment réalisé un site vitrine pour une petite entreprise, mettant en pratique mes connaissances
-				avec les frameworks Vue.js et Laravel, ainsi qu'en bases de données MySQL. Cette expérience m'a permis
-				d'allier créativité et maîtrise technique pour répondre aux besoins de mon client. &#128526;
+				Actuellement en formation, j’ai déjà terminé et validé une première formation de développeur web
+				d’environ un an, équivalente à un niveau Bac +2 🎓. Je poursuis désormais une spécialisation en
+				développement d’applications web, orientée React, sur deux ans en alternance, correspondant à un niveau
+				Bac +3.
+			</Motion>
+
+			<Motion
+				as="p"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="f-medium jura left"
+				initial="off"
+				whileInView="on"
+			>
+				Mais attention, ne croyez pas que parce que je suis en formation, j’ai mis fin à mon auto-formation !
+				😁<br />
+				<ul class="txt-list">
+					<li>
+						J’ai par exemple réalisé un <a class="txt-link" href="https://abzaroke.fr">site vitrine</a> et
+						une <a class="txt-link" href="https://shop.abzaroke.fr">boutique en ligne</a> pour un artisan.
+					</li>
+					<li>J’ai aussi développé une application Android avec Kotlin et Jetpack Compose !</li>
+					<li>
+						Je me suis formé à de nouveaux langages comme Rust et Swift, ainsi qu’à de nouveaux outils et
+						pratiques comme le SEO, Framer Motion, l’enregistrement audio depuis un navigateur… sans oublier
+						l’anglais bien sûr 💬
+					</li>
+					<li>
+						Je continue le développement embarqué avec le raspberry pi pico, et l'ESP32 en utilisant le C++
+					</li>
+				</ul>
 			</Motion>
 
 			<Motion
@@ -106,20 +137,9 @@
 				initial="off"
 				whileInView="on"
 			>
-				Aujourd'hui, je suis à la recherche d'une alternance pour poursuivre mon parcours en bac+3 dès
-				septembre. Passionné et autonome, je suis prêt à m'investir pleinement dans des projets stimulants, tout
-				en continuant d'apprendre et de me perfectionner.
-			</Motion>
-
-			<Motion
-				as="p"
-				:inViewOptions="inViewCustomOptions"
-				:variants="appearFromBottom"
-				class="f-medium jura left"
-				initial="off"
-				whileInView="on"
-			>
-				N'hésitez pas à me contacter pour échanger sur de nouvelles opportunités professionnelles ! &#128516;
+				Aujourd’hui, je suis toujours en alternance, que je termine en octobre. À partir de ce moment-là, je
+				serai disponible pour tout type de nouvelle opportunité !<br />
+				Alors n’hésitez pas à me contacter et à me faire vos propositions ! 😎
 			</Motion>
 
 			<CareerSection :is-snapped="isSnapped" />
@@ -142,8 +162,18 @@
 			top: 50px;
 			width: 4px;
 			border-radius: 5px;
-			background: var(--dark-primary-color);
+			background-color: var(--dark-primary-color);
 			box-shadow: 0 0 10px 0 var(--dark-primary-color);
+		}
+
+		.gradient {
+			position: absolute;
+			bottom: 0;
+			left: 49%;
+			width: 1px;
+			height: 1px;
+			z-index: -1;
+			box-shadow: 0 0 1000px 8vw var(--dark-primary-color);
 		}
 
 		.point {
@@ -189,6 +219,11 @@
 
 			&:nth-child(2n) {
 				align-self: end;
+			}
+
+			.txt-list {
+				list-style: circle;
+				padding-left: 20px;
 			}
 		}
 

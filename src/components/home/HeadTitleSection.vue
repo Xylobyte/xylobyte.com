@@ -81,7 +81,7 @@
 					v-for="i in name.length"
 					as="span"
 					:key="i"
-					:custom="1 + i * 0.1"
+					:custom="0.8 + i * 0.1"
 					:variants="appearVariants"
 					animate="visible"
 					initial="hidden"
@@ -99,9 +99,20 @@
 			>
 				Développeur Web - Full Stack
 			</Motion>
+			<Motion
+				as="p"
+				:custom="2.8"
+				:variants="appearVariants"
+				animate="visible"
+				class="jura f-medium"
+				initial="hidden"
+			>
+				Passionné, autodidacte, rigoureux, opérationnel, je suis prêt pour tout type de mission.<br />
+				N'hésitez pas a me contacter si vous avez une idée ou une proposition.
+			</Motion>
 
 			<div class="btn-link flex row gap40">
-				<Motion :custom="2.8" :variants="appearVariants" animate="visible" as-child initial="hidden">
+				<Motion :custom="3.1" :variants="appearVariants" animate="visible" as-child initial="hidden">
 					<ButtonComponent
 						:icon="GitHubIcon"
 						background-color="255, 255, 255"
@@ -110,7 +121,7 @@
 						text="GitHub"
 					/>
 				</Motion>
-				<Motion :custom="3.1" :variants="appearVariants" animate="visible" as-child initial="hidden">
+				<Motion :custom="3.3" :variants="appearVariants" animate="visible" as-child initial="hidden">
 					<ButtonComponent
 						:icon="LinkedInIcon"
 						background-color="10, 101, 192"
@@ -191,6 +202,10 @@
 
 			h2 {
 				color: var(--light-background-color);
+			}
+
+			p {
+				color: #c5c5c5;
 			}
 
 			.btn-link {

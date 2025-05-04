@@ -46,7 +46,7 @@
 				:animate="showCard ? 'on' : 'off'"
 				:custom="0"
 				:variants="appearFromBottom"
-				class="card flex a-center gap10"
+				class="card flex a-center gap15"
 			>
 				<div class="images">
 					<img :alt="props.title" :class="{ full: !props.isProof }" :src="props.image" />
@@ -72,7 +72,7 @@
 
 <style lang="scss" scoped>
 	.zone {
-		height: 80vh;
+		height: 85vh;
 
 		&:first-of-type {
 			margin-top: 50px;
@@ -95,7 +95,8 @@
 		background: color-mix(in srgb, var(--scroll-background-2), transparent 30%);
 		border-radius: var(--main-border-radius);
 		box-shadow: var(--small-shadow);
-		padding: 30px 40px 30px 10px;
+		padding: 30px 40px 30px 15px;
+		min-width: 450px;
 
 		.images {
 			min-height: 150px;
