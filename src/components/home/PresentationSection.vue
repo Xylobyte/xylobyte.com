@@ -9,7 +9,7 @@
 	const scrollYProgress = useScroll({
 		target: targetEl,
 		axis: 'y',
-		offset: ['start end', 'end'],
+		offset: ['start end', 'end start'],
 	}).scrollYProgress;
 	const scrollY = useSpring(scrollYProgress, {
 		stiffness: 150,
@@ -17,26 +17,28 @@
 		restDelta: 0.001,
 	});
 
-	const lineHeight = useTransform(scrollY, [0.06, 0.18], ['1vh', '64vh']);
+	const lineHeight = useTransform(scrollY, [0.06, 0.15], ['1vh', '60vh']);
 	const opacity = useTransform(scrollY, [0.055, 0.09], [0, 1]);
 
 	const isSnapped = ref(false);
+	const isGone = ref(false);
 	const isRound = ref(false);
 	useMotionValueEvent(scrollY, 'change', () => {
-		isSnapped.value = scrollYProgress.get() > 0.36;
-		isRound.value = scrollYProgress.get() > 0.26;
+		isSnapped.value = scrollYProgress.get() > 0.265;
+		isGone.value = scrollYProgress.get() > 0.98;
+		isRound.value = scrollYProgress.get() > 0.22 && scrollYProgress.get() < 0.98;
 	});
 
 	let appDiv: HTMLElement | null;
-	const color = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
+	const color = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
 	useMotionValueEvent(color, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
 	});
-	const colorText = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
+	const colorText = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
 	useMotionValueEvent(colorText, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-text', colorText.get());
 	});
-	const color2 = useTransform(scrollY, [0.24, 0.26, 0.98, 1], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
+	const color2 = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
 	useMotionValueEvent(color2, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background-2', color2.get());
 	});
@@ -142,7 +144,7 @@
 				Alors n’hésitez pas à me contacter et à me faire vos propositions ! 😎
 			</Motion>
 
-			<CareerSection :is-snapped="isSnapped" />
+			<CareerSection :is-gone="isGone" :is-snapped="isSnapped" />
 		</section>
 	</div>
 </template>
@@ -152,6 +154,7 @@
 
 	.line-ct {
 		position: absolute;
+		padding-bottom: 140px;
 		top: 150px;
 		bottom: 0;
 		left: 0;
@@ -174,6 +177,10 @@
 			height: 1px;
 			z-index: -1;
 			box-shadow: 0 0 1000px 8vw var(--dark-primary-color);
+
+			@media (max-width: global_var.$tablet-width) {
+				box-shadow: 0 0 1000px 15vw var(--dark-primary-color);
+			}
 		}
 
 		.point {
@@ -224,6 +231,10 @@
 			.txt-list {
 				list-style: circle;
 				padding-left: 20px;
+			}
+
+			@media (max-width: global_var.$tablet-width) {
+				width: 80%;
 			}
 		}
 

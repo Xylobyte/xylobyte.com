@@ -23,7 +23,7 @@
 </template>
 
 <style lang="scss" scoped>
-	@use '@/assets/styles/global_var';
+	@use '../assets/styles/global_var';
 
 	a {
 		color: var(--scroll-text);

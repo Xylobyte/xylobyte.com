@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import { inject, onMounted, onUnmounted, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
-	import NavSectionItemComponent from '@/components/home/NavSectionItemComponent.vue';
+	import NavSectionItemComponent from '@/components/NavSectionItemComponent.vue';
 	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
 
 	const currentSection = ref('presentation');
@@ -82,7 +82,7 @@
 	}
 
 	aside {
-		height: 100vh;
+		height: 100dvh;
 		min-width: 330px;
 		background-color: var(--scroll-background-2);
 		position: sticky;

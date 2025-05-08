@@ -71,6 +71,8 @@
 </template>
 
 <style lang="scss" scoped>
+	@use '../assets/styles/global_var';
+
 	.zone {
 		height: 85vh;
 
@@ -80,7 +82,7 @@
 
 		> * {
 			position: sticky;
-			top: calc(64vh + 60px);
+			top: calc(60vh + 60px);
 		}
 	}
 
@@ -91,12 +93,13 @@
 
 	.card {
 		backdrop-filter: blur(5px);
-		width: 35vw;
+		width: 50vw;
 		background: color-mix(in srgb, var(--scroll-background-2), transparent 30%);
 		border-radius: var(--main-border-radius);
 		box-shadow: var(--small-shadow);
 		padding: 30px 40px 30px 15px;
-		min-width: 450px;
+		min-width: 500px;
+		max-width: 800px;
 
 		.images {
 			min-height: 150px;
@@ -115,6 +118,17 @@
 					left: 30px;
 				}
 			}
+		}
+
+		@media (max-width: global_var.$tablet-width) {
+			width: 65vw;
+		}
+
+		@media (max-width: global_var.$mobile-width) {
+			flex-direction: column;
+			padding: 30px;
+			min-width: unset;
+			width: 85vw;
 		}
 	}
 

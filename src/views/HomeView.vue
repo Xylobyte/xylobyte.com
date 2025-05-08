@@ -2,7 +2,7 @@
 	import { onMounted } from 'vue';
 	import { useRoute } from 'vue-router';
 	import HeadTitleSection from '@/components/home/HeadTitleSection.vue';
-	import NavigationDrawerComponent from '@/components/home/NavigationDrawerComponent.vue';
+	import NavigationDrawerComponent from '@/components/home/NavigationDrawer.vue';
 	import PresentationSection from '@/components/home/PresentationSection.vue';
 	import SkillsSection from '@/components/home/SkillsSection.vue';
 	import ProjectsSection from '@/components/home/ProjectsSection.vue';
