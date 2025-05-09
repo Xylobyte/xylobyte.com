@@ -62,15 +62,7 @@
 				:animate="{ opacity: isSnapped ? 0 : 1, pointerEvents: isSnapped ? 'none' : 'auto' }"
 				class="title-head"
 			>
-				<Motion
-					:inViewOptions="inViewCustomOptions"
-					:variants="appearFromBottom"
-					as-child
-					initial="off"
-					whileInView="on"
-				>
-					<SectionTitleComponent title="Présentation" />
-				</Motion>
+				<SectionTitleComponent title="Présentation" />
 			</Motion>
 
 			<Motion

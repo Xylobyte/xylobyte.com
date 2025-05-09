@@ -1,3 +1,5 @@
+<script lang="ts" setup></script>
+
 <template>
 	<footer class="footer flex j-center a-center column gap5">
 		<span class="jura f-medium">© Copyright 2023 - 2025 | Nantsa Montillet</span>
@@ -41,4 +43,3 @@
 		}
 	}
 </style>
-<script lang="ts" setup></script>

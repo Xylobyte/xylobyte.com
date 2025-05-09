@@ -1,10 +1,17 @@
 <script lang="ts" setup>
 	import { onMounted, ref } from 'vue';
+	import { Motion } from 'motion-v';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import type { HardSkills, LanguageSkill, SoftSkill } from '@/api/skills.types.ts';
 	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
+	import {
+		appearFromBottom,
+		appearFromLeft,
+		appearFromRight,
+		inViewCustomOptions,
+	} from '@/animations/home-scroll.ts';
 
 	const hardSkills = ref<HardSkills>();
 	const softSkills = ref<SoftSkill[]>();
@@ -22,17 +29,42 @@
 </script>
 
 <template>
-	<section id="skills" class="adaptative-viewport-height flex column scroll-animate">
+	<section id="skills" class="adaptative-viewport-height flex column">
 		<SectionTitleComponent title="Compétences" />
 
-		<p class="jura opacity-0">
-			J'ai développé ces compétences grâce à des périodes d'autoformation, à ma formation sur OpenClassrooms et à
-			la concrétisation de divers projets.
-		</p>
-		<p class="jura opacity-0">N'hésitez pas à explorer mes projets pour obtenir davantage de détails. &#128522;</p>
+		<Motion
+			as="p"
+			:custom="0.2"
+			:inViewOptions="inViewCustomOptions"
+			:variants="appearFromBottom"
+			class="jura"
+			initial="off"
+			whileInView="on"
+		>
+			J'ai développé ces compétences grâce à mon autoformation, à ma formation sur OpenClassrooms, à la
+			concrétisation de divers projets et avec mon alternance chez DREMML.
+		</Motion>
+		<Motion
+			as="p"
+			:custom="0.4"
+			:inViewOptions="inViewCustomOptions"
+			:variants="appearFromBottom"
+			class="jura"
+			initial="off"
+			whileInView="on"
+		>
+			N'hésitez pas à explorer mes projets pour obtenir davantage de détails. &#128522;
+		</Motion>
 
 		<div class="skills-ct gap20">
-			<div class="soft-skills-ct flex column gap5 p-relative opacity-0">
+			<Motion
+				:custom="0.6"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromLeft"
+				class="soft-skills-ct flex column gap5 p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large">Soft Skills</h3>
 
 				<SkillItemComponent v-for="(skill, index) in softSkills" :key="index" :text="skill.name" type="soft" />
@@ -42,9 +74,16 @@
 						<LoaderComponent />
 					</div>
 				</Transition>
-			</div>
+			</Motion>
 
-			<div class="hard-skills-ct flex column gap10 j-center p-relative opacity-0">
+			<Motion
+				:custom="0.8"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromRight"
+				class="hard-skills-ct flex column gap10 j-center p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large">Langages</h3>
 				<div class="flex wrap row a-center gap10">
 					<SkillItemComponent
@@ -90,9 +129,15 @@
 						<LoaderComponent />
 					</div>
 				</Transition>
-			</div>
+			</Motion>
 
-			<div class="language-skills-ct flex column gap10 p-relative opacity-0">
+			<Motion
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="language-skills-ct flex column gap10 p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large">Languages parlés</h3>
 
 				<div class="flex row wrap gap10">
@@ -110,7 +155,7 @@
 						<LoaderComponent />
 					</div>
 				</Transition>
-			</div>
+			</Motion>
 		</div>
 	</section>
 </template>
@@ -120,9 +165,11 @@
 
 	#skills {
 		background: var(--scroll-background);
+		color: var(--scroll-text);
 
 		> p {
 			margin: 15px 10vw 0 0;
+			color: inherit;
 		}
 
 		.skills-ct {
