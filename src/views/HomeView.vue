@@ -64,7 +64,6 @@
 
 	.content {
 		width: calc(100% - 330px);
-		position: relative;
 		overflow: unset;
 		background: var(--scroll-background);
 

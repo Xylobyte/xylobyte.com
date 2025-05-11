@@ -132,6 +132,7 @@
 			</Motion>
 
 			<Motion
+				:custom="0.4"
 				:inViewOptions="inViewCustomOptions"
 				:variants="appearFromBottom"
 				class="language-skills-ct flex column gap10 p-relative"

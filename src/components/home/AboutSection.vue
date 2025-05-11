@@ -2,16 +2,24 @@
 	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
+	import { Motion } from 'motion-v';
+	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
 </script>
 
 <template>
-	<section id="about" class="adaptative-viewport-height p-relative flex column scroll-animate">
+	<section id="about" class="adaptative-viewport-height p-relative flex column">
 		<SectionTitleComponent class="title-sec" title="A propos" />
 
 		<div class="bg-about p-absolute"></div>
 
 		<div class="grid-info gap30">
-			<div class="box-info infos flex column gap15 p-relative opacity-0">
+			<Motion
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="box-info infos flex column gap15 p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large p-absolute">Infos</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
@@ -20,8 +28,15 @@
 				<div class="ct-card-text flex row j-space-between a-center">
 					<span class="jura bold">Date de naissance :</span> <span class="jura">18 avril 2006</span>
 				</div>
-			</div>
-			<div class="box-info find-work flex column gap15 p-relative opacity-0">
+			</Motion>
+			<Motion
+				:custom="0.3"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="box-info find-work flex column gap15 p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large p-absolute">Recherche d'emploi</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
@@ -45,8 +60,15 @@
 						>Je suis disponible à partir de septembre, pour plus d'infos, n'hésitez pas à me contacter</span
 					>
 				</div>
-			</div>
-			<div class="box-info hobbies flex column gap15 p-relative opacity-0">
+			</Motion>
+			<Motion
+				:custom="0.4"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="box-info hobbies flex column gap15 p-relative"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large p-absolute">Centres d'intérêt</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
@@ -90,8 +112,15 @@
 						principalement electro mais aussi beaucoup d'autres styles
 					</span>
 				</div>
-			</div>
-			<div class="box-info links p-relative opacity-0 gap25">
+			</Motion>
+			<Motion
+				:custom="0.15"
+				:inViewOptions="inViewCustomOptions"
+				:variants="appearFromBottom"
+				class="box-info links p-relative gap25"
+				initial="off"
+				whileInView="on"
+			>
 				<h3 class="chakra-petch f-large p-absolute">Liens</h3>
 
 				<ButtonComponent
@@ -124,16 +153,18 @@
 					link="https://app.daily.dev/xylobyte"
 					text="Daily.dev"
 				/>
-			</div>
+			</Motion>
 		</div>
 
-		<ButtonComponent
-			background-color="102, 88, 185"
-			class="btn-cv flex a-center j-center opacity-0"
-			color="255, 255, 255"
-			link="/storage/nm_cv.pdf"
-			text="Télécharger mon CV"
-		/>
+		<Motion :custom="0.3" :variants="appearFromBottom" as-child initial="off" whileInView="on">
+			<ButtonComponent
+				background-color="102, 88, 185"
+				class="btn-cv flex a-center j-center"
+				color="255, 255, 255"
+				link="/storage/nm_cv.pdf"
+				text="Télécharger mon CV"
+			/>
+		</Motion>
 	</section>
 </template>
 
@@ -149,9 +180,7 @@
 	}
 
 	.title-sec {
-		background-color: white;
 		width: max-content;
-		border-radius: var(--main-border-radius);
 	}
 
 	.grid-info {
@@ -161,7 +190,7 @@
 		max-width: 1200px;
 
 		.box-info {
-			background-color: white;
+			background-color: rgba(255, 255, 255, 0.4);
 			border: var(--light-primary-color) 2px dashed;
 			border-radius: var(--main-border-radius);
 			padding: 25px;
