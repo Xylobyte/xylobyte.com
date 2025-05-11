@@ -7,13 +7,20 @@
 
 	const menuOpen = ref(false);
 	provide(menuOpenKey, menuOpen);
+
+	const clearVariables = () => {
+		const app = document.getElementById('app');
+		app?.style.removeProperty('--scroll-background');
+		app?.style.removeProperty('--scroll-background-2');
+		app?.style.removeProperty('--scroll-text');
+	};
 </script>
 
 <template>
 	<HeaderComponent />
 
 	<RouterView v-slot="{ Component }">
-		<Transition mode="out-in">
+		<Transition mode="out-in" @after-leave="clearVariables">
 			<Component :is="Component" />
 		</Transition>
 	</RouterView>

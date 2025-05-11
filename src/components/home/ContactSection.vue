@@ -6,6 +6,8 @@
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import InputComponent from '@/components/InputComponent.vue';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
+	import { Motion } from 'motion-v';
+	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
 
 	const resetErrors = (value: boolean) => ({
 		name: value,
@@ -48,16 +50,27 @@
 		<SectionTitleComponent title="Contact" />
 
 		<div class="main-ct flex row a-center gap10">
-			<form id="contact-form" :class="{ success: isOk }" class="flex column gap20" @submit.prevent="sendEmail()">
-				<InputComponent
-					v-model="form.name"
-					:disabled="inputDisabled"
-					:show-error="true"
-					class="opacity-0"
-					placeholder="Nom et prénom"
-					validate-for="name"
-					@valid="v => (errors.name = !!v)"
-				/>
+			<Motion
+				as="form"
+				id="contact-form"
+				:class="{ success: isOk }"
+				:inViewOptions="inViewCustomOptions"
+				class="flex column gap20"
+				initial="off"
+				whileInView="on"
+				@submit.prevent="sendEmail()"
+			>
+				<Motion :variants="appearFromBottom" as-child>
+					<InputComponent
+						v-model="form.name"
+						:disabled="inputDisabled"
+						:show-error="true"
+						class="opacity-0"
+						placeholder="Nom et prénom"
+						validate-for="name"
+						@valid="v => (errors.name = !!v)"
+					/>
+				</Motion>
 				<InputComponent
 					v-model="form.email"
 					:disabled="inputDisabled"
@@ -100,7 +113,7 @@
 				<span v-if="otherError" class="other-error jura f-medium">
 					Erreur, vérifiez les informations ou réessayez plus tard...
 				</span>
-			</form>
+			</Motion>
 
 			<hr />
 
