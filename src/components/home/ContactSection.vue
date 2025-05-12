@@ -7,7 +7,7 @@
 	import InputComponent from '@/components/InputComponent.vue';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import { Motion } from 'motion-v';
-	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
+	import { appearFromBottom, appearFromRight, inViewCustomOptions } from '@/animations/home-scroll.ts';
 
 	const resetErrors = (value: boolean) => ({
 		name: value,
@@ -49,17 +49,14 @@
 	<section id="contact" class="adaptative-viewport-height flex column scroll-animate">
 		<SectionTitleComponent title="Contact" />
 
-		<div class="main-ct flex row a-center gap10">
-			<Motion
-				as="form"
-				id="contact-form"
-				:class="{ success: isOk }"
-				:inViewOptions="inViewCustomOptions"
-				class="flex column gap20"
-				initial="off"
-				whileInView="on"
-				@submit.prevent="sendEmail()"
-			>
+		<Motion
+			:inViewOptions="inViewCustomOptions"
+			:transition="{ delayChildren: 0.3, staggerChildren: 0.25 }"
+			class="main-ct flex row a-center gap10"
+			initial="off"
+			whileInView="on"
+		>
+			<form id="contact-form" :class="{ success: isOk }" class="flex column gap20" @submit.prevent="sendEmail()">
 				<Motion :variants="appearFromBottom" as-child>
 					<InputComponent
 						v-model="form.name"
@@ -71,71 +68,83 @@
 						@valid="v => (errors.name = !!v)"
 					/>
 				</Motion>
-				<InputComponent
-					v-model="form.email"
-					:disabled="inputDisabled"
-					:show-error="true"
-					class="opacity-0"
-					placeholder="Email"
-					type="email"
-					validate-for="email"
-					@valid="v => (errors.email = !!v)"
-				/>
-				<InputComponent
-					v-model="form.phone"
-					:disabled="inputDisabled"
-					:show-error="true"
-					class="opacity-0"
-					placeholder="Téléphone"
-					type="tel"
-					validate-for="phone"
-					@valid="v => (errors.phone = !!v)"
-				/>
-				<InputComponent
-					v-model="form.message"
-					:disabled="inputDisabled"
-					:show-error="true"
-					class="opacity-0"
-					placeholder="Message"
-					type="textarea"
-					validate-for="message"
-					@valid="v => (errors.message = !!v)"
-				/>
+				<Motion :variants="appearFromBottom" as-child>
+					<InputComponent
+						v-model="form.email"
+						:disabled="inputDisabled"
+						:show-error="true"
+						class="opacity-0"
+						placeholder="Email"
+						type="email"
+						validate-for="email"
+						@valid="v => (errors.email = !!v)"
+					/>
+				</Motion>
+				<Motion :variants="appearFromBottom" as-child>
+					<InputComponent
+						v-model="form.phone"
+						:disabled="inputDisabled"
+						:show-error="true"
+						class="opacity-0"
+						placeholder="Téléphone"
+						type="tel"
+						validate-for="phone"
+						@valid="v => (errors.phone = !!v)"
+					/>
+				</Motion>
+				<Motion :variants="appearFromBottom" as-child>
+					<InputComponent
+						v-model="form.message"
+						:disabled="inputDisabled"
+						:show-error="true"
+						class="opacity-0"
+						placeholder="Message"
+						type="textarea"
+						validate-for="message"
+						@valid="v => (errors.message = !!v)"
+					/>
+				</Motion>
 
-				<ButtonComponent
-					:disabled="inputDisabled || !Object.values(errors).every(e => !e)"
-					:icon="loading ? LoaderComponent : undefined"
-					:text="isOk ? 'Demande envoyé !' : 'Envoyer'"
-					background-color="102, 88, 185"
-					class="btn-center opacity-0"
-					color="255, 255, 255"
-				/>
+				<Motion :variants="appearFromBottom" as-child>
+					<ButtonComponent
+						:disabled="inputDisabled || !Object.values(errors).every(e => !e)"
+						:icon="loading ? LoaderComponent : undefined"
+						:text="isOk ? 'Demande envoyé !' : 'Envoyer'"
+						background-color="102, 88, 185"
+						class="btn-center opacity-0"
+						color="255, 255, 255"
+					/>
+				</Motion>
 				<span v-if="otherError" class="other-error jura f-medium">
 					Erreur, vérifiez les informations ou réessayez plus tard...
 				</span>
-			</Motion>
+			</form>
 
 			<hr />
 
 			<div class="contact-btn flex column a-center gap30">
-				<ButtonComponent
-					:icon="Phone"
-					background-color="40, 40, 40"
-					class="flex a-center j-center opacity-0"
-					color="255, 255, 255"
-					link="tel:+33749386838"
-					text="07 49 38 68 38"
-				/>
-				<ButtonComponent
-					:icon="AtSign"
-					background-color="40, 40, 40"
-					class="flex a-center j-center opacity-0"
-					color="255, 255, 255"
-					link="mailto:nantsamontillet@xylobyte.com"
-					text="nantsamontillet@xylobyte.com"
-				/>
+				<Motion :variants="appearFromRight" as-child>
+					<ButtonComponent
+						:icon="Phone"
+						background-color="40, 40, 40"
+						class="flex a-center j-center opacity-0"
+						color="255, 255, 255"
+						link="tel:+33749386838"
+						text="07 49 38 68 38"
+					/>
+				</Motion>
+				<Motion :variants="appearFromRight" as-child>
+					<ButtonComponent
+						:icon="AtSign"
+						background-color="40, 40, 40"
+						class="flex a-center j-center opacity-0"
+						color="255, 255, 255"
+						link="mailto:nantsamontillet@xylobyte.com"
+						text="nantsamontillet@xylobyte.com"
+					/>
+				</Motion>
 			</div>
-		</div>
+		</Motion>
 	</section>
 </template>
 
