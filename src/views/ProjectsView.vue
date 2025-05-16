@@ -15,7 +15,7 @@
 		{ id: 'school', label: 'Formation' },
 	];
 
-	const activeTab = ref('feat');
+	const activeTab = ref('all');
 	const search = ref<string>('');
 	const projects = ref<Project[]>();
 

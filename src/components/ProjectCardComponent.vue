@@ -4,7 +4,8 @@
 	import { Globe, SquareArrowOutUpRightIcon, X as XIcon } from 'lucide-vue-next';
 	import { useRouter } from 'vue-router';
 	import { GitHubIcon } from 'vue3-simple-icons';
-	import { Motion } from 'motion-v';
+	import { AnimatePresence, Motion } from 'motion-v';
+	import { ref, watchEffect } from 'vue';
 
 	const props = defineProps<{
 		project: Project;
@@ -15,7 +16,15 @@
 		(e: 'close'): void;
 	}>();
 
+	const isOnTop = ref(false);
+
 	const router = useRouter();
+
+	watchEffect(() => {
+		if (props.isOpen) {
+			isOnTop.value = true;
+		}
+	});
 </script>
 
 <template>
@@ -24,6 +33,7 @@
 		ref="card-item"
 		:class="{ open: props.isOpen }"
 		:layout-id="`card-${props.project.id}`"
+		:style="{ zIndex: isOnTop ? 2 : 1 }"
 		class="base flex column gap10"
 		@click="!props.isOpen && router.push(`/projects/${props.project.id}`)"
 	>
@@ -48,8 +58,10 @@
 		<img :alt="`Image of ${props.project.name} project`" :src="props.project.images[0]" class="main-image" />
 	</Motion>
 
-	<Teleport v-if="props.isOpen" to="#app">
+	<AnimatePresence :on-exit-complete="() => (isOnTop = false)">
 		<Motion
+			v-if="props.isOpen"
+			key="modal"
 			:exit="{ opacity: 0 }"
 			:initial="{ opacity: 1 }"
 			:layout-id="`card-${props.project.id}`"
@@ -122,7 +134,7 @@
 				</div>
 			</section>
 		</Motion>
-	</Teleport>
+	</AnimatePresence>
 </template>
 
 <style lang="scss" scoped>
