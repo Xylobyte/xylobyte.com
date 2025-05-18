@@ -29,7 +29,9 @@
 			: projects.value?.filter(p => (activeTab.value === 'feat' && p.featured) || activeTab.value === p.type)
 		)?.filter(p =>
 			search.value
-				? `${p.name} ${p.skills} ${p.description}`.toLowerCase().includes(search.value.toLowerCase())
+				? `${p.name} ${p.skills.map(s => s.name).join(' ')} ${p.description}`
+						.toLowerCase()
+						.includes(search.value.toLowerCase())
 				: true,
 		),
 	);

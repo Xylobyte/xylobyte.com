@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { provide, ref } from 'vue';
+	import { onMounted, provide, ref } from 'vue';
 	import { menuOpenKey } from '@/keys.ts';
 	import HeaderComponent from '@/components/HeaderComponent.vue';
 	import ScrollToTopComponent from '@/components/ScrollToTopComponent.vue';
@@ -14,6 +14,22 @@
 		app?.style.removeProperty('--scroll-background-2');
 		app?.style.removeProperty('--scroll-text');
 	};
+
+	onMounted(() => {
+		setTimeout(() => {
+			console.clear();
+			console.log('Bienvenue sur la console dev de');
+			console.log(
+				'██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
+					'╚██╗██╔╝╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗╚██╗ ██╔╝╚══██╔══╝██╔════╝\n' +
+					' ╚███╔╝  ╚████╔╝ ██║     ██║   ██║██████╔╝ ╚████╔╝    ██║   █████╗  \n' +
+					' ██╔██╗   ╚██╔╝  ██║     ██║   ██║██╔══██╗  ╚██╔╝     ██║   ██╔══╝  \n' +
+					'██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
+					'╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝',
+			);
+			console.log('Agrandir la console pour voir le logo ! ;)');
+		}, 500);
+	});
 </script>
 
 <template>
