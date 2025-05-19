@@ -81,7 +81,7 @@
 					<img v-for="img in props.project.images" :key="img" :src="img" alt="" />
 				</div>
 
-				<div class="flex column gap20">
+				<div class="texts flex column gap20">
 					<div class="flex column">
 						<h4 class="chakra-petch">Description :</h4>
 						<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
@@ -186,6 +186,15 @@
 			opacity: 0.7;
 			mask: linear-gradient(to right, transparent, black);
 		}
+
+		@media (max-width: 400px) {
+			padding: 15px !important;
+
+			.main-image {
+				width: 60%;
+				opacity: 0.35;
+			}
+		}
 	}
 
 	.base-details {
@@ -244,6 +253,14 @@
 			height: 100%;
 			min-height: 0;
 
+			.texts {
+				overflow-y: auto;
+				min-height: 0;
+				height: 100%;
+				padding: 20px 5px 20px 0;
+				mask: linear-gradient(to bottom, transparent, black 4%, black 96%, transparent);
+			}
+
 			a {
 				border-radius: var(--main-border-radius);
 				border: 1px solid var(--light-primary-color);
@@ -282,19 +299,37 @@
 				width: 100%;
 			}
 		}
-	}
 
-	.fade-out-only-leave-active {
-		transition: opacity 5s ease;
-	}
+		@media (max-width: global_var.$mobile-width) {
+			top: calc(4% + 50px);
+			left: 2.5%;
+			width: 95%;
+			height: calc(92% - 50px);
+			padding: 15px;
+			gap: 5px;
 
-	.fade-out-only-leave-to {
-		opacity: 0;
-	}
+			.infos {
+				flex-direction: column;
+				gap: 15px;
 
-	.fade-out-only-enter-active,
-	.fade-out-only-enter-from,
-	.fade-out-only-enter-to {
-		transition: none;
+				.imgs {
+					width: 100%;
+					height: 60%;
+					padding: 0 10px 0 10px;
+					flex-direction: row;
+					align-items: center;
+					mask: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+
+					img {
+						width: 80%;
+						height: fit-content;
+					}
+				}
+
+				.texts {
+					padding: 10px 0;
+				}
+			}
+		}
 	}
 </style>

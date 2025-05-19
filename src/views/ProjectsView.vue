@@ -49,6 +49,9 @@
 	<main class="flex column gap30">
 		<div class="head flex row gap15 a-center j-space-between">
 			<TabsComponent v-model="activeTab" :tabs="tabs" />
+			<select v-model="activeTab">
+				<option v-for="tab in tabs" :key="tab.id" :value="tab.id">{{ tab.label }}</option>
+			</select>
 
 			<InputComponent v-model="search" class="search" placeholder="Chercher un projet..." type="search" />
 		</div>
@@ -68,6 +71,8 @@
 </template>
 
 <style lang="scss" scoped>
+	@use '@/assets/styles/global_var.scss';
+
 	main {
 		min-height: 100vh;
 		margin-top: 50px;
@@ -77,6 +82,10 @@
 
 	.head {
 		flex-wrap: wrap-reverse;
+
+		select {
+			display: none;
+		}
 	}
 
 	.search {
@@ -125,6 +134,33 @@
 		&.visible {
 			pointer-events: auto;
 			opacity: 1;
+		}
+	}
+
+	@media (max-width: global_var.$mobile-width) {
+		.head {
+			justify-content: center;
+
+			ul {
+				display: none;
+			}
+
+			select {
+				display: block;
+				border: 2px solid var(--light-background-color);
+				border-radius: var(--main-border-radius);
+				padding: 7px;
+				font-size: 1em;
+
+				option {
+					font-size: 1em;
+				}
+			}
+		}
+
+		.search {
+			width: 90%;
+			min-width: unset;
 		}
 	}
 </style>
