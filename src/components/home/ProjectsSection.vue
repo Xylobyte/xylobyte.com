@@ -16,15 +16,15 @@
 </script>
 
 <template>
-	<section id="projects" class="adaptative-viewport-height flex column gap15 scroll-animate">
+	<section id="projects" class="adaptative-viewport-height flex column gap15">
 		<SectionTitleComponent :delay="250" title="Projets récents" />
 
-		<p class="jura opacity-0">
+		<p class="jura">
 			Découvrez un aperçu de mes projets les plus marquants que j'ai concrétisés. Pour une liste exhaustive de mes
 			réalisations, je vous invite à visiter la page dédiée à mes projets !
 		</p>
 
-		<div class="ct-card flex row a-center gap20 p-relative opacity-0 from-right"></div>
+		<div class="ct-card flex row a-center gap20 p-relative from-right"></div>
 	</section>
 </template>
 

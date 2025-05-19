@@ -97,11 +97,11 @@ div.loader {
 }
 
 .transition-all {
-    transition: all 350ms ease-out;
+    transition: all 350ms ease-in-out;
 }
 
 .transition-transform {
-    transition: transform 300ms ease-out;
+    transition: transform 300ms ease-in-out;
 }
 
 .big-title {
