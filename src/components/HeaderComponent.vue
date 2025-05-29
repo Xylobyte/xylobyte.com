@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { inject, ref, watch } from 'vue';
+	import { inject, ref, watch, watchEffect } from 'vue';
 	import { useRoute } from 'vue-router';
 	import { useScroll } from '@vueuse/core';
 	import { Menu } from 'lucide-vue-next';
@@ -17,7 +17,7 @@
 
 	const checkScroll = () => isHome.value && (scroll.value = y.value > 500);
 
-	watch(route, () => {
+	watchEffect(() => {
 		if (route.name === 'home') {
 			isHome.value = true;
 			checkScroll();

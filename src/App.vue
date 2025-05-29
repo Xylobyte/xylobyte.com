@@ -67,9 +67,30 @@
 
 		<FooterComponent />
 	</div>
+
+	<Transition>
+		<div v-if="!texts['header-home']" class="loading flex a-center j-center">
+			<span class="chakra-petch">Loading . . .</span>
+		</div>
+	</Transition>
 </template>
 
 <style lang="scss">
+	.loading {
+		z-index: 10;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: black;
+
+		span {
+			font-size: 3em;
+			color: white;
+		}
+	}
+
 	.v-enter-active,
 	.v-leave-active {
 		transition: opacity 0.25s linear;
