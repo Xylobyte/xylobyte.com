@@ -3,8 +3,12 @@
 	import { Motion, useMotionValue, useSpring, useTransform, type Variant } from 'motion-v';
 	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
+	import { inject, ref } from 'vue';
+	import { textsKey } from '@/keys.ts';
 
 	const name = 'Nantsa\xa0Montillet';
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const x = useMotionValue(50);
 	const y = useMotionValue(50);
@@ -97,7 +101,7 @@
 				class="jura f-large"
 				initial="hidden"
 			>
-				Développeur Web - Full Stack
+				{{ texts['main-title'] }}
 			</Motion>
 			<Motion
 				as="p"
@@ -107,8 +111,7 @@
 				class="jura f-medium"
 				initial="hidden"
 			>
-				Passionné, autodidacte, rigoureux, opérationnel, je suis prêt pour tout type de mission.<br />
-				N'hésitez pas a me contacter si vous avez une idée ou une proposition.
+				{{ texts['main-text'] }}
 			</Motion>
 
 			<div class="btn-link flex row gap40">

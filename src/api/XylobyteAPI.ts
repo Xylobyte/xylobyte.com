@@ -1,5 +1,6 @@
 import type { HardSkills, LanguageSkill, Project, SoftSkill } from '@/api/skills.types.ts';
 import type { ContactRequestData } from '@/api/contact.types.ts';
+import type { XylobyteText } from '@/api/texts.types.ts';
 
 export class XylobyteAPI {
 	static getHardSkills = async (): Promise<HardSkills> =>
@@ -33,6 +34,9 @@ export class XylobyteAPI {
 				throw (await response.json()).message.toString();
 		}
 	};
+
+	static getTexts = async (lang: string): Promise<XylobyteText[]> =>
+		await fetchData(`https://api.xylobyte.com/v1/website/texts?lang=${lang}`);
 }
 
 const fetchData = async (url: string) => {

@@ -24,22 +24,22 @@
 
 		switch (props.validateFor) {
 			case 'name':
-				error.value = (model.value?.length || 0) < 4 ? 'Minimum 4 caractère' : '';
+				error.value = (model.value?.length || 0) < 4 ? 'Minimum 4 characters' : '';
 				break;
 			case 'email':
 				error.value = !/^[a-zA-Z0-9.]{2,}@[-_a-zA-Z0-9]+\.[a-zA-Z0-9]+$/.test(model.value || '')
-					? 'Entrez un email valide'
+					? 'Enter a valid email address'
 					: '';
 				break;
 			case 'phone':
 				error.value = !/^\+?[1-9]\d{0,2}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
 					model.value || '',
 				)
-					? 'Entrez un numéro valide, il doit être au format international'
+					? 'Enter a valid number, it must be in international format'
 					: '';
 				break;
 			case 'message':
-				error.value = (model.value?.length || 0) < 20 ? 'Minimum 4 caractère' : '';
+				error.value = (model.value?.length || 0) < 20 ? 'Minimum 20 characters' : '';
 				break;
 		}
 

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 	import { inject, onMounted, onUnmounted, ref } from 'vue';
-	import { menuOpenKey } from '@/keys.ts';
+	import { menuOpenKey, textsKey } from '@/keys.ts';
 	import NavSectionItemComponent from '@/components/NavSectionItemComponent.vue';
 	import { BadgeInfo, FolderTree, ListChecks, Mail, User } from 'lucide-vue-next';
 
 	const currentSection = ref('presentation');
 	const drawerOpen = inject(menuOpenKey, ref(false));
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const observer = new IntersectionObserver(
 		entries => entries.forEach(entry => entry.isIntersecting && (currentSection.value = entry.target.id)),
@@ -29,35 +30,35 @@
 			<NavSectionItemComponent
 				:icon="User"
 				:is-active="currentSection === 'presentation'"
-				name="Présentation"
+				:name="texts['section1-title']"
 				targetId="presentation"
 				@click="drawerOpen = false"
 			/>
 			<NavSectionItemComponent
 				:icon="ListChecks"
 				:is-active="currentSection === 'skills'"
-				name="Compétences"
+				:name="texts['section2-title']"
 				targetId="skills"
 				@click="drawerOpen = false"
 			/>
 			<NavSectionItemComponent
 				:icon="FolderTree"
 				:is-active="currentSection === 'projects'"
-				name="Projets récents"
+				:name="texts['section3-title']"
 				targetId="projects"
 				@click="drawerOpen = false"
 			/>
 			<NavSectionItemComponent
 				:icon="BadgeInfo"
 				:is-active="currentSection === 'about'"
-				name="À propos"
+				:name="texts['section4-title']"
 				targetId="about"
 				@click="drawerOpen = false"
 			/>
 			<NavSectionItemComponent
 				:icon="Mail"
 				:is-active="currentSection === 'contact'"
-				name="Contact"
+				:name="texts['section5-title']"
 				targetId="contact"
 				@click="drawerOpen = false"
 			/>

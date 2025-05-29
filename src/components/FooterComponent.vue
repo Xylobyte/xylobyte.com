@@ -1,13 +1,19 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+	import { inject, ref } from 'vue';
+	import { textsKey } from '@/keys.ts';
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
+</script>
 
 <template>
 	<footer class="footer flex j-center a-center column gap5">
 		<span class="jura f-medium">© Copyright 2023 - 2025 | Nantsa Montillet</span>
 		<span class="legal flex row a-center gap5">
-			<RouterLink class="txt-link jura" to="/mentions-legales">Mentions légales</RouterLink>
+			<RouterLink class="txt-link jura" to="/mentions-legales">{{ texts['footer-legal'] }}</RouterLink>
 			<span class="jura flex row gap5">
 				<span class="separator">|</span>
-				<a class="txt-link" href="https://github.com/Xylobyte/xylobyte.com">Code source</a> sous license
+				<a class="txt-link" href="https://github.com/Xylobyte/xylobyte.com">{{ texts['footer-code'] }}</a>
+				{{ texts['footer-under'] }}
 				<a class="txt-link" href="https://www.gnu.org/licenses/agpl-3.0.fr.html">AGPL v3.0</a>
 			</span>
 		</span>

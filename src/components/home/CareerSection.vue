@@ -7,11 +7,19 @@
 	import abzarokeLogo from '@/assets/images/abzaroke.webp';
 	import ocLogo from '@/assets/images/oc.webp';
 	import tmLogo from '@/assets/images/tm.webp';
+	import { inject, ref } from 'vue';
+	import { langKey, textsKey } from '@/keys.ts';
 
 	const props = defineProps<{
 		isSnapped: boolean;
 		isGone: boolean;
 	}>();
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
+	const lang = inject(langKey, ref('en'));
+
+	const getDateString = (local: string, year: number, month: number) =>
+		new Date(year, month).toLocaleDateString(local, { month: 'long', year: 'numeric' });
 </script>
 
 <template>
@@ -19,62 +27,62 @@
 		<div class="h3-ct flex j-center">
 			<Motion :animate="{ opacity: props.isGone ? 0 : 1 }" :class="{ snapped: props.isSnapped }" :layout="true">
 				<h3 class="f-big chakra-petch flex a-center">
-					Mon parcours
+					{{ texts['section1-path'] }}
 					<MoveDown />
 				</h3>
 			</Motion>
 		</div>
 
 		<CareerItem
-			:description="'J\'ai développé un assistant personnel, avec un moteur de comprehension de text qui utilise des mots cles, et un systeme d\'extentions modulaire, le tout en C++ avec Qt'"
+			:description="texts['section1-card1-desc']"
 			:image="swAssistantLogo"
 			:is-proof="false"
+			:title="texts['section1-card1-title']"
 			end="2021"
 			start="2020"
-			title="Swifty Assistant (Projet perso)"
 		/>
 
 		<CareerItem
-			:description="'- Mention : Bien\n- Candidat libre (epreuve supplaimentaire d\'anglais ecri)'"
+			:description="texts['section1-card2-desc']"
+			:end="getDateString(lang, 2021, 6)"
 			:image="dnb"
-			end="juillet 2021"
+			:start="getDateString(lang, 2021, 5)"
+			:title="texts['section1-card2-title']"
 			is-proof
-			start="juin 2021"
-			title="Brevet des collèges (DNB)"
 		/>
 
 		<CareerItem
+			:description="texts['section1-card3-desc']"
+			:end="getDateString(lang, 2022, 11)"
 			:image="abzarokeLogo"
-			description="J'ai réalisé un site vitrine pour Bertrand Montillet, artisan sellier maroquinier. En utilisant HTML, CSS et JavaScript, ainsi que les technologies Laravel et Vue.js."
-			end="décembre 2022"
-			start="juillet 2022"
-			title="Site vitrine Abzaroke"
+			:start="getDateString(lang, 2022, 6)"
+			:title="texts['section1-card3-title']"
 		/>
 
 		<CareerItem
+			:description="texts['section1-card4-desc']"
+			:end="getDateString(lang, 2023, 7)"
 			:image="ocLogo"
-			description="Formation avec OpenClassrooms de 8 mois. Compétences acquises : HTML, CSS, JavaScript, Design, Veille tech, évaluation des ressources. Les compétences sont validées par différents projets disponibles sur mon GitHub."
-			end="aout 2023"
+			:start="getDateString(lang, 2023, 0)"
+			:title="texts['section1-card4-title']"
 			is-proof
-			start="janvier 2023"
-			title="Formation Bac+2 (OpenClassrooms)"
 		/>
 
 		<CareerItem
+			:description="texts['section1-card5-desc']"
+			:end="getDateString(lang, 2023, 8)"
 			:image="tmLogo"
-			description="Une application de gestion des territoires pour un usage personnel. J'ai utilisé Kotlin ainsi que les nouveaux API Android (Jetpack Compose, Material You) pour sa réalisation."
-			end="septembre 2023"
-			start="aout 2023"
-			title="Territory Manager (App Android)"
+			:start="getDateString(lang, 2023, 7)"
+			:title="texts['section1-card5-title']"
 		/>
 
 		<CareerItem
+			:description="texts['section1-card6-desc']"
+			:end="getDateString(lang, 2025, 7)"
 			:image="ocLogo"
-			description="Seconde formation OpenClassrooms cette fois sur 2 ans en alternance avec l'entreprise DREMML. J'ai pu me spécialiser dans le développement d'applications Web, et j'ai pu obtenir des compétences professionnelles."
-			end="septembre 2025"
+			:start="getDateString(lang, 2023, 7)"
+			:title="texts['section1-card6-title']"
 			is-proof
-			start="septembre 2023"
-			title="Alternance Bac+3 (DREMML)"
 		/>
 	</section>
 </template>

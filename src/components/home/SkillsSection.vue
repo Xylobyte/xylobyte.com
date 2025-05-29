@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-	import { onMounted, ref } from 'vue';
+	import { inject, onMounted, ref } from 'vue';
 	import { Motion } from 'motion-v';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import type { HardSkills, LanguageSkill, SoftSkill } from '@/api/skills.types.ts';
-	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import SkillItemComponent from '@/components/SkillItemComponent.vue';
 	import {
@@ -12,6 +12,9 @@
 		appearFromRight,
 		inViewCustomOptions,
 	} from '@/animations/home-scroll.ts';
+	import { textsKey } from '@/keys.ts';
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const hardSkills = ref<HardSkills>();
 	const softSkills = ref<SoftSkill[]>();
@@ -30,7 +33,7 @@
 
 <template>
 	<section id="skills" class="adaptative-viewport-height flex column">
-		<SectionTitleComponent title="Compétences" />
+		<SectionTitleComponent :title="texts['section2-title']" />
 
 		<Motion
 			as="p"
@@ -41,8 +44,7 @@
 			initial="off"
 			whileInView="on"
 		>
-			J'ai développé ces compétences grâce à mon autoformation, à ma formation sur OpenClassrooms, à la
-			concrétisation de divers projets et avec mon alternance chez DREMML.
+			{{ texts['section2-p1'] }}
 		</Motion>
 		<Motion
 			as="p"
@@ -53,7 +55,7 @@
 			initial="off"
 			whileInView="on"
 		>
-			N'hésitez pas à explorer mes projets pour obtenir davantage de détails. &#128522;
+			{{ texts['section2-p2'] }}
 		</Motion>
 
 		<div class="skills-ct gap20">
@@ -67,7 +69,12 @@
 			>
 				<h3 class="chakra-petch f-large">Soft Skills</h3>
 
-				<SkillItemComponent v-for="(skill, index) in softSkills" :key="index" :text="skill.name" type="soft" />
+				<SkillItemComponent
+					v-for="(skill, index) in softSkills"
+					:key="index"
+					:text="texts[skill.name]"
+					type="soft"
+				/>
 
 				<Transition>
 					<div v-if="!softSkills" class="loader flex a-center j-center">
@@ -84,7 +91,7 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large">Langages</h3>
+				<h3 class="chakra-petch f-large">{{ texts['section2-hs-title1'] }}</h3>
 				<div class="flex wrap row a-center gap10">
 					<SkillItemComponent
 						v-for="(skill, index) in hardSkills?.languages"
@@ -94,7 +101,7 @@
 					/>
 				</div>
 
-				<h3 class="chakra-petch f-large">Frameworks</h3>
+				<h3 class="chakra-petch f-large">{{ texts['section2-hs-title2'] }}</h3>
 				<div class="flex wrap row a-center gap10">
 					<SkillItemComponent
 						v-for="(skill, index) in hardSkills?.frameworks"
@@ -104,7 +111,7 @@
 					/>
 				</div>
 
-				<h3 class="chakra-petch f-large">Outils</h3>
+				<h3 class="chakra-petch f-large">{{ texts['section2-hs-title3'] }}</h3>
 				<div class="flex wrap row a-center gap10">
 					<SkillItemComponent
 						v-for="(skill, index) in hardSkills?.tools"
@@ -114,7 +121,7 @@
 					/>
 				</div>
 
-				<h3 class="chakra-petch f-large">Systèmes d'exploitation</h3>
+				<h3 class="chakra-petch f-large">{{ texts['section2-hs-title4'] }}</h3>
 				<div class="flex wrap row a-center gap10">
 					<SkillItemComponent
 						v-for="(skill, index) in hardSkills?.systems"
@@ -139,14 +146,14 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large">Languages parlés</h3>
+				<h3 class="chakra-petch f-large">{{ texts['section2-ls-title'] }}</h3>
 
 				<div class="flex row wrap gap10">
 					<SkillItemComponent
 						v-for="(skill, index) in languageSkills"
 						:key="index"
-						:level="skill.level"
-						:text="skill.name"
+						:level="texts[skill.level]"
+						:text="texts[skill.name]"
 						type="language"
 					/>
 				</div>

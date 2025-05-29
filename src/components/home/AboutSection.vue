@@ -1,14 +1,18 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
 	import { Motion } from 'motion-v';
 	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
+	import { inject, ref } from 'vue';
+	import { textsKey } from '@/keys.ts';
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 </script>
 
 <template>
 	<section id="about" class="adaptative-viewport-height p-relative flex column">
-		<SectionTitleComponent class="title-sec" title="A propos" />
+		<SectionTitleComponent :title="texts['section4-title']" class="title-sec" />
 
 		<div class="bg-about p-absolute"></div>
 
@@ -20,13 +24,15 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large p-absolute">Infos</h3>
+				<h3 class="chakra-petch f-large p-absolute">{{ texts['section4-infos'] }}</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Adresse :</span> <span class="jura">63680 Chastreix, France</span>
+					<span class="jura bold">{{ texts['section4-infos-addr'] }}</span>
+					<span class="jura">63680 Chastreix, France</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Date de naissance :</span> <span class="jura">18 avril 2006</span>
+					<span class="jura bold">{{ texts['section4-infos-birth'] }}</span>
+					<span class="jura">{{ texts['section4-infos-birth-value'] }}</span>
 				</div>
 			</Motion>
 			<Motion
@@ -37,28 +43,27 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large p-absolute">Recherche d'emploi</h3>
+				<h3 class="chakra-petch f-large p-absolute">{{ texts['section4-job'] }}</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Titre de l'emploi :</span>
-					<span class="jura">Développeur Web - Full stack</span>
+					<span class="jura bold">{{ texts['section4-job-title'] }}</span>
+					<span class="jura">{{ texts['section4-job-title-value'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Contrat :</span> <span class="jura">Alternance / Stage</span>
+					<span class="jura bold">{{ texts['section4-job-contract'] }}</span>
+					<span class="jura">{{ texts['section4-job-contract-value'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Localisation :</span>
-					<span class="jura">Full remote / Hybrid (Région Puy de Dome)</span>
+					<span class="jura bold">{{ texts['section4-job-loc'] }}</span>
+					<span class="jura">{{ texts['section4-job-loc-value'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Compétences :</span>
-					<span class="jura">Vue.JS / React.JS / Laravel / MySQL / NoSQL / Git / WordPress</span>
+					<span class="jura bold">{{ texts['section4-job-skills'] }}</span>
+					<span class="jura">{{ texts['section4-job-skills-value'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Infos supplémentaires :</span>
-					<span class="jura"
-						>Je suis disponible à partir de septembre, pour plus d'infos, n'hésitez pas à me contacter</span
-					>
+					<span class="jura bold">{{ texts['section4-job-infos'] }}</span>
+					<span class="jura">{{ texts['section4-job-infos-value'] }}</span>
 				</div>
 			</Motion>
 			<Motion
@@ -69,48 +74,31 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large p-absolute">Centres d'intérêt</h3>
+				<h3 class="chakra-petch f-large p-absolute">{{ texts['section4-interests'] }}</h3>
 
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Montage vidéo :</span>
-					<span class="jura"
-						>J'aime particulièrement les effets spéciaux et j'utilise le logiciel DaVinci Resolve pour le
-						montage</span
-					>
+					<span class="jura bold">{{ texts['section4-interests-1'] }}</span>
+					<span class="jura">{{ texts['section4-interests-1-desc'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Modélisation 3D :</span>
-					<span class="jura"
-						>J'apprécie beaucoup créer des images ou de courtes animations avec le logiciel Blender</span
-					>
+					<span class="jura bold">{{ texts['section4-interests-2'] }}</span>
+					<span class="jura">{{ texts['section4-interests-2-desc'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Lecture :</span>
-					<span class="jura">
-						Le style que je préfère c'est la science-fiction. J'aime les romans autant que les BD. Par
-						exemple: Foundation / Silo / Yoko Tsuno / Blake et Mortimer / Blueberry
-					</span>
+					<span class="jura bold">{{ texts['section4-interests-3'] }}</span>
+					<span class="jura">{{ texts['section4-interests-3-desc'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Gaming :</span>
-					<span class="jura">
-						Là encore, j'aime la science-fiction ainsi que le style anime avec des titres comme: No Man's
-						Sky / Genshin Impact / Arknights
-					</span>
+					<span class="jura bold">{{ texts['section4-interests-4'] }}</span>
+					<span class="jura">{{ texts['section4-interests-4-desc'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Photographie :</span>
-					<span class="jura">
-						J'aime bien la photo macro de plantes et d'insectes, je fais la plupart de mes photos avec un
-						smartphone Samsung série S
-					</span>
+					<span class="jura bold">{{ texts['section4-interests-5'] }}</span>
+					<span class="jura">{{ texts['section4-interests-5-desc'] }}</span>
 				</div>
 				<div class="ct-card-text flex row j-space-between a-center">
-					<span class="jura bold">Musique :</span>
-					<span class="jura">
-						Je joue de la Guitare depuis 10 ans comme passe temps. J'écoute aussi beaucoup de musique
-						principalement electro mais aussi beaucoup d'autres styles
-					</span>
+					<span class="jura bold">{{ texts['section4-interests-6'] }}</span>
+					<span class="jura">{{ texts['section4-interests-6-desc'] }}</span>
 				</div>
 			</Motion>
 			<Motion
@@ -121,7 +109,7 @@
 				initial="off"
 				whileInView="on"
 			>
-				<h3 class="chakra-petch f-large p-absolute">Liens</h3>
+				<h3 class="chakra-petch f-large p-absolute">{{ texts['section4-links'] }}</h3>
 
 				<ButtonComponent
 					:icon="GitHubIcon"
@@ -158,11 +146,11 @@
 
 		<Motion :custom="0.3" :variants="appearFromBottom" as-child initial="off" whileInView="on">
 			<ButtonComponent
+				:text="texts['section4-cv-button']"
 				background-color="102, 88, 185"
 				class="btn-cv flex a-center j-center"
 				color="255, 255, 255"
 				link="/storage/nm_cv.pdf"
-				text="Télécharger mon CV"
 			/>
 		</Motion>
 	</section>

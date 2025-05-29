@@ -3,13 +3,14 @@
 	import { useRoute } from 'vue-router';
 	import { useScroll } from '@vueuse/core';
 	import { Menu } from 'lucide-vue-next';
-	import { langKey, menuOpenKey } from '@/keys.ts';
+	import { langKey, menuOpenKey, textsKey } from '@/keys.ts';
 
 	const scroll = ref(false);
 	const isHome = ref(true);
 
 	const menuOpen = inject(menuOpenKey);
 	const lang = inject(langKey);
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const route = useRoute();
 	const { y } = useScroll(window, { behavior: 'smooth' });
@@ -45,10 +46,14 @@
 		<nav class="flex row gap20 p-absolute transition-all">
 			<ul class="flex row gap20">
 				<li class="flex a-center">
-					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch"> Accueil </RouterLink>
+					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch">
+						{{ texts['header-home'] }}
+					</RouterLink>
 				</li>
 				<li class="flex a-center">
-					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch"> Projets </RouterLink>
+					<RouterLink :to="{ name: 'projects' }" class="f-medium chakra-petch">
+						{{ texts['header-projects'] }}
+					</RouterLink>
 				</li>
 			</ul>
 

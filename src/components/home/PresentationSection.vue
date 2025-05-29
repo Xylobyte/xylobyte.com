@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import { Motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion-v';
 	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
-	import { onMounted, ref } from 'vue';
+	import { inject, onMounted, ref } from 'vue';
 	import CareerSection from '@/components/home/CareerSection.vue';
+	import { textsKey } from '@/keys.ts';
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const targetEl = ref(null);
 	const scrollYProgress = useScroll({
@@ -62,7 +65,7 @@
 				:animate="{ opacity: isSnapped ? 0 : 1, pointerEvents: isSnapped ? 'none' : 'auto' }"
 				class="title-head"
 			>
-				<SectionTitleComponent title="Présentation" />
+				<SectionTitleComponent :title="texts['section1-title']" />
 			</Motion>
 
 			<Motion
@@ -73,13 +76,7 @@
 				initial="off"
 				whileInView="on"
 			>
-				Hello, 👋<br /><br />
-				Je m'appelle Nantsa Montillet et je suis passionné par la programmation. Après un parcours autodidacte
-				de quatre ans, j'ai acquis des compétences solides, notamment en C++, Java, HTML, CSS et JavaScript.
-				J'ai réalisé plusieurs projets que vous pouvez retrouver dans
-				<RouterLink class="txt-link" to="/projects">l'onglet Projets</RouterLink>
-				de mon site ou sur
-				<a class="txt-link" href="https://github.com/Xylobyte">ma page GitHub</a>.
+				{{ texts['section1-p1'] }}
 			</Motion>
 
 			<Motion
@@ -90,10 +87,7 @@
 				initial="off"
 				whileInView="on"
 			>
-				Actuellement en formation, j’ai déjà terminé et validé une première formation de développeur web
-				d’environ un an, équivalente à un niveau Bac +2 🎓. Je poursuis désormais une spécialisation en
-				développement d’applications web, orientée React, sur deux ans en alternance, correspondant à un niveau
-				Bac +3.
+				{{ texts['section1-p2'] }}
 			</Motion>
 
 			<Motion
@@ -104,22 +98,12 @@
 				initial="off"
 				whileInView="on"
 			>
-				Mais attention, ne croyez pas que parce que je suis en formation, j’ai mis fin à mon auto-formation !
-				😁<br />
+				{{ texts['section1-p3'] }}
 				<ul class="txt-list">
-					<li>
-						J’ai par exemple réalisé un <a class="txt-link" href="https://abzaroke.fr">site vitrine</a> et
-						une <a class="txt-link" href="https://shop.abzaroke.fr">boutique en ligne</a> pour un artisan.
-					</li>
-					<li>J’ai aussi développé une application Android avec Kotlin et Jetpack Compose !</li>
-					<li>
-						Je me suis formé à de nouveaux langages comme Rust et Swift, ainsi qu’à de nouveaux outils et
-						pratiques comme le SEO, Framer Motion, l’enregistrement audio depuis un navigateur… sans oublier
-						l’anglais bien sûr 💬
-					</li>
-					<li>
-						Je continue le développement embarqué avec le raspberry pi pico, et l'ESP32 en utilisant le C++
-					</li>
+					<li>{{ texts['section1-p3-li1'] }}</li>
+					<li>{{ texts['section1-p3-li2'] }}</li>
+					<li>{{ texts['section1-p3-li3'] }}</li>
+					<li>{{ texts['section1-p3-li4'] }}</li>
 				</ul>
 			</Motion>
 
@@ -131,9 +115,7 @@
 				initial="off"
 				whileInView="on"
 			>
-				Aujourd’hui, je suis toujours en alternance, que je termine en octobre. À partir de ce moment-là, je
-				serai disponible pour tout type de nouvelle opportunité !<br />
-				Alors n’hésitez pas à me contacter et à me faire vos propositions ! 😎
+				{{ texts['section1-p4'] }}
 			</Motion>
 
 			<CareerSection :is-gone="isGone" :is-snapped="isSnapped" />

@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-	import SectionTitleComponent from '@/components/home/SectionTitleComponent.vue';
+	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { AtSign, Phone } from 'lucide-vue-next';
-	import { computed, reactive, ref } from 'vue';
+	import { computed, inject, reactive, ref } from 'vue';
 	import LoaderComponent from '@/components/LoaderComponent.vue';
 	import InputComponent from '@/components/InputComponent.vue';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import { Motion } from 'motion-v';
 	import { appearFromBottom, appearFromRight, inViewCustomOptions } from '@/animations/home-scroll.ts';
+	import { textsKey } from '@/keys.ts';
 
 	const resetErrors = (value: boolean) => ({
 		name: value,
@@ -20,6 +21,8 @@
 	const loading = ref(false);
 	const isOk = ref(false);
 	const errors = ref(resetErrors(true));
+
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const form = reactive({
 		name: '',
@@ -47,7 +50,7 @@
 
 <template>
 	<section id="contact" class="adaptative-viewport-height flex column scroll-animate">
-		<SectionTitleComponent title="Contact" />
+		<SectionTitleComponent :title="texts['section5-title']" />
 
 		<Motion
 			:inViewOptions="inViewCustomOptions"
@@ -61,9 +64,9 @@
 					<InputComponent
 						v-model="form.name"
 						:disabled="inputDisabled"
+						:placeholder="texts['section5-form-name']"
 						:show-error="true"
 						class="opacity-0"
-						placeholder="Nom et prénom"
 						validate-for="name"
 						@valid="v => (errors.name = !!v)"
 					/>
@@ -72,9 +75,9 @@
 					<InputComponent
 						v-model="form.email"
 						:disabled="inputDisabled"
+						:placeholder="texts['section5-form-email']"
 						:show-error="true"
 						class="opacity-0"
-						placeholder="Email"
 						type="email"
 						validate-for="email"
 						@valid="v => (errors.email = !!v)"
@@ -84,9 +87,9 @@
 					<InputComponent
 						v-model="form.phone"
 						:disabled="inputDisabled"
+						:placeholder="texts['section5-form-phone']"
 						:show-error="true"
 						class="opacity-0"
-						placeholder="Téléphone"
 						type="tel"
 						validate-for="phone"
 						@valid="v => (errors.phone = !!v)"
@@ -96,9 +99,9 @@
 					<InputComponent
 						v-model="form.message"
 						:disabled="inputDisabled"
+						:placeholder="texts['section5-form-message']"
 						:show-error="true"
 						class="opacity-0"
-						placeholder="Message"
 						type="textarea"
 						validate-for="message"
 						@valid="v => (errors.message = !!v)"
@@ -109,7 +112,7 @@
 					<ButtonComponent
 						:disabled="inputDisabled || !Object.values(errors).every(e => !e)"
 						:icon="loading ? LoaderComponent : undefined"
-						:text="isOk ? 'Demande envoyé !' : 'Envoyer'"
+						:text="texts[isOk ? 'section5-form-send-ok' : 'section5-form-send']"
 						background-color="102, 88, 185"
 						class="btn-center opacity-0"
 						color="255, 255, 255"
