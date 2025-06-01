@@ -102,7 +102,7 @@
 	.h3-ct {
 		width: fit-content;
 		margin-top: 40vh;
-		margin-bottom: 20vh;
+		margin-bottom: 40vh;
 		z-index: 2;
 
 		.snapped {

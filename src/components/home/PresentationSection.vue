@@ -27,21 +27,22 @@
 	const isGone = ref(false);
 	const isRound = ref(false);
 	useMotionValueEvent(scrollY, 'change', () => {
-		isSnapped.value = scrollYProgress.get() > 0.265;
+		console.log('scrollY', scrollYProgress.get());
+		isSnapped.value = scrollYProgress.get() > 0.25;
 		isGone.value = scrollYProgress.get() > 0.98;
-		isRound.value = scrollYProgress.get() > 0.22 && scrollYProgress.get() < 0.98;
+		isRound.value = scrollYProgress.get() > 0.23 && scrollYProgress.get() < 0.98;
 	});
 
 	let appDiv: HTMLElement | null;
-	const color = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
+	const color = useTransform(scrollY, [0.22, 0.23, 0.96, 0.98], ['#FFFFFF', '#101010', '#101010', '#FFFFFF']);
 	useMotionValueEvent(color, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background', color.get());
 	});
-	const colorText = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
+	const colorText = useTransform(scrollY, [0.22, 0.23, 0.96, 0.98], ['#000000', '#FFFFFF', '#FFFFFF', '#000000']);
 	useMotionValueEvent(colorText, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-text', colorText.get());
 	});
-	const color2 = useTransform(scrollY, [0.2, 0.22, 0.96, 0.98], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
+	const color2 = useTransform(scrollY, [0.22, 0.23, 0.96, 0.98], ['#e5e5e5', '#151515', '#151515', '#e5e5e5']);
 	useMotionValueEvent(color2, 'change', () => {
 		if (appDiv) appDiv.style.setProperty('--scroll-background-2', color2.get());
 	});

@@ -74,7 +74,7 @@
 		opacity: 0;
 		background-color: rgba(0, 0, 0, 0.25);
 		position: fixed;
-		z-index: 2;
+		z-index: 5;
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -88,7 +88,7 @@
 		background-color: var(--scroll-background-2);
 		position: sticky;
 		top: 0;
-		z-index: 3;
+		z-index: 6;
 
 		hr {
 			z-index: -1;

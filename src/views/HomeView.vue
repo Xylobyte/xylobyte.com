@@ -30,7 +30,7 @@
 		<div class="flex row">
 			<NavigationDrawerComponent />
 
-			<div class="content flex column">
+			<div class="content flex column a-center">
 				<div class="top-grad"></div>
 
 				<PresentationSection />
@@ -66,10 +66,13 @@
 			);
 			z-index: 2;
 			height: 6vh;
+			width: 100%;
 		}
 
 		&::v-deep(section) {
 			padding: 80px 4vw 2.5vw 3vw;
+			max-width: 1400px;
+			width: 100%;
 		}
 
 		> div > section:first-of-type {

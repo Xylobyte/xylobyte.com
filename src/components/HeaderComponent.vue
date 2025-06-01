@@ -2,7 +2,7 @@
 	import { inject, ref, watch, watchEffect } from 'vue';
 	import { useRoute } from 'vue-router';
 	import { useScroll } from '@vueuse/core';
-	import { Menu } from 'lucide-vue-next';
+	import { LanguagesIcon, Menu } from 'lucide-vue-next';
 	import { langKey, menuOpenKey, textsKey } from '@/keys.ts';
 
 	const scroll = ref(false);
@@ -43,7 +43,7 @@
 			<h1 class="big-title only-desktop transition-all">Nantsa Montillet</h1>
 		</div>
 
-		<nav class="flex row gap20 p-absolute transition-all">
+		<nav class="flex row gap20 a-center p-absolute transition-all">
 			<ul class="flex row gap20">
 				<li class="flex a-center">
 					<RouterLink :to="{ name: 'home' }" class="f-medium chakra-petch">
@@ -61,11 +61,17 @@
 				<li :class="{ selected: lang === 'fr' }" class="chakra-petch" @click="lang = 'fr'">fr</li>
 				<li :class="{ selected: lang !== 'fr' }" class="chakra-petch" @click="lang = 'en'">en</li>
 			</ul>
+			<button class="language-btn flex a-center gap5 only-mobile" @click="lang = lang === 'fr' ? 'en' : 'fr'">
+				<LanguagesIcon :size="15" />
+				{{ lang }}
+			</button>
 		</nav>
 	</header>
 </template>
 
 <style lang="scss" scoped>
+	@use '@/assets/styles/global_var';
+
 	.test {
 		height: 200vh;
 	}
@@ -140,26 +146,45 @@
 					text-decoration: underline;
 				}
 			}
+
+			@media (max-width: global_var.$mobile-width) {
+				display: none;
+			}
+		}
+
+		.language-btn {
+			background: transparent;
+			color: white;
+			padding: 3px 6px;
+			border-radius: var(--small-border-radius);
+			border: 1px solid gray;
 		}
 	}
 
 	.head-title {
-		padding-left: 20px;
+		padding-left: 15px;
 
 		svg {
 			color: white;
 			transform: translateX(-50px);
 			cursor: pointer;
 			border-radius: 50%;
-
-			&:hover {
-				background-color: rgba(128, 128, 128, 0.5);
-			}
 		}
 
 		h1 {
 			transform: translateY(40px);
 			opacity: 0;
+		}
+	}
+
+	@media (max-width: global_var.$mobile-width) {
+		nav {
+			gap: 10px;
+			right: 10px;
+
+			ul:first-child {
+				gap: 10px;
+			}
 		}
 	}
 </style>
