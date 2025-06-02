@@ -4,9 +4,11 @@
 	import { useScroll } from '@vueuse/core';
 	import { LanguagesIcon, Menu } from 'lucide-vue-next';
 	import { langKey, menuOpenKey, textsKey } from '@/keys.ts';
+	import { Motion } from 'motion-v';
 
 	const scroll = ref(false);
 	const isHome = ref(true);
+	const hideContent = ref(false);
 
 	const menuOpen = inject(menuOpenKey);
 	const lang = inject(langKey);
@@ -28,6 +30,20 @@
 	});
 
 	watch(y, checkScroll);
+
+	watch(texts, () => {
+		hideContent.value = false;
+	});
+
+	const changeLanguage = (newLang: string) => {
+		if (newLang === lang?.value) return;
+
+		hideContent.value = true;
+		setTimeout(() => {
+			if (!lang) return;
+			lang.value = newLang;
+		}, 500);
+	};
 </script>
 
 <template>
@@ -58,13 +74,23 @@
 			</ul>
 
 			<ul class="languages flex row gap10 a-center">
-				<li :class="{ selected: lang === 'fr' }" class="chakra-petch" @click="lang = 'fr'">fr</li>
-				<li :class="{ selected: lang !== 'fr' }" class="chakra-petch" @click="lang = 'en'">en</li>
+				<li :class="{ selected: lang === 'fr' }" class="chakra-petch" @click="changeLanguage('fr')">fr</li>
+				<li :class="{ selected: lang !== 'fr' }" class="chakra-petch" @click="changeLanguage('en')">en</li>
 			</ul>
-			<button class="language-btn flex a-center gap5 only-mobile" @click="lang = lang === 'fr' ? 'en' : 'fr'">
+			<button
+				class="language-btn flex a-center gap5 only-mobile"
+				@click="changeLanguage(lang === 'fr' ? 'en' : 'fr')"
+			>
 				<LanguagesIcon :size="15" />
 				{{ lang }}
 			</button>
+
+			<Motion
+				:animate="{ x: '50%', y: '50%', scale: hideContent ? 1.5 : 0 }"
+				:initial="false"
+				:transition="{ duration: 1 }"
+				class="wiper-lang-switch"
+			/>
 		</nav>
 	</header>
 </template>
@@ -131,6 +157,7 @@
 		}
 
 		.languages {
+			z-index: 1;
 			color: rgba(255, 255, 255, 0.4);
 
 			li {
@@ -153,11 +180,24 @@
 		}
 
 		.language-btn {
+			z-index: 1;
 			background: transparent;
 			color: white;
 			padding: 3px 6px;
 			border-radius: var(--small-border-radius);
 			border: 1px solid gray;
+		}
+
+		.wiper-lang-switch {
+			--size: max(200vh, 200vw);
+			position: absolute;
+			right: 20px;
+			bottom: 50%;
+			width: var(--size);
+			height: var(--size);
+			background: black;
+			border-radius: 100%;
+			filter: blur(50px);
 		}
 	}
 

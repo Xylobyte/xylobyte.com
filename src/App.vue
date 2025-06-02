@@ -39,6 +39,7 @@
 	});
 
 	watchEffect(async () => {
+		textsLoaded.value = false;
 		localStorage.setItem('xylobyte-lang', lang.value);
 		try {
 			const data = await XylobyteAPI.getTexts(lang.value);
@@ -54,7 +55,7 @@
 </script>
 
 <template>
-	<div v-if="textsLoaded" class="flex column">
+	<div v-if="texts['header-home']" class="flex column">
 		<HeaderComponent />
 
 		<RouterView v-slot="{ Component }">
@@ -69,7 +70,7 @@
 	</div>
 
 	<Transition>
-		<div v-if="!texts['header-home']" class="loading flex a-center j-center">
+		<div v-if="!textsLoaded" class="loading flex a-center j-center">
 			<span class="chakra-petch">Loading . . .</span>
 		</div>
 	</Transition>
