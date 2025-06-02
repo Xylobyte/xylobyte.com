@@ -147,7 +147,7 @@
 
 			select {
 				display: block;
-				border: 2px solid var(--light-background-color);
+				border: 1px solid var(--light-background-color);
 				border-radius: var(--main-border-radius);
 				padding: 7px;
 				font-size: 1em;
