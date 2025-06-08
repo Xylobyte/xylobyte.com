@@ -1,19 +1,22 @@
 <script lang="ts" setup>
 	import InputComponent from '@/components/InputComponent.vue';
 	import TabsComponent from '@/components/TabsComponent.vue';
-	import { computed, onMounted, ref } from 'vue';
+	import { computed, inject, onMounted, ref } from 'vue';
 	import type { Project } from '@/api/skills.types.ts';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import ProjectCardComponent from '@/components/ProjectCardComponent.vue';
 	import { useRoute, useRouter } from 'vue-router';
+	import { textsKey } from '@/keys.ts';
 
-	const tabs = [
-		{ id: 'feat', label: '⭐︎ Favoris' },
-		{ id: 'all', label: 'Tout' },
-		{ id: 'perso', label: 'Personnel' },
-		{ id: 'pro', label: 'Professionnel' },
-		{ id: 'school', label: 'Formation' },
-	];
+	const texts = inject(textsKey, ref({} as Record<string, string>));
+
+	const tabs = computed(() => [
+		{ id: 'feat', label: `⭐︎ ${texts.value['project-page-fav']}` },
+		{ id: 'all', label: texts.value['project-page-all'] },
+		{ id: 'perso', label: texts.value['project-page-perso'] },
+		{ id: 'pro', label: texts.value['project-page-pro'] },
+		{ id: 'school', label: texts.value['project-page-training'] },
+	]);
 
 	const activeTab = ref('all');
 	const search = ref<string>('');
@@ -53,7 +56,7 @@
 				<option v-for="tab in tabs" :key="tab.id" :value="tab.id">{{ tab.label }}</option>
 			</select>
 
-			<InputComponent v-model="search" class="search" placeholder="Chercher un projet..." type="search" />
+			<InputComponent v-model="search" :placeholder="texts['project-page-search']" class="search" type="search" />
 		</div>
 
 		<div class="grid-projects gap30">
