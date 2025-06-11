@@ -98,10 +98,6 @@
 <style lang="scss" scoped>
 	@use '@/assets/styles/global_var';
 
-	.test {
-		height: 200vh;
-	}
-
 	header {
 		position: fixed;
 		top: 0;
@@ -109,7 +105,7 @@
 		right: 0;
 		background-color: transparent;
 		height: 50px;
-		z-index: 10;
+		z-index: 100;
 
 		&.scroll {
 			background-color: var(--dark-background-color);

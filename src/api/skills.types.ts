@@ -17,13 +17,14 @@ export interface SoftSkill {
 export interface Project {
 	id: string;
 	name: string;
-	shortDescription: string;
-	description: string;
 	logo?: string;
 	images: string[];
 	link: string | null;
 	linkOfCode: string | null;
-	date: string;
+	date: {
+		from: { year: number; month: number };
+		to?: { year: number; month: number };
+	};
 	skills: { name: string }[];
 	featured?: boolean;
 	type?: 'perso' | 'pro' | 'school';

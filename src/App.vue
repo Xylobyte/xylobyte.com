@@ -78,7 +78,7 @@
 
 <style lang="scss">
 	.loading {
-		z-index: 10;
+		z-index: 100;
 		position: fixed;
 		top: 0;
 		left: 0;

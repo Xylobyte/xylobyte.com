@@ -5,7 +5,9 @@
 	import { useRouter } from 'vue-router';
 	import { GitHubIcon } from 'vue3-simple-icons';
 	import { AnimatePresence, Motion } from 'motion-v';
-	import { ref, watchEffect } from 'vue';
+	import { inject, ref, watchEffect } from 'vue';
+	import { langKey, textsKey } from '@/keys.ts';
+	import { getDateString } from '@/utils/dates.ts';
 
 	const props = defineProps<{
 		project: Project;
@@ -15,6 +17,9 @@
 	const emit = defineEmits<{
 		(e: 'close'): void;
 	}>();
+
+	const lang = inject(langKey, ref('en'));
+	const texts = inject(textsKey, ref({} as Record<string, string>));
 
 	const isOnTop = ref(false);
 	const isHover = ref(false);
@@ -47,7 +52,7 @@
 		</Motion>
 
 		<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
-			{{ props.project.shortDescription }}
+			{{ texts[`project-${props.project.id}-short-desc`] }}
 		</Motion>
 
 		<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
@@ -96,17 +101,25 @@
 						<div class="flex column">
 							<h4 class="chakra-petch">Description :</h4>
 							<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
-								{{ props.project.description }}
+								{{ texts[`project-${props.project.id}-desc`] }}
 							</Motion>
 						</div>
 
 						<div>
 							<h4 class="chakra-petch">Dates :</h4>
-							<span class="jura">{{ props.project.date }}</span>
+							<span class="jura">
+								{{
+									getDateString(lang, props.project.date.from.year, props.project.date.from.month) +
+									(props.project.date.to
+										? ' - ' +
+											getDateString(lang, props.project.date.to.year, props.project.date.to.month)
+										: '')
+								}}
+							</span>
 						</div>
 
 						<div class="flex column">
-							<h4 class="chakra-petch">Liens :</h4>
+							<h4 class="chakra-petch">{{ texts['p-card-link'] }}</h4>
 							<div class="flex row gap15">
 								<a
 									v-if="props.project.link"
@@ -132,7 +145,7 @@
 						</div>
 
 						<div class="flex column">
-							<h4 class="chakra-petch">Compétences :</h4>
+							<h4 class="chakra-petch">{{ texts['p-card-skills'] }}</h4>
 							<section class="skills flex row gap5 wrap">
 								<SkillItemComponent
 									v-for="skill in props.isOpen

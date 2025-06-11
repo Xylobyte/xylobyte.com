@@ -9,6 +9,7 @@
 	import tmLogo from '@/assets/images/tm.webp';
 	import { inject, ref } from 'vue';
 	import { langKey, textsKey } from '@/keys.ts';
+	import { getDateString } from '@/utils/dates.ts';
 
 	const props = defineProps<{
 		isSnapped: boolean;
@@ -17,9 +18,6 @@
 
 	const texts = inject(textsKey, ref({} as Record<string, string>));
 	const lang = inject(langKey, ref('en'));
-
-	const getDateString = (local: string, year: number, month: number) =>
-		new Date(year, month).toLocaleDateString(local, { month: 'long', year: 'numeric' });
 </script>
 
 <template>
