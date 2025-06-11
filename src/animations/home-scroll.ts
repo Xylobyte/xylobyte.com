@@ -10,7 +10,7 @@ export const appearFromBottom: Record<never, Variant> = {
 		y: 0,
 		transition: {
 			delay: delay,
-			visualDuration: 0.35,
+			visualDuration: 0.5,
 			type: 'spring',
 			bounce: 0.55,
 		},
@@ -27,7 +27,7 @@ export const appearFromLeft: Record<never, Variant> = {
 		x: 0,
 		transition: {
 			delay: delay,
-			visualDuration: 0.35,
+			visualDuration: 0.5,
 			type: 'spring',
 			bounce: 0.55,
 		},
@@ -44,7 +44,7 @@ export const appearFromRight: Record<never, Variant> = {
 		x: 0,
 		transition: {
 			delay: delay,
-			visualDuration: 0.35,
+			visualDuration: 0.5,
 			type: 'spring',
 			bounce: 0.55,
 		},

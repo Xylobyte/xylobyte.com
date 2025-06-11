@@ -102,7 +102,7 @@
 
 		> div {
 			height: min(800px, 100%);
-			padding: 80px 60px 40px 40px;
+			padding: 80px 40px 40px 40px;
 		}
 	}
 

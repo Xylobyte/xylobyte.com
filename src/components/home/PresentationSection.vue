@@ -27,7 +27,6 @@
 	const isGone = ref(false);
 	const isRound = ref(false);
 	useMotionValueEvent(scrollY, 'change', () => {
-		console.log('scrollY', scrollYProgress.get());
 		isSnapped.value = scrollYProgress.get() > 0.25;
 		isGone.value = scrollYProgress.get() > 0.98;
 		isRound.value = scrollYProgress.get() > 0.23 && scrollYProgress.get() < 0.98;

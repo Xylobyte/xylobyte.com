@@ -69,7 +69,7 @@
 			width: 100%;
 		}
 
-		&::v-deep(section) {
+		&::v-deep(section:not(.skills)) {
 			padding: 80px 4vw 2.5vw 3vw;
 			max-width: 1400px;
 			width: 100%;

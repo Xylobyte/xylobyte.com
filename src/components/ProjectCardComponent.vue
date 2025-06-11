@@ -17,6 +17,7 @@
 	}>();
 
 	const isOnTop = ref(false);
+	const isHover = ref(false);
 
 	const router = useRouter();
 
@@ -31,11 +32,14 @@
 	<Motion
 		:id="`card-${props.project.id}`"
 		:key="props.project.id"
+		:animate="{ scale: isHover && !isOnTop ? 1.06 : 1 }"
 		:class="{ open: props.isOpen }"
 		:layout-id="`card-${props.project.id}`"
 		:style="{ zIndex: isOnTop ? 2 : 1 }"
 		class="base flex column gap10"
 		@click="!props.isOpen && router.push(`/projects/${props.project.id}`)"
+		@hoverEnd="isHover = false"
+		@hoverStart="isHover = true"
 	>
 		<Motion :layout-id="`card-head-${props.project.id}`" class="head flex row gap10 a-center">
 			<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
@@ -55,7 +59,13 @@
 			/>
 		</section>
 
-		<img :alt="`Image of ${props.project.name} project`" :src="props.project.images[0]" class="main-image" />
+		<Motion
+			as="img"
+			:alt="`Image of ${props.project.name} project`"
+			:animate="{ width: isHover ? '60%' : '30%' }"
+			:src="props.project.images[0]"
+			class="main-image"
+		/>
 	</Motion>
 
 	<Teleport to="#app">

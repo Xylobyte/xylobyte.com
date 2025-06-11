@@ -17,15 +17,24 @@
 </script>
 
 <template>
-	<a :class="{ disabled: props.disabled }" :href="props.link || '#'" :target="props.link && '_blank'">
+	<component
+		:is="props.link ? 'a' : 'div'"
+		:class="{ disabled: props.disabled }"
+		:href="props.link || '#'"
+		:target="props.link && '_blank'"
+	>
 		<button :disabled="props.disabled" :style="cssVars" class="p-relative chakra-petch f-medium flex a-center">
 			<component :is="props.icon" v-if="props.icon !== null" size="18"></component>
 			{{ props.text }}
 		</button>
-	</a>
+	</component>
 </template>
 
 <style lang="scss" scoped>
+	div {
+		width: fit-content;
+	}
+
 	a {
 		color: rgb(var(--btn-color));
 
