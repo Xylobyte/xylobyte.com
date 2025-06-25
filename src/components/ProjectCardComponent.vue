@@ -210,7 +210,7 @@
 			object-fit: cover;
 			object-position: center;
 			z-index: 0;
-			opacity: 0.7;
+			opacity: 0.4;
 			mask: linear-gradient(to right, transparent, black);
 		}
 
