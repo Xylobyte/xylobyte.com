@@ -37,40 +37,44 @@
 	<Motion
 		:id="`card-${props.project.id}`"
 		:key="props.project.id"
-		:animate="{ scale: isHover && !isOnTop ? 1.06 : 1 }"
+		:animate="{ scale: isHover && !isOnTop ? 1.025 : 1 }"
 		:class="{ open: props.isOpen }"
 		:layout-id="`card-${props.project.id}`"
 		:style="{ zIndex: isOnTop ? 2 : 1 }"
-		class="base flex column gap10"
+		class="base"
 		@click="!props.isOpen && router.push(`/projects/${props.project.id}`)"
 		@hoverEnd="isHover = false"
 		@hoverStart="isHover = true"
 	>
-		<Motion :layout-id="`card-head-${props.project.id}`" class="head flex row gap10 a-center">
-			<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
-			<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
-		</Motion>
+		<div :class="{ visible: isHover }" class="hover-border"></div>
 
-		<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
-			{{ texts[`project-${props.project.id}-short-desc`] }}
-		</Motion>
+		<div class="content flex column gap10">
+			<Motion :layout-id="`card-head-${props.project.id}`" class="head flex row gap10 a-center">
+				<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+				<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+			</Motion>
 
-		<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
-			<SkillItemComponent
-				v-for="skill in props.project.skills.slice(0, 3)"
-				:key="skill.name"
-				:text="skill.name"
-				type="hard"
+			<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
+				{{ texts[`project-${props.project.id}-short-desc`] }}
+			</Motion>
+
+			<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
+				<SkillItemComponent
+					v-for="skill in props.project.skills.slice(0, 3)"
+					:key="skill.name"
+					:text="skill.name"
+					type="hard"
+				/>
+			</section>
+
+			<Motion
+				as="img"
+				:alt="`Image of ${props.project.name} project`"
+				:animate="{ width: isHover ? '45%' : '30%' }"
+				:src="props.project.images[0]"
+				class="main-image"
 			/>
-		</section>
-
-		<Motion
-			as="img"
-			:alt="`Image of ${props.project.name} project`"
-			:animate="{ width: isHover ? '60%' : '30%' }"
-			:src="props.project.images[0]"
-			class="main-image"
-		/>
+		</div>
 	</Motion>
 
 	<Teleport to="#app">
@@ -181,16 +185,51 @@
 	}
 
 	.base {
-		overflow: hidden;
-		border-radius: var(--main-border-radius);
 		width: 100%;
 		height: 100%;
 		min-height: 200px;
-		background: var(--light-background-color);
-		padding: 15px 100px 15px 15px;
 		position: relative;
 		box-shadow: var(--small-shadow);
 		cursor: pointer;
+		z-index: 2;
+		border-radius: var(--main-border-radius);
+
+		.hover-border {
+			position: absolute;
+			top: -4px;
+			left: -4px;
+			bottom: -4px;
+			right: -4px;
+			z-index: -1;
+			overflow: hidden;
+			border-radius: calc(var(--main-border-radius) + 4px);
+
+			&::before {
+				content: '';
+				position: absolute;
+				aspect-ratio: 1;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				opacity: 0;
+				background: conic-gradient(transparent 300deg, var(--dark-primary-color), transparent);
+			}
+
+			&.visible::before {
+				animation: rotate 1s linear forwards;
+			}
+		}
+
+		.content {
+			position: relative;
+			border-radius: var(--main-border-radius);
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
+			padding: 15px 100px 15px 15px;
+			background: var(--light-background-color);
+		}
 
 		.head {
 			width: fit-content;
@@ -289,6 +328,7 @@
 			}
 
 			a {
+				margin-left: 5px;
 				border-radius: var(--main-border-radius);
 				border: 1px solid var(--light-primary-color);
 				color: var(--light-primary-color);
@@ -357,6 +397,25 @@
 					padding: 10px 0;
 				}
 			}
+		}
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: translateY(-25%) rotate(150deg);
+			opacity: 0;
+		}
+		15% {
+			opacity: 1;
+		}
+		75% {
+			opacity: 1;
+		}
+		90% {
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(-25%) rotate(450deg);
 		}
 	}
 </style>

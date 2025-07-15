@@ -69,6 +69,8 @@
 			/>
 		</div>
 
+		<p v-if="projects?.length" class="jura f-medium">{{ texts['project-page-more'] }}</p>
+
 		<div :class="{ visible: !!activeProject }" class="blur-bg" @click.exact="router.push('/projects')"></div>
 	</main>
 </template>
@@ -120,6 +122,10 @@
 		@media (min-width: 2500px) {
 			grid-template-columns: repeat(5, 1fr);
 		}
+	}
+
+	p {
+		align-self: center;
 	}
 
 	.blur-bg {
