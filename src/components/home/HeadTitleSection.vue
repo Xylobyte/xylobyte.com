@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import ScrollArrowsComponent from '@/components/home/ScrollArrowsComponent.vue';
 	import { Motion, useMotionValue, useSpring, useTransform, type Variant } from 'motion-v';
-	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
+	import { GitHubIcon } from 'vue3-simple-icons';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
 	import { inject, ref } from 'vue';
 	import { textsKey } from '@/keys.ts';
@@ -126,7 +126,6 @@
 				</Motion>
 				<Motion :custom="3.3" :variants="appearVariants" animate="visible" as-child initial="hidden">
 					<ButtonComponent
-						:icon="LinkedInIcon"
 						background-color="10, 101, 192"
 						class="second"
 						color="255, 255, 255"

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
 	import ButtonComponent from '@/components/ButtonComponent.vue';
-	import { GitHubIcon, LinkedInIcon } from 'vue3-simple-icons';
+	import { DailyDotdevIcon, GitHubIcon } from 'vue3-simple-icons';
 	import { Motion } from 'motion-v';
 	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
 	import { inject, ref } from 'vue';
@@ -120,7 +120,6 @@
 					text="GitHub"
 				/>
 				<ButtonComponent
-					:icon="LinkedInIcon"
 					background-color="10, 101, 192"
 					class="flex a-center j-center"
 					color="255, 255, 255"
@@ -135,6 +134,7 @@
 					text="CodinGame"
 				/>
 				<ButtonComponent
+					:icon="DailyDotdevIcon"
 					background-color="0, 0, 0"
 					class="flex a-center j-center"
 					color="255, 255, 255"

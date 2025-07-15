@@ -75,97 +75,105 @@
 				class="main-image"
 			/>
 		</div>
-	</Motion>
 
-	<Teleport to="#app">
-		<AnimatePresence :on-exit-complete="() => (isOnTop = false)">
-			<Motion
-				v-if="props.isOpen"
-				key="modal"
-				:exit="{ opacity: 0 }"
-				:initial="{ opacity: 1 }"
-				:layout-id="`card-${props.project.id}`"
-				class="base-details flex column gap15"
-			>
-				<div class="flex row j-space-between a-center">
-					<Motion :layout-id="`card-head-${props.project.id}`" class="flex row gap10 a-center">
-						<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
-						<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
-					</Motion>
+		<Teleport to="#app">
+			<AnimatePresence :on-exit-complete="() => (isOnTop = false)">
+				<Motion
+					v-if="props.isOpen"
+					key="modal"
+					:exit="{ opacity: 0 }"
+					:initial="{ opacity: 1 }"
+					:layout-id="`card-${props.project.id}`"
+					class="base-details flex column gap15"
+				>
+					<div class="flex row j-space-between a-center">
+						<Motion :layout-id="`card-head-${props.project.id}`" class="flex row gap10 a-center">
+							<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+							<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+						</Motion>
 
-					<XIcon :size="35" class="close" color="#000" @click="emit('close')" />
-				</div>
-
-				<section class="infos flex gap30 a-center">
-					<div class="imgs flex column gap15">
-						<img v-for="img in props.project.images" :key="img" :src="img" alt="" />
+						<XIcon :size="35" class="close" color="#000" @click="emit('close')" />
 					</div>
 
-					<div class="texts flex column gap20">
-						<div class="flex column">
-							<h4 class="chakra-petch">Description :</h4>
-							<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
-								{{ texts[`project-${props.project.id}-desc`] }}
-							</Motion>
+					<section class="infos flex gap30 a-center">
+						<div class="imgs flex column gap15">
+							<img v-for="img in props.project.images" :key="img" :src="img" alt="" />
 						</div>
 
-						<div>
-							<h4 class="chakra-petch">Dates :</h4>
-							<span class="jura">
-								{{
-									getDateString(lang, props.project.date.from.year, props.project.date.from.month) +
-									(props.project.date.to
-										? ' - ' +
-											getDateString(lang, props.project.date.to.year, props.project.date.to.month)
-										: '')
-								}}
-							</span>
-						</div>
+						<div class="texts flex column gap20">
+							<div class="flex column">
+								<h4 class="chakra-petch">Description :</h4>
+								<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
+									{{ texts[`project-${props.project.id}-desc`] }}
+								</Motion>
+							</div>
 
-						<div class="flex column">
-							<h4 class="chakra-petch">{{ texts['p-card-link'] }}</h4>
-							<div class="flex row gap15">
-								<a
-									v-if="props.project.link"
-									:href="props.project.link"
-									class="flex chakra-petch row a-center"
-									target="_blank"
-								>
-									<Globe :size="18" />
-									Site web
-									<SquareArrowOutUpRightIcon :size="18" />
-								</a>
-								<a
-									v-if="props.project.linkOfCode"
-									:href="props.project.linkOfCode"
-									class="flex code chakra-petch row a-center"
-									target="_blank"
-								>
-									<GitHubIcon :size="18" />
-									Code
-									<SquareArrowOutUpRightIcon :size="18" />
-								</a>
+							<div>
+								<h4 class="chakra-petch">Dates :</h4>
+								<span class="jura">
+									{{
+										getDateString(
+											lang,
+											props.project.date.from.year,
+											props.project.date.from.month,
+										) +
+										(props.project.date.to
+											? ' - ' +
+												getDateString(
+													lang,
+													props.project.date.to.year,
+													props.project.date.to.month,
+												)
+											: '')
+									}}
+								</span>
+							</div>
+
+							<div class="flex column">
+								<h4 class="chakra-petch">{{ texts['p-card-link'] }}</h4>
+								<div class="flex row gap15">
+									<a
+										v-if="props.project.link"
+										:href="props.project.link"
+										class="flex chakra-petch row a-center"
+										target="_blank"
+									>
+										<Globe :size="18" />
+										Site web
+										<SquareArrowOutUpRightIcon :size="18" />
+									</a>
+									<a
+										v-if="props.project.linkOfCode"
+										:href="props.project.linkOfCode"
+										class="flex code chakra-petch row a-center"
+										target="_blank"
+									>
+										<GitHubIcon :size="18" />
+										Code
+										<SquareArrowOutUpRightIcon :size="18" />
+									</a>
+								</div>
+							</div>
+
+							<div class="flex column">
+								<h4 class="chakra-petch">{{ texts['p-card-skills'] }}</h4>
+								<section class="skills flex row gap5 wrap">
+									<SkillItemComponent
+										v-for="skill in props.isOpen
+											? props.project.skills
+											: props.project.skills.slice(0, 3)"
+										:key="skill.name"
+										:text="skill.name"
+										type="hard"
+									/>
+								</section>
 							</div>
 						</div>
-
-						<div class="flex column">
-							<h4 class="chakra-petch">{{ texts['p-card-skills'] }}</h4>
-							<section class="skills flex row gap5 wrap">
-								<SkillItemComponent
-									v-for="skill in props.isOpen
-										? props.project.skills
-										: props.project.skills.slice(0, 3)"
-									:key="skill.name"
-									:text="skill.name"
-									type="hard"
-								/>
-							</section>
-						</div>
-					</div>
-				</section>
-			</Motion>
-		</AnimatePresence>
-	</Teleport>
+					</section>
+				</Motion>
+			</AnimatePresence>
+		</Teleport>
+	</Motion>
 </template>
 
 <style lang="scss" scoped>
