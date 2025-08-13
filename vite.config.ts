@@ -1,12 +1,12 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import vueDevTools from 'vite-plugin-vue-devtools';
+import { ViteSSGOptions } from 'vite-ssg';
 
 // https://vite.dev/config/
-export default defineConfig({
-	plugins: [vue(), vueDevTools()],
+export default {
+	plugins: [vue()],
 	resolve: {
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -14,12 +14,9 @@ export default defineConfig({
 	},
 	build: {
 		outDir: 'www',
+		emptyOutDir: true,
 	},
-	css: {
-		preprocessorOptions: {
-			scss: {
-				api: 'modern-compiler',
-			},
-		},
+	ssgOptions: {
+		mock: true,
 	},
-});
+} satisfies UserConfig & { ssgOptions?: ViteSSGOptions };

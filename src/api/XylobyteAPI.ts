@@ -1,6 +1,7 @@
 import type { HardSkills, LanguageSkill, Project, SoftSkill } from '@/api/skills.types.ts';
 import type { ContactRequestData } from '@/api/contact.types.ts';
 import type { XylobyteText } from '@/api/texts.types.ts';
+import axios from 'axios';
 
 export class XylobyteAPI {
 	static getHardSkills = async (): Promise<HardSkills> =>
@@ -40,7 +41,7 @@ export class XylobyteAPI {
 }
 
 const fetchData = async (url: string) => {
-	const res = await fetch(url);
-	if (!res.ok) throw res.statusText;
-	return await res.json();
+	const res = await axios.get(url);
+	if (res.status !== 200 && res.status !== 201) throw res.statusText;
+	return res.data;
 };

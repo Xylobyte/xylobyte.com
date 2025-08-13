@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 	import InputComponent from '@/components/InputComponent.vue';
 	import TabsComponent from '@/components/TabsComponent.vue';
-	import { computed, inject, onMounted, ref } from 'vue';
+	import { computed, inject, onMounted, onServerPrefetch, ref } from 'vue';
 	import type { Project } from '@/api/skills.types.ts';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import ProjectCardComponent from '@/components/ProjectCardComponent.vue';
 	import { useRoute, useRouter } from 'vue-router';
 	import { textsKey } from '@/keys.ts';
+	import { useHead } from '@unhead/vue';
 
 	const texts = inject(textsKey, ref({} as Record<string, string>));
 
@@ -32,7 +33,7 @@
 			: projects.value?.filter(p => (activeTab.value === 'feat' && p.featured) || activeTab.value === p.type)
 		)?.filter(p =>
 			search.value
-				? `${p.name} ${p.skills.map(s => s.name).join(' ')} ${p.description}`
+				? `${p.name} ${p.skills.map(s => s.name).join(' ')} ${texts.value[`project-${p.id}-desc`]}`
 						.toLowerCase()
 						.includes(search.value.toLowerCase())
 				: true,
@@ -45,6 +46,14 @@
 		} catch (e) {
 			console.error(e);
 		}
+	});
+
+	onServerPrefetch(async () => {
+		projects.value = await XylobyteAPI.getProjects();
+	});
+
+	useHead({
+		title: 'Nantsa Montillet - Projects' + (activeProject.value ? ` | ${activeProject.value}` : ''),
 	});
 </script>
 

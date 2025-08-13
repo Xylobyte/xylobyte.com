@@ -12,6 +12,7 @@
 	const props = defineProps<{
 		project: Project;
 		isOpen: boolean;
+		isHome?: boolean;
 	}>();
 
 	const emit = defineEmits<{
@@ -34,47 +35,51 @@
 </script>
 
 <template>
-	<Motion
-		:id="`card-${props.project.id}`"
-		:key="props.project.id"
-		:animate="{ scale: isHover && !isOnTop ? 1.025 : 1 }"
-		:class="{ open: props.isOpen }"
-		:layout-id="`card-${props.project.id}`"
-		:style="{ zIndex: isOnTop ? 2 : 1 }"
-		class="base"
-		@click="!props.isOpen && router.push(`/projects/${props.project.id}`)"
-		@hoverEnd="isHover = false"
-		@hoverStart="isHover = true"
-	>
-		<div :class="{ visible: isHover }" class="hover-border"></div>
+	<div>
+		<Motion
+			as="a"
+			:id="`card-${props.project.id}`"
+			:key="props.project.id"
+			:animate="{ scale: isHover && !isOnTop ? 1.025 : 1 }"
+			:class="{ open: props.isOpen }"
+			:href="`/projects/${props.project.id}`"
+			:layout-id="`card-${props.project.id}`"
+			:style="{ zIndex: isOnTop ? 2 : 1 }"
+			class="base"
+			@hoverEnd="isHover = false"
+			@hoverStart="isHover = true"
+			@click.prevent="!props.isOpen && router.push(`/projects/${props.project.id}`)"
+		>
+			<div :class="{ visible: isHover }" class="hover-border"></div>
 
-		<div class="content flex column gap10">
-			<Motion :layout-id="`card-head-${props.project.id}`" class="head flex row gap10 a-center">
-				<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
-				<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
-			</Motion>
+			<div class="content flex column gap10">
+				<Motion :layout-id="`card-head-${props.project.id}`" class="head flex row gap10 a-center">
+					<img v-if="props.project.logo" :src="props.project.logo" alt="Project logo" class="logo" />
+					<h3 class="chakra-petch f-large">{{ props.project.name }}</h3>
+				</Motion>
 
-			<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
-				{{ texts[`project-${props.project.id}-short-desc`] }}
-			</Motion>
+				<p class="jura f-medium">
+					{{ texts[`project-${props.project.id}-short-desc`] }}
+				</p>
 
-			<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
-				<SkillItemComponent
-					v-for="skill in props.project.skills.slice(0, 3)"
-					:key="skill.name"
-					:text="skill.name"
-					type="hard"
+				<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
+					<SkillItemComponent
+						v-for="skill in props.project.skills.slice(0, 3)"
+						:key="skill.name"
+						:text="skill.name"
+						type="hard"
+					/>
+				</section>
+
+				<Motion
+					as="img"
+					:alt="`Image of ${props.project.name} project`"
+					:animate="{ width: isHover ? '45%' : '30%' }"
+					:src="props.project.images[0]"
+					class="main-image"
 				/>
-			</section>
-
-			<Motion
-				as="img"
-				:alt="`Image of ${props.project.name} project`"
-				:animate="{ width: isHover ? '45%' : '30%' }"
-				:src="props.project.images[0]"
-				class="main-image"
-			/>
-		</div>
+			</div>
+		</Motion>
 
 		<Teleport to="#app">
 			<AnimatePresence :on-exit-complete="() => (isOnTop = false)">
@@ -103,9 +108,9 @@
 						<div class="texts flex column gap20">
 							<div class="flex column">
 								<h4 class="chakra-petch">Description :</h4>
-								<Motion as="p" :layout-id="`card-desc-${props.project.id}`" class="jura f-medium">
+								<p class="jura f-medium">
 									{{ texts[`project-${props.project.id}-desc`] }}
-								</Motion>
+								</p>
 							</div>
 
 							<div>
@@ -173,7 +178,7 @@
 				</Motion>
 			</AnimatePresence>
 		</Teleport>
-	</Motion>
+	</div>
 </template>
 
 <style lang="scss" scoped>
@@ -193,6 +198,7 @@
 	}
 
 	.base {
+		display: block;
 		width: 100%;
 		height: 100%;
 		min-height: 200px;

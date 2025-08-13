@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { onMounted, provide, ref, watchEffect } from 'vue';
+	import { onMounted, onServerPrefetch, provide, ref, watchEffect } from 'vue';
 	import { langKey, menuOpenKey, textsKey } from '@/keys.ts';
 	import HeaderComponent from '@/components/HeaderComponent.vue';
 	import ScrollToTopComponent from '@/components/ScrollToTopComponent.vue';
@@ -38,11 +38,9 @@
 		}, 500);
 	});
 
-	watchEffect(async () => {
-		textsLoaded.value = false;
-		localStorage.setItem('xylobyte-lang', lang.value);
+	const fetchTexts = async () => {
 		try {
-			const data = await XylobyteAPI.getTexts(lang.value);
+			const data = await XylobyteAPI.getTexts(import.meta.env.SSR ? 'en' : lang.value);
 			texts.value = {};
 			for (const item of data) {
 				texts.value[item.label] = item[lang.value as never];
@@ -51,6 +49,17 @@
 		} catch (err) {
 			console.error(err);
 		}
+	};
+
+	watchEffect(() => {
+		textsLoaded.value = false;
+		localStorage.setItem('xylobyte-lang', lang.value);
+		document.documentElement.lang = lang.value;
+		fetchTexts();
+	});
+
+	onServerPrefetch(async () => {
+		await fetchTexts();
 	});
 </script>
 

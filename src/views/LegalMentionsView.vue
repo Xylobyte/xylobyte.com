@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-	import { onMounted } from 'vue';
+	import { useHead } from '@unhead/vue';
 
-	onMounted(() => {
-		document.title = 'Nantsa Montillet - Mentions légales';
+	useHead({
+		title: 'Nantsa Montillet - Mentions légales',
 	});
 </script>
 

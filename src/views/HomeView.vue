@@ -8,18 +8,21 @@
 	import ProjectsSection from '@/components/home/ProjectsSection.vue';
 	import AboutSection from '@/components/home/AboutSection.vue';
 	import ContactSection from '@/components/home/ContactSection.vue';
+	import { useHead } from '@unhead/vue';
 
 	const route = useRoute();
 
 	onMounted(() => {
-		document.title = 'Nantsa Montillet - Développeur Web';
-
 		setTimeout(() => {
 			if (route.hash !== '')
 				document.getElementById(route.hash.slice(1))?.scrollIntoView({
 					behavior: 'smooth',
 				});
 		}, 500);
+	});
+
+	useHead({
+		title: 'Nantsa Montillet - Développeur Web',
 	});
 </script>
 
