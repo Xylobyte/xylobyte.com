@@ -29,24 +29,26 @@
 		y.set(50);
 	};
 
-	const appearVariants: Record<never, Variant> = {
-		hidden: {
-			opacity: 0,
-			filter: 'blur(10px)',
-			y: '25%',
-			scale: 0.85,
-		},
-		visible: (delay: number) => ({
-			opacity: 1,
-			filter: 'blur(0)',
-			y: 0,
-			scale: 1,
-			transition: {
-				default: { delay, duration: 0.4 },
-				y: { delay, visualDuration: 0.4, type: 'spring', bounce: 0.6 },
-			},
-		}),
-	};
+	const appearVariants: Record<never, Variant> = import.meta.env.SSR
+		? {}
+		: {
+				hidden: {
+					opacity: 0,
+					filter: 'blur(10px)',
+					y: '25%',
+					scale: 0.85,
+				},
+				visible: (delay: number) => ({
+					opacity: 1,
+					filter: 'blur(0)',
+					y: 0,
+					scale: 1,
+					transition: {
+						default: { delay, duration: 0.4 },
+						y: { delay, visualDuration: 0.4, type: 'spring', bounce: 0.6 },
+					},
+				}),
+			};
 </script>
 
 <template>

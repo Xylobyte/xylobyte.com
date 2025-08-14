@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { inject, onMounted, ref } from 'vue';
+	import { inject, onMounted, onServerPrefetch, ref } from 'vue';
 	import type { Project } from '@/api/skills.types.ts';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import SectionTitleComponent from '@/components/SectionTitleComponent.vue';
@@ -19,6 +19,10 @@
 		} catch (e) {
 			console.error(e);
 		}
+	});
+
+	onServerPrefetch(async () => {
+		projects.value = (await XylobyteAPI.getProjects()).slice(0, 4);
 	});
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { inject, onMounted, ref } from 'vue';
+	import { inject, onMounted, onServerPrefetch, ref } from 'vue';
 	import { Motion } from 'motion-v';
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 	import type { HardSkills, LanguageSkill, SoftSkill } from '@/api/skills.types.ts';
@@ -28,6 +28,12 @@
 		} catch (e) {
 			console.error(e);
 		}
+	});
+
+	onServerPrefetch(async () => {
+		hardSkills.value = await XylobyteAPI.getHardSkills();
+		softSkills.value = await XylobyteAPI.getSoftSkills();
+		languageSkills.value = await XylobyteAPI.getLanguagesSkills();
 	});
 </script>
 
