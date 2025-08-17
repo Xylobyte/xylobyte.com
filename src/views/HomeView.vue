@@ -1,93 +1,105 @@
+<script lang="ts" setup>
+	import { onMounted } from 'vue';
+	import { useRoute } from 'vue-router';
+	import HeadTitleSection from '@/components/home/HeadTitleSection.vue';
+	import NavigationDrawerComponent from '@/components/home/NavigationDrawer.vue';
+	import PresentationSection from '@/components/home/PresentationSection.vue';
+	import SkillsSection from '@/components/home/SkillsSection.vue';
+	import ProjectsSection from '@/components/home/ProjectsSection.vue';
+	import AboutSection from '@/components/home/AboutSection.vue';
+	import ContactSection from '@/components/home/ContactSection.vue';
+	import { useHead } from '@unhead/vue';
+
+	const route = useRoute();
+
+	onMounted(() => {
+		setTimeout(() => {
+			if (route.hash !== '')
+				document.getElementById(route.hash.slice(1))?.scrollIntoView({
+					behavior: 'smooth',
+				});
+		}, 500);
+	});
+
+	useHead({
+		title: 'Nantsa Montillet - Développeur Web',
+	});
+</script>
+
 <template>
 	<div>
-		<HeadTitleSection/>
+		<HeadTitleSection />
 
 		<div class="flex row">
-			<NavigationDrawerComponent/>
+			<NavigationDrawerComponent />
 
-			<div class="content flex column">
-				<PresentationSection/>
+			<div class="content flex column a-center">
+				<div class="top-grad"></div>
 
-				<SkillsSection/>
+				<PresentationSection />
 
-				<ProjectsSection/>
+				<SkillsSection />
 
-				<AboutSection/>
+				<ProjectsSection />
 
-				<ContactSection/>
+				<AboutSection />
+
+				<ContactSection />
 			</div>
 		</div>
 	</div>
 </template>
 
-<script>
-import {defineComponent} from "vue";
-import HeadTitleSection from "@/components/sections/home/HeadTitleSection.vue";
-import NavigationDrawerComponent from "@/components/sections/home/Drawer/NavigationDrawerComponent.vue";
-import PresentationSection from "@/components/sections/home/PresentationSection.vue";
-import SkillsSection from "@/components/sections/home/SkillsSection/SkillsSection.vue";
-import ProjectsSection from "@/components/sections/home/ProjectsSection.vue";
-import AboutSection from "@/components/sections/home/AboutSection.vue";
-import ContactSection from "@/components/sections/home/ContactSection.vue";
-
-export default defineComponent({
-	name: 'HomeView',
-	components: {
-		ContactSection,
-		AboutSection,
-		ProjectsSection,
-		SkillsSection,
-		PresentationSection,
-		NavigationDrawerComponent,
-		HeadTitleSection
-	},
-	created() {
-		this.emitter.emit('pageLoaded', {name: 'home'});
-		document.title = 'Nantsa Montillet - Développeur Web';
-	},
-	mounted() {
-		setTimeout(() => {
-			if (this.$route.hash !== '')
-				document.getElementById(this.$route.hash.slice(1)).scrollIntoView({
-					behavior: 'smooth'
-				});
-
-			console.clear();
-			console.log('Bienvenue sur la console dev de');
-			console.log(
-				'██╗  ██╗██╗   ██╗██╗      ██████╗ ██████╗ ██╗   ██╗████████╗███████╗\n' +
-				'╚██╗██╔╝╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗╚██╗ ██╔╝╚══██╔══╝██╔════╝\n' +
-				' ╚███╔╝  ╚████╔╝ ██║     ██║   ██║██████╔╝ ╚████╔╝    ██║   █████╗  \n' +
-				' ██╔██╗   ╚██╔╝  ██║     ██║   ██║██╔══██╗  ╚██╔╝     ██║   ██╔══╝  \n' +
-				'██╔╝ ██╗   ██║   ███████╗╚██████╔╝██████╔╝   ██║      ██║   ███████╗\n' +
-				'╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝    ╚═╝      ╚═╝   ╚══════╝'
-			);
-			console.log('Agrandir la console pour voir le logo ! ;)');
-		}, 500);
-	}
-})
-</script>
-
 <style lang="scss" scoped>
-@use "@/assets/css/global_var.scss" as *;
+	@use '@/assets/styles/global_var.scss';
 
-.content {
-	width: calc(100% - 330px);
-
-	&::v-deep(section) {
-		padding: 80px 4vw 2.5vw 3vw;
-	}
-}
-
-@media (max-width: $tablet-width) {
 	.content {
-		width: calc(100% - 80px);
-	}
-}
+		width: calc(100% - 330px);
+		overflow: unset;
+		background: var(--scroll-background);
 
-@media (max-width: $mobile-width) {
-	.content {
-		width: 100%;
+		.top-grad {
+			position: sticky;
+			top: 50px;
+			background: linear-gradient(
+				to bottom,
+				var(--scroll-background) 5%,
+				color-mix(in srgb, var(--scroll-background), transparent 30%) 60%,
+				transparent
+			);
+			z-index: 2;
+			height: 6vh;
+			width: 100%;
+		}
+
+		&::v-deep(section:not(.skills)) {
+			padding: 80px 4vw 2.5vw 3vw;
+			max-width: 1400px;
+			width: 100%;
+		}
+
+		> div > section:first-of-type {
+			margin-top: -50px;
+		}
 	}
-}
+
+	@media (max-width: global_var.$tablet-width) {
+		.content {
+			width: calc(100% - 80px);
+		}
+	}
+
+	@media (max-width: global_var.$mobile-width) {
+		.content {
+			width: 100%;
+		}
+	}
+</style>
+
+<style>
+	body #app {
+		--scroll-background: #ffffff;
+		--scroll-text: #000;
+		--scroll-background-2: var(--light-background-color);
+	}
 </style>
