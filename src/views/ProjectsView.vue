@@ -53,7 +53,7 @@
 	});
 
 	useHead({
-		title: 'Nantsa Montillet - Projects',
+		title: 'Nantsa Montillet - My projects',
 	});
 </script>
 

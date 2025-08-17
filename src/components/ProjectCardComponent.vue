@@ -45,6 +45,7 @@
 			:href="`/projects/${props.project.id}`"
 			:layout-id="`card-${props.project.id}`"
 			:style="{ zIndex: isOnTop ? 2 : 1 }"
+			:title="props.project.name"
 			class="base"
 			@hoverEnd="isHover = false"
 			@hoverStart="isHover = true"
@@ -142,6 +143,7 @@
 										:href="props.project.link"
 										class="flex chakra-petch row a-center"
 										target="_blank"
+										title="The website"
 									>
 										<Globe :size="18" />
 										Site web
@@ -152,6 +154,7 @@
 										:href="props.project.linkOfCode"
 										class="flex code chakra-petch row a-center"
 										target="_blank"
+										title="The code"
 									>
 										<GitHubIcon :size="18" />
 										Code

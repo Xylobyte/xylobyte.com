@@ -2,7 +2,7 @@
 	import { useHead } from '@unhead/vue';
 
 	useHead({
-		title: 'Nantsa Montillet - Mentions légales',
+		title: 'Nantsa Montillet - Legal notices',
 	});
 </script>
 

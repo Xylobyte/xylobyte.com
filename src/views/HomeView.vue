@@ -22,7 +22,7 @@
 	});
 
 	useHead({
-		title: 'Nantsa Montillet - Développeur Web',
+		title: 'Nantsa Montillet - Web Developer / Software Engineer',
 	});
 </script>
 

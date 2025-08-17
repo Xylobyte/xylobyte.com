@@ -65,6 +65,7 @@
 				:style="{ rotateX: rX, rotateY: rY, transformStyle: 'preserve-3d' }"
 				class="daily-dev only-desktop flex"
 				href="https://app.daily.dev/xylobyte"
+				title="DailyDev personal page"
 			>
 				<img alt="Nantsa's Dev Card" height="565" src="@/assets/images/daily_dev.webp" width="400" />
 			</Motion>
@@ -82,7 +83,7 @@
 				<img alt="" height="300" src="@/assets/images/profil.webp" width="300" />
 			</Motion>
 
-			<Motion as="h1" class="big-title" layout-id="title-name">
+			<Motion class="big-title" layout-id="title-name">
 				<Motion
 					v-for="i in name.length"
 					as="span"
@@ -199,7 +200,7 @@
 				margin-bottom: 20px;
 			}
 
-			h1 {
+			.big-title {
 				display: flex;
 				font-size: min(50px, 9vw);
 			}

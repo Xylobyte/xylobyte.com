@@ -12,9 +12,13 @@
 			<RouterLink class="txt-link jura" to="/mentions-legales">{{ texts['footer-legal'] }}</RouterLink>
 			<span class="jura flex row gap5">
 				<span class="separator">|</span>
-				<a class="txt-link" href="https://github.com/Xylobyte/xylobyte.com">{{ texts['footer-code'] }}</a>
+				<a class="txt-link" href="https://github.com/Xylobyte/xylobyte.com" title="Link to the source code">
+					{{ texts['footer-code'] }}
+				</a>
 				{{ texts['footer-under'] }}
-				<a class="txt-link" href="https://www.gnu.org/licenses/agpl-3.0.fr.html">AGPL v3.0</a>
+				<a class="txt-link" href="https://www.gnu.org/licenses/agpl-3.0.fr.html" title="Link of AGPL license">
+					AGPL v3.0
+				</a>
 			</span>
 		</span>
 	</footer>
