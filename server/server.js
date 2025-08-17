@@ -6,7 +6,6 @@ const mime = require('mime-types');
 const hostname = 'localhost' || '127.0.0.1';
 const port = 3000 || 'passenger';
 
-// Chemin racine où sont stockés les fichiers publics
 const PUBLIC_DIR = path.join(__dirname, '..', 'www');
 
 /**
@@ -16,12 +15,10 @@ const PUBLIC_DIR = path.join(__dirname, '..', 'www');
  */
 function findFile(urlPath) {
 	return new Promise(resolve => {
-		// 1️⃣  Si l’URL pointe déjà vers un fichier existant → on l’utilise tel quel
 		const exactPath = path.join(PUBLIC_DIR, urlPath);
 		fs.stat(exactPath, (err, stats) => {
 			if (!err && stats.isFile()) return resolve(exactPath);
 
-			// 2️⃣  Si l’URL est un répertoire (ex: "/about/") → on cherche index.html dedans
 			if (!err && stats.isDirectory()) {
 				const dirIndex = path.join(exactPath, 'index.html');
 				return fs.access(dirIndex, fs.constants.F_OK, e => {
@@ -29,7 +26,6 @@ function findFile(urlPath) {
 				});
 			}
 
-			// 3️⃣  Si l’URL ne contient pas d’extension, on ajoute .html
 			if (!path.extname(urlPath)) {
 				const htmlPath = path.join(PUBLIC_DIR, `${urlPath}.html`);
 				return fs.access(htmlPath, fs.constants.F_OK, e => {
@@ -37,7 +33,6 @@ function findFile(urlPath) {
 				});
 			}
 
-			// Aucun fichier trouvé → on renvoie null
 			resolve(null);
 		});
 	});
@@ -47,11 +42,10 @@ function findFile(urlPath) {
  * Serveur HTTP
  */
 const server = http.createServer(async (req, res) => {
-	const reqUrl = req.url.split('?')[0]; // on ignore les query‑strings
+	const reqUrl = req.url.split('?')[0];
 	const fileToServe = await findFile(reqUrl);
 
 	if (fileToServe) {
-		// On trouve un fichier → on l’envoie
 		const contentType = mime.lookup(fileToServe) || 'application/octet-stream';
 		fs.readFile(fileToServe, (err, data) => {
 			if (err) {
@@ -65,7 +59,6 @@ const server = http.createServer(async (req, res) => {
 			}
 		});
 	} else {
-		// Aucune correspondance → on renvoie le index.html racine
 		const indexPath = path.join(PUBLIC_DIR, 'index.html');
 		fs.readFile(indexPath, (err, data) => {
 			if (err) {

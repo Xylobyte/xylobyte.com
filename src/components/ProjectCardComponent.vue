@@ -74,7 +74,7 @@
 				<Motion
 					as="img"
 					:alt="`Image of ${props.project.name} project`"
-					:animate="{ width: isHover ? '45%' : '30%' }"
+					:class="{ hover: isHover }"
 					:src="props.project.images[0]"
 					class="main-image"
 				/>
@@ -258,21 +258,28 @@
 			top: 0;
 			right: 0;
 			bottom: 0;
-			width: 30%;
 			height: 100%;
 			object-fit: cover;
 			object-position: center;
 			z-index: 0;
 			opacity: 0.4;
 			mask: linear-gradient(to right, transparent, black);
+			width: 30%;
+			transition: width 0.2s ease;
+
+			&.hover {
+				width: 45%;
+			}
 		}
 
 		@media (max-width: 400px) {
-			padding: 15px !important;
-
 			.main-image {
-				width: 60%;
 				opacity: 0.35;
+				width: 50%;
+
+				&.hover {
+					width: 50%;
+				}
 			}
 		}
 	}

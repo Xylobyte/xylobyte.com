@@ -14,6 +14,7 @@
 	provide(textsKey, texts);
 
 	const textsLoaded = ref(false);
+	const isSSR = import.meta.env.SSR;
 
 	const clearVariables = () => {
 		const app = document.getElementById('app');
@@ -79,7 +80,7 @@
 	</div>
 
 	<Transition>
-		<div v-if="!textsLoaded" class="loading flex a-center j-center">
+		<div v-if="!textsLoaded || isSSR" class="loading flex a-center j-center">
 			<span class="chakra-petch">Loading . . .</span>
 		</div>
 	</Transition>

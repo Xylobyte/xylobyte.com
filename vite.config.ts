@@ -18,5 +18,6 @@ export default {
 	},
 	ssgOptions: {
 		mock: true,
+		dirStyle: 'nested',
 	},
 } satisfies UserConfig & { ssgOptions?: ViteSSGOptions };
