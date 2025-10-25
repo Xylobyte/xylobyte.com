@@ -1,9 +1,0 @@
-{
-    "name": "xylobyte-server",
-    "version": "0.0.0",
-    "private": true,
-    "type": "commonjs",
-    "dependencies": {
-        "mime-types": "^3.0.0"
-    }
-}
