@@ -150,7 +150,7 @@
 				background-color="102, 88, 185"
 				class="btn-cv flex a-center j-center"
 				color="255, 255, 255"
-				link="/storage/nm_cv.pdf"
+				link="/files/nm_cv.pdf"
 			/>
 		</Motion>
 	</section>
