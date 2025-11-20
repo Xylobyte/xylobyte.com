@@ -135,7 +135,7 @@
 								</span>
 							</div>
 
-							<div class="flex column">
+							<div v-if="props.project.link || props.project.linkOfCode" class="flex column">
 								<h4 class="chakra-petch">{{ texts['p-card-link'] }}</h4>
 								<div class="flex row gap15">
 									<a

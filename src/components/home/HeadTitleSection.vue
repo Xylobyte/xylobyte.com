@@ -226,6 +226,10 @@
 			.btn-link {
 				gap: 20px;
 			}
+
+			> hr {
+				display: none;
+			}
 		}
 	}
 
