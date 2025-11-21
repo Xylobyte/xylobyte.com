@@ -34,3 +34,14 @@ jobs:
           source: "www/*"
           target: "/home/${{ secrets.SSH_USER }}/xylobyte/public/"
           rm: true
+
+      - name: Move files
+        uses: appleboy/ssh-action@v1.2.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            mv /home/${{ secrets.SSH_USER }}/xylobyte/public/www/* .
+            mv /home/${{ secrets.SSH_USER }}/xylobyte/public/www/.??* .
+            rm -rf /home/${{ secrets.SSH_USER }}/xylobyte/public/www
