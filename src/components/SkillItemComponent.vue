@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 	const props = defineProps<{
-		text: string;
+		text?: string;
 		type: 'hard' | 'soft' | 'language';
 		level?: string;
 	}>();

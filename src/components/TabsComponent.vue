@@ -2,7 +2,7 @@
 	import { Motion } from 'motion-v';
 
 	const props = defineProps<{
-		tabs: { id: string; label: string }[];
+		tabs: { id: string; label?: string }[];
 	}>();
 
 	const model = defineModel<string>({ required: true, default: '' });

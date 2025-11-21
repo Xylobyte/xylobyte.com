@@ -6,9 +6,9 @@
 	const props = defineProps<{
 		start: string;
 		end?: string;
-		title: string;
+		title?: string;
 		image: string;
-		description: string;
+		description?: string;
 		isProof?: boolean;
 	}>();
 

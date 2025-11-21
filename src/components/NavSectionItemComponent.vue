@@ -2,7 +2,7 @@
 	import type { Component } from 'vue';
 
 	const props = defineProps<{
-		name: string;
+		name?: string;
 		icon: Component;
 		targetId: string;
 		isActive: boolean;

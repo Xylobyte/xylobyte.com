@@ -4,7 +4,7 @@
 	const props = defineProps<{
 		disabled?: boolean;
 		readonly?: boolean;
-		placeholder: string;
+		placeholder?: string;
 		type?: InputTypeHTMLAttribute | 'textarea';
 		showError?: boolean;
 		validateFor?: 'name' | 'email' | 'phone' | 'message';

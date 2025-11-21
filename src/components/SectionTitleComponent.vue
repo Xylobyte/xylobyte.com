@@ -3,7 +3,7 @@
 	import { appearFromBottom, inViewCustomOptions } from '@/animations/home-scroll.ts';
 
 	const props = defineProps<{
-		title: string;
+		title?: string;
 	}>();
 </script>
 
