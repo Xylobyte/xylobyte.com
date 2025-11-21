@@ -26,11 +26,11 @@ jobs:
         run: pnpm run build
 
       - name: Upload to server using SSH
-        uses: garygrossgarten/github-action-scp@0.9.0
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          privateKey: ${{ secrets.SSH_KEY }}
-          local: "www"
-          remote: "/home/${{ secrets.SSH_USER }}/xylobyte/public"
-          rmRemote: true
+          key: ${{ secrets.SSH_KEY }}
+          source: "www/*"
+          target: "/home/${{ secrets.SSH_USER }}/xylobyte/public/"
+          rm: true
