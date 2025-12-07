@@ -7,7 +7,7 @@
 	import { XylobyteAPI } from '@/api/XylobyteAPI.ts';
 
 	const menuOpen = ref(false);
-	const lang = ref((localStorage.getItem('xylobyte-lang') || navigator.language).includes('fr') ? 'fr' : 'en');
+	const lang = ref((localStorage.getItem?.('xylobyte-lang') || navigator.language).includes('fr') ? 'fr' : 'en');
 	const texts = ref<Record<string, string>>({});
 	provide(menuOpenKey, menuOpen);
 	provide(langKey, lang);
@@ -54,7 +54,7 @@
 
 	watchEffect(() => {
 		textsLoaded.value = false;
-		localStorage.setItem('xylobyte-lang', lang.value);
+		localStorage.setItem?.('xylobyte-lang', lang.value);
 		document.documentElement.lang = lang.value;
 		fetchTexts();
 	});

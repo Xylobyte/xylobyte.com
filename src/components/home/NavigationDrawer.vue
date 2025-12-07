@@ -8,19 +8,21 @@
 	const drawerOpen = inject(menuOpenKey, ref(false));
 	const texts = inject(textsKey, ref({} as Record<string, string>));
 
-	const observer = new IntersectionObserver(
-		entries => entries.forEach(entry => entry.isIntersecting && (currentSection.value = entry.target.id)),
-		{ rootMargin: '-50% 0%' },
-	);
+	if (!import.meta.env.SSR) {
+		const observer = new IntersectionObserver(
+			entries => entries.forEach(entry => entry.isIntersecting && (currentSection.value = entry.target.id)),
+			{ rootMargin: '-50% 0%' },
+		);
 
-	onMounted(() => {
-		const sections = document.querySelectorAll('#presentation, #skills, #projects, #about, #contact');
-		sections.forEach(s => observer.observe(s));
-	});
+		onMounted(() => {
+			const sections = document.querySelectorAll('#presentation, #skills, #projects, #about, #contact');
+			sections.forEach(s => observer.observe(s));
+		});
 
-	onUnmounted(() => {
-		observer.disconnect();
-	});
+		onUnmounted(() => {
+			observer.disconnect();
+		});
+	}
 </script>
 
 <template>

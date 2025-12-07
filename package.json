@@ -17,11 +17,11 @@
 	},
 	"dependencies": {
 		"@unhead/vue": "^2.0.19",
-		"@vueuse/core": "^14.0.0",
+		"@vueuse/core": "^14.1.0",
 		"axios": "^1.13.2",
-		"lucide-vue-next": "^0.554.0",
+		"lucide-vue-next": "^0.556.0",
 		"motion-v": "^1.7.4",
-		"vue": "^3.5.24",
+		"vue": "^3.5.25",
 		"vue-router": "^4.6.3",
 		"vue3-simple-icons": "^15.6.0"
 	},
@@ -33,17 +33,16 @@
 		"@vue/eslint-config-typescript": "^14.6.0",
 		"@vue/tsconfig": "^0.8.1",
 		"eslint": "^9.39.1",
-		"eslint-plugin-oxlint": "^1.29.0",
-		"eslint-plugin-vue": "^10.5.1",
+		"eslint-plugin-oxlint": "^1.31.0",
+		"eslint-plugin-vue": "^10.6.2",
 		"jiti": "^2.6.1",
 		"npm-run-all2": "^8.0.4",
-		"oxlint": "^1.29.0",
-		"prettier": "^3.6.2",
+		"oxlint": "^1.31.0",
+		"prettier": "^3.7.4",
 		"sass": "^1.94.2",
 		"typescript": "~5.9.3",
-		"vite": "7.2.4",
+		"vite": "7.2.6",
 		"vite-plugin-vue-devtools": "^8.0.5",
 		"vite-ssg": "^28.2.2",
-		"vue-tsc": "^3.1.4"
-	}
+		                "vue-tsc": "3.1.5"	}
 }
