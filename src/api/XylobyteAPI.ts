@@ -44,7 +44,14 @@ export class XylobyteAPI {
 }
 
 const fetchData = async (url: string) => {
-	const res = await axios.get(url);
+	const res = await axios.get(
+		url,
+		import.meta.env.SSR
+			? {
+					adapter: 'http',
+				}
+			: undefined,
+	);
 	if (res.status !== 200 && res.status !== 201) throw res.statusText;
 	return res.data;
 };

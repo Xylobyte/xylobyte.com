@@ -33,7 +33,7 @@
 			: projects.value?.filter(p => (activeTab.value === 'feat' && p.featured) || activeTab.value === p.type)
 		)?.filter(p =>
 			search.value
-				? `${p.name} ${p.skills.map(s => s.name).join(' ')} ${texts.value[`project-${p.id}-desc`]}`
+				? `${p.name} ${p.skills.join(' ')} ${texts.value[`project-${p.id}-desc`]}`
 						.toLowerCase()
 						.includes(search.value.toLowerCase())
 				: true,

@@ -24,8 +24,12 @@ export const createApp = ViteSSG(
 
 export const includedRoutes = async () => {
 	const newPaths = ['/', '/projects', '/mentions-legales'];
-	const projects = await XylobyteAPI.getProjects();
-	projects.forEach(project => newPaths.push(`/projects/${project.id}`));
+	try {
+		const projects = await XylobyteAPI.getProjects();
+		projects.forEach(project => newPaths.push(`/projects/${project.id}`));
+	} catch (error) {
+		console.log('ERROR info: ', error);
+	}
 	console.log('New', newPaths);
 	return newPaths;
 };
