@@ -66,8 +66,8 @@
 				<section v-if="!props.isOpen" class="skills flex row gap5 wrap">
 					<SkillItemComponent
 						v-for="skill in props.project.skills.slice(0, 3)"
-						:key="skill.name"
-						:text="skill.name"
+						:key="skill"
+						:text="skill"
 						type="hard"
 					/>
 				</section>
@@ -170,8 +170,8 @@
 										v-for="skill in props.isOpen
 											? props.project.skills
 											: props.project.skills.slice(0, 3)"
-										:key="skill.name"
-										:text="skill.name"
+										:key="skill"
+										:text="skill"
 										type="hard"
 									/>
 								</section>

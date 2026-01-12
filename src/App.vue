@@ -24,6 +24,8 @@
 	};
 
 	onMounted(() => {
+		XylobyteAPI.logAccess();
+
 		setTimeout(() => {
 			//console.clear();
 			console.log('Bienvenue sur la console dev de');

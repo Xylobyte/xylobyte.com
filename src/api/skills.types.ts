@@ -25,7 +25,7 @@ export interface Project {
 		from: { year: number; month: number };
 		to?: { year: number; month: number };
 	};
-	skills: { name: string }[];
+	skills: string[];
 	featured?: boolean;
 	type?: 'perso' | 'pro' | 'school';
 }

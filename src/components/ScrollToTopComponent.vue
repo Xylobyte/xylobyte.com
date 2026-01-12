@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 	import { useScroll } from '@vueuse/core';
 	import { ArrowUpToLine } from 'lucide-vue-next';
 
@@ -7,11 +7,11 @@
 
 <template>
 	<div :class="{ top: y < 500 }" class="scroll-top flex a-center j-center transition-all only-desktop" @click="y = 0">
-		<ArrowUpToLine class="transition-transform" :size="25" />
+		<ArrowUpToLine :size="25" class="transition-transform" />
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 	.scroll-top {
 		position: fixed;
 		bottom: 20px;
@@ -22,6 +22,7 @@
 		background-color: var(--light-primary-color);
 		padding: 10px 16px;
 		border-radius: var(--small-border-radius);
+		z-index: 2;
 
 		&.top {
 			opacity: 0.2;

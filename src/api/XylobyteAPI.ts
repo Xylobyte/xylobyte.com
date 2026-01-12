@@ -5,19 +5,18 @@ import axios from 'axios';
 
 export class XylobyteAPI {
 	static getHardSkills = async (): Promise<HardSkills> =>
-		await fetchData('https://api.xylobyte.com/v1/website/hardskills');
+		await fetchData('http://127.0.0.1:3000/v1/website/hardskills');
 
 	static getSoftSkills = async (): Promise<SoftSkill[]> =>
-		await fetchData('https://api.xylobyte.com/v1/website/softskills');
+		await fetchData('http://127.0.0.1:3000/v1/website/softskills');
 
 	static getLanguagesSkills = async (): Promise<LanguageSkill[]> =>
-		await fetchData('https://api.xylobyte.com/v1/website/languages-skills');
+		await fetchData('http://127.0.0.1:3000/v1/website/languages-skills');
 
-	static getProjects = async (): Promise<Project[]> =>
-		await fetchData('https://api.xylobyte.com/v1/website/projects');
+	static getProjects = async (): Promise<Project[]> => await fetchData('http://127.0.0.1:3000/v1/website/projects');
 
 	static sendContactRequest = async (data: ContactRequestData) => {
-		const response = await fetch('https://api.xylobyte.com/v1/website/contact', {
+		const response = await fetch('http://127.0.0.1:3000/v1/website/contact', {
 			body: JSON.stringify(data),
 			method: 'POST',
 			cache: 'no-cache',
@@ -37,7 +36,11 @@ export class XylobyteAPI {
 	};
 
 	static getTexts = async (lang: string): Promise<XylobyteText[]> =>
-		await fetchData(`https://api.xylobyte.com/v1/website/texts?lang=${lang}`);
+		await fetchData(`http://127.0.0.1:3000/v1/website/texts?lang=${lang}`);
+
+	static logAccess = async () => {
+		await axios.post('http://127.0.0.1:3000/v1/admin/access-stats/portfolio');
+	};
 }
 
 const fetchData = async (url: string) => {
