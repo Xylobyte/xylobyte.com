@@ -15,7 +15,7 @@ export class XylobyteAPI {
 	static getProjects = async (): Promise<Project[]> => await fetchData('/v1/website/projects');
 
 	static sendContactRequest = async (data: ContactRequestData) => {
-		const response = await fetch('/v1/website/contact', {
+		const response = await fetch(host + '/v1/website/contact', {
 			body: JSON.stringify(data),
 			method: 'POST',
 			cache: 'no-cache',
