@@ -25,6 +25,15 @@ jobs:
       - name: Build project
         run: pnpm run build
 
+      - name: Clean target folder
+        uses: appleboy/ssh-action@v1.2.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            rm -rf /var/www/xylobyte.com/* /var/www/xylobyte.com/.??*
+
       - name: Upload to server using SSH
         uses: appleboy/scp-action@v1.0.0
         with:
@@ -33,7 +42,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "www/*"
           target: "/var/www/xylobyte.com"
-          rm: true
 
       - name: Move files
         uses: appleboy/ssh-action@v1.2.3
@@ -42,6 +50,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            mv /var/www/xylobyte.com/www/* /var/www/xylobyte.com
-            mv /var/www/xylobyte.com/www/.??* /var/www/xylobyte.com
-            rm -rf /var/www/xylobyte.com/www
+            mv /var/www/xylobyte.com/www/* /var/www/xylobyte.com;
+            mv /var/www/xylobyte.com/www/.??* /var/www/xylobyte.com;
+            rm -rf /var/www/xylobyte.com/www;
+            find /var/www/xylobyte.com -type d -exec chmod 755 {} \;
+            find /var/www/xylobyte.com -type f -exec chmod 644 {} \;
