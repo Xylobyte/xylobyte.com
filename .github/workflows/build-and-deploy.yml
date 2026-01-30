@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "www/*"
-          target: "/home/${{ secrets.SSH_USER }}/xylobyte/public/"
+          target: "/var/www/xylobyte.com"
           rm: true
 
       - name: Move files
@@ -42,6 +42,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            mv /home/${{ secrets.SSH_USER }}/xylobyte/public/www/* /home/${{ secrets.SSH_USER }}/xylobyte/public
-            mv /home/${{ secrets.SSH_USER }}/xylobyte/public/www/.??* /home/${{ secrets.SSH_USER }}/xylobyte/public
-            rm -rf /home/${{ secrets.SSH_USER }}/xylobyte/public/www
+            mv /var/www/xylobyte.com/www/* /var/www/xylobyte.com
+            mv /var/www/xylobyte.com/www/.??* /var/www/xylobyte.com
+            rm -rf /var/www/xylobyte.com/www
