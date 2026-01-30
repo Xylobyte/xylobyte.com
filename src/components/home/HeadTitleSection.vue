@@ -104,7 +104,7 @@
 				class="jura f-large"
 				initial="hidden"
 			>
-				{{ texts['main-title'] }} test
+				{{ texts['main-title'] }}
 			</Motion>
 			<Motion
 				as="p"
