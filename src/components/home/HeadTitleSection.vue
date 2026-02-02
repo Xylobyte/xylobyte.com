@@ -80,7 +80,7 @@
 
 		<div class="info flex column j-center gap10">
 			<Motion :custom="0.2" :variants="appearVariants" animate="visible" as-child initial="hidden">
-				<img alt="" height="300" src="@/assets/images/profil.webp" width="300" />
+				<img alt="" height="300" src="@/assets/images/profile.webp" width="300" />
 			</Motion>
 
 			<Motion class="big-title" layout-id="title-name">
