@@ -7,7 +7,7 @@
 
 <template>
 	<footer class="footer flex j-center a-center column gap5">
-		<span class="jura f-medium">© Copyright 2023 - 2025 | Nantsa Montillet</span>
+		<span class="jura f-medium">© Copyright 2023 - 2026 | Nantsa Montillet</span>
 		<span class="legal flex row a-center gap5">
 			<RouterLink class="txt-link jura" to="/mentions-legales">{{ texts['footer-legal'] }}</RouterLink>
 			<span class="jura flex row gap5">
