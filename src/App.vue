@@ -24,8 +24,6 @@
 	};
 
 	onMounted(() => {
-		!import.meta.env.SSR && XylobyteAPI.logAccess();
-
 		setTimeout(() => {
 			console.clear();
 			console.log('Bienvenue sur la console dev de');

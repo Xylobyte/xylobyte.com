@@ -36,10 +36,6 @@ export class XylobyteAPI {
 
 	static getTexts = async (lang: string): Promise<XylobyteText[]> =>
 		await fetchData(`/v1/website/texts?lang=${lang}`);
-
-	static logAccess = async () => {
-		await axios.post(host + '/v1/admin/access-stats/portfolio', undefined, { withCredentials: true });
-	};
 }
 
 const fetchData = async (url: string) => {
