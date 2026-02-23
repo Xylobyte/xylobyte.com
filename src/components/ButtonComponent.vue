@@ -14,6 +14,16 @@
 		'--btn-background-color': props.backgroundColor || '40, 40, 40',
 		'--btn-color': props.color || '255, 255, 255',
 	}));
+
+	const isExternalTracked = computed(() => props.link && !props.link.includes('xylobyte.com'));
+	const umamiAttrs = computed(() => {
+		if (!isExternalTracked.value) return {};
+
+		return {
+			'data-umami-event': props.text,
+			'data-umami-event-link': props.link,
+		};
+	});
 </script>
 
 <template>
@@ -22,6 +32,7 @@
 		:class="{ disabled: props.disabled }"
 		:href="props.link || '#'"
 		:target="props.link && '_blank'"
+		v-bind="umamiAttrs"
 	>
 		<button :disabled="props.disabled" :style="cssVars" class="p-relative chakra-petch f-medium flex a-center">
 			<component :is="props.icon" v-if="props.icon !== null" size="18"></component>
