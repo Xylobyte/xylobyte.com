@@ -54,6 +54,12 @@
 
 	useHead({
 		title: 'Nantsa Montillet - My projects and achievements',
+		link: [
+			{
+				rel: 'canonical',
+				href: `https://xylobyte.com${route.path}`,
+			},
+		],
 	});
 </script>
 
