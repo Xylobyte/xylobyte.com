@@ -56,7 +56,7 @@
 				color="white"
 				@click="menuOpen = !menuOpen"
 			/>
-			<h1 class="big-title only-desktop transition-all">Jonh Doe</h1>
+			<h1 class="big-title only-desktop transition-all">Nantsa Montillet</h1>
 		</div>
 
 		<nav class="flex row gap20 a-center p-absolute transition-all">

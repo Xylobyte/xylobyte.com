@@ -2,7 +2,7 @@
 	import { useHead } from '@unhead/vue';
 
 	useHead({
-		title: 'Jonh Doe - Legal notices',
+		title: 'Nantsa Montillet - Legal notices',
 	});
 </script>
 
@@ -21,7 +21,7 @@
 				<a class="txt-link" href="https://xylobyte.com">https://xylobyte.com</a> (le « Site »), est édité par :
 			</p>
 			<p>
-				Jonh Doe, résidant 2 chemin d'Ance 63680 Chastreix, de nationalité Française (France), né(e) le
+				Nantsa Montillet, résidant 2 chemin d'Ance 63680 Chastreix, de nationalité Française (France), né(e) le
 				18/04/2006,
 			</p>
 			<h3 class="chakra-petch">Hébergement</h3>
@@ -30,7 +30,7 @@
 				(contact téléphonique ou email : (+41) 22 820 35 44).
 			</p>
 			<h3 class="chakra-petch">Directeur de publication</h3>
-			<p>Le Directeur de la publication du Site est Jonh Doe.</p>
+			<p>Le Directeur de la publication du Site est Nantsa Montillet.</p>
 			<h3 class="chakra-petch">Nous contacter</h3>
 			<p>
 				Par email&nbsp;:
