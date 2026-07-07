@@ -53,7 +53,7 @@
 	});
 
 	useHead({
-		title: 'Nantsa Montillet - My projects and achievements',
+		title: 'Jonh Doe - My projects and achievements',
 		link: [
 			{
 				rel: 'canonical',

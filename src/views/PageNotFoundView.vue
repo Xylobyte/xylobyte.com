@@ -2,7 +2,7 @@
 	import { onMounted } from 'vue';
 
 	onMounted(() => {
-		document.title = 'Nantsa Montillet - 404';
+		document.title = 'Jonh Doe - 404';
 	});
 </script>
 

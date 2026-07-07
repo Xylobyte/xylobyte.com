@@ -6,7 +6,7 @@
 	import { inject, ref } from 'vue';
 	import { textsKey } from '@/keys.ts';
 
-	const name = 'Nantsa\xa0Montillet';
+	const name = 'Jonh\xa0Doe';
 
 	const texts = inject(textsKey, ref({} as Record<string, string>));
 

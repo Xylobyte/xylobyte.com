@@ -22,7 +22,7 @@
 	});
 
 	useHead({
-		title: 'Nantsa Montillet - Web Developer / Software Engineer',
+		title: 'Jonh Doe - Web Developer / Software Engineer',
 	});
 </script>
 
